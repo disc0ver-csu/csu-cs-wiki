@@ -10,6 +10,11 @@ Trimesh::~Trimesh()
 		delete *i;
 }
 
+bool Trimesh::hasPerVertexNormals()
+{
+	return !(this->normals.empty());
+}
+
 // must add vertices, normals, and materials IN ORDER
 void Trimesh::addVertex( const Vec3d &v )
 {
@@ -69,42 +74,91 @@ bool TrimeshFace::intersectLocal(const ray& r, isect& i) const
 	// const Vec3d& a = parent->vertices[ids[0]];
 	// const Vec3d& b = parent->vertices[ids[1]];
 	// const Vec3d& c = parent->vertices[ids[2]];
+
+	//const Vec3d& a = parent->vertices[ids[0]];
+	//const Vec3d& b = parent->vertices[ids[1]];
+	//const Vec3d& c = parent->vertices[ids[2]];
+
+	//Vec3d edge1 = b - a;
+	//Vec3d edge2 = c - a;
+	//// 计算平面法向量
+	//Vec3d nor = edge1 ^ edge2;
+	//nor.normalize();
+
+	//// 判断是否与平面平行
+	//float x = nor * r.getDirection();
+	//if (!(x < 0.0))
+	//	return false;
+	//// Ax + By + Cz = d
+	//float d = nor * a;
+	//float t = (d - nor * r.getPosition()) / x;
+	//if (t <= RAY_EPSILON)
+	//	return false;
+	//Vec3d intersection_point = r.at(t);
+	//Vec3d edge3 = intersection_point - a;
+	//// 同向法判断是否在平面内
+	//if (((b - a) ^ (intersection_point - a)) * nor <= 0)
+	//	return false;
+	//else if (((c - b) ^ (intersection_point - b)) * nor <= 0)
+	//	return false;
+	//else if (((a - c) ^ (intersection_point - c)) * nor <= 0)
+	//	return false;
+	//else {
+	//	//交点设置
+	//	i.obj = this;
+	//	i.setT(t);
+	//	i.setN(nor);
+	//	return true;
+	//}
 	const Vec3d& a = parent->vertices[ids[0]];
 	const Vec3d& b = parent->vertices[ids[1]];
 	const Vec3d& c = parent->vertices[ids[2]];
 
-	Vec3d edge1 = b - a;
-	Vec3d edge2 = c - a;
-	// 计算平面法向量
-	Vec3d nor = edge1 ^ edge2;
-	nor.normalize();
 
-	// 判断是否与平面平行
-	float x = nor * r.getDirection();
-	if (!(x < 0.0))
+	Vec3d n = (b - a) ^ (c - a);
+	if (n.length() != 0)	n.normalize();
+	else return false;
+
+	const Vec3d& pos = r.getPosition();
+	const Vec3d& dir = r.getDirection();
+
+
+	if (fabs(n*dir) < RAY_EPSILON)	return false;
+
+	double d = n * a;
+	double t = (d - n * pos) / (n * dir);
+
+	const Vec3d& Q = r.at(t);
+	if (((b - a) ^ (Q - a)) * n < 0 || ((c - b) ^ (Q - b)) * n < 0 || ((a - c) ^ (Q - c)) * n < 0)	
 		return false;
-	// Ax + By + Cz = d
-	float d = nor * a;
-	float t = (d - nor * r.getPosition()) / x;
-	if (t <= RAY_EPSILON)
+
+	if (t < RAY_EPSILON)	
 		return false;
-	Vec3d intersection_point = r.at(t);
-	Vec3d edge3 = intersection_point - a;
-	// 同向法判断是否在平面内
-	if (((b - a) ^ (intersection_point - a)) * nor <= 0)
-		return false;
-	else if (((c - b) ^ (intersection_point - b)) * nor <= 0)
-		return false;
-	else if (((a - c) ^ (intersection_point - c)) * nor <= 0)
-		return false;
-	else {
-		//交点设置
-		i.obj = this;
-		i.setT(t);
-		i.setN(nor);
-		return true;
+
+	double alpha = ((c - b) ^ (Q - b))*n / (((b - a) ^ (c - a))*n);
+	double beta = ((a - c) ^ (Q - c))*n / (((b - a) ^ (c - a))*n);
+	double gamma = ((b - a) ^ (Q - a))*n / (((b - a) ^ (c - a))*n);
+
+	if (parent->materials.size() > 0) {
+		Material m = alpha * *parent->materials[ids[0]];
+		m += beta * *parent->materials[ids[1]];
+		m += gamma * *parent->materials[ids[2]];
+		i.setMaterial(m);
 	}
 
+	if (TrimeshFace::parent->hasPerVertexNormals()) {
+		vector<Vec3d> normals = TrimeshFace::parent->normals;
+		Vec3d tmp = alpha * normals[ids[0]] + beta * normals[ids[1]] + gamma * normals[ids[2]];
+		if (tmp.length() != 0)	tmp.normalize();
+		i.setN(tmp);
+	}
+	else {
+		i.setN(n);
+	}
+
+	i.setObject(this);
+	i.setT(t);
+	return true;
 }
 
 

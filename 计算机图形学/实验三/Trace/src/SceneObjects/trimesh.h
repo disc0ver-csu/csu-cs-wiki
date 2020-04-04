@@ -32,7 +32,7 @@ public:
 	bool intersectLocal(const ray&r, isect&i) const { return false; } 
 
     ~Trimesh();
-    
+	bool hasPerVertexNormals();
     // must add vertices, normals, and materials IN ORDER
     void addVertex( const Vec3d & );
     void addMaterial( Material *m );

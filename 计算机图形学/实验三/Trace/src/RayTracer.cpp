@@ -52,24 +52,32 @@ Vec3d RayTracer::traceRay( const ray& r,
 
 	if( scene->intersect( r, i ) && depth >= 0) {
 		const Material& m = i.getMaterial();
+		Vec3d N = i.N;
+		N.normalize();
+		Vec3d d = -r.getDirection();
+		d.normalize();
 
 		//º∆À„π‚‘¥÷±…‰
 		Vec3d I = m.shade(scene, r, i);
+		if (depth == 0)
+			return I;
 
 		//º∆À„∑¥…‰µ›πÈ
 		Vec3d Q = r.at(i.t);
-		Vec3d R = r.getDirection() - 2 * (r.getDirection()*i.N)*i.N;
+		Vec3d R = 2 * (d*N)*N - d;
 		R.normalize();
-		I += prod(m.kr(i), traceRay(ray(Q, R), thresh, depth - 1));
+		I += prod(m.kr(i), traceRay(ray(Q, R, ray::REFLECTION), thresh, depth - 1));
 
 		//º∆À„’€…‰µ›πÈ
-		double cosThetaI = -i.N*r.getDirection();
-		double eta = (i.outsideTheObject) ? 1.0003 / m.index(i) : m.index(i) / 1.0003;
-		if (eta*eta*(1 - cosThetaI * cosThetaI) < 1) {
-			double cosThetaT = sqrt(1 - eta * eta*(1 - cosThetaI * cosThetaI));
-			Vec3d T = (eta*cosThetaI - cosThetaT)*i.N - eta * r.getDirection();
+		double cosThetaI = N * d;
+		//double eta = (i.outsideTheObject) ? 1.0003 / m.index(i) : m.index(i) / 1.0003;
+		double eta = (cosThetaI >= 0) ? 1.0003 / m.index(i) : m.index(i) / 1.0003;
+		double sinthetat = (1 - cosThetaI * cosThetaI)*eta*eta;
+		if (sinthetat <= 1) {
+			double cosThetaT = sqrt(1 - sinthetat);
+			Vec3d T = (eta*cosThetaI - cosThetaT)*N - eta * d;
 			T.normalize();
-			I += prod(m.kt(i), traceRay(ray(Q, -T), thresh, depth - 1));
+			I += prod(m.kt(i), traceRay(ray(Q, T, ray::REFRACTION), thresh, depth - 1));
 		}
 		return I;
 		// An intersection occured!  We've got work to do.  For now,
