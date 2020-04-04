@@ -1,0 +1,48 @@
+SBT-raytracer 1.0
+
+// texture_map.ray
+// Test texture mapping
+// Don't forget to increase the trace depth to >= 2!
+
+camera
+{
+	position = (15, 0, 5);
+	viewdir = (-1, 0, -.3);
+	updir = (0, 0, 1);
+}
+
+directional_light
+{
+	direction = (-0.2, 0.2, -2);
+	color = (.7, .7, .7);
+}
+
+directional_light
+{
+	direction = (-1, -0.5, -0.3);
+	color = (.6, .6, .6);
+}
+
+// The box forms a plane, which should reflect the cylinder
+translate( 0, 0, -2,
+	scale( 15, 15, 1, 
+		box {
+			material = { 
+				diffuse = map( "checkerboard.bmp" ); 
+				specular = (0.5, 0.5, 0.5);
+				reflective = (0, 0, 0);
+				shininess = 25.6;
+			}
+		} ) )
+
+translate( 0, 0, 2,
+	scale( 2,
+	sphere {
+		material = { 
+			specular = (0.8, 0.8, 0);
+			reflective = (0.7, 0.7, 0);
+			diffuse = (0.2, 0.2, 0);
+			shininess = 256.0;
+		}
+	}
+) )
