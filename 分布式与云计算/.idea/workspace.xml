@@ -7,16 +7,11 @@
       <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/client/PersonStub.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonServer.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonSkeleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/java.policy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/实验四_Client/src/someClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/实验四_Client/src/someInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/实验四_Server/src/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_final_Client/src/someClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_final_Client/src/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_final_Server/src/someImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_final_Server/src/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_final_Server/src/someServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/实验/实验二/MyStreamSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/实验/实验二/MyStreamSocket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/实验二/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/实验二/Server.java" afterDir="false" />
@@ -67,88 +62,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="6" lean-forward="true" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="28" selection-start-line="28" selection-end-line="45" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/java.policy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="189">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -263,35 +180,6 @@
               <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="实验" type="b2602c69:ProjectViewProjectNode" />
-              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="实验" type="b2602c69:ProjectViewProjectNode" />
-              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="实验" type="b2602c69:ProjectViewProjectNode" />
-              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="实验" type="b2602c69:ProjectViewProjectNode" />
-              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四" type="462c0819:PsiDirectoryNode" />
-              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -302,7 +190,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591687655659" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591687658923" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="terminal" />
@@ -422,15 +310,15 @@
       <option name="presentableId" value="Default" />
       <updated>1591411750945</updated>
       <workItem from="1591411752927" duration="34200000" />
-      <workItem from="1591687387270" duration="82000" />
+      <workItem from="1591687387270" duration="867000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34282000" />
+    <option name="totallyTimeSpent" value="35067000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2239" y="86" width="1932" height="1085" extended-state="0" />
+    <frame x="2016" y="61" width="1932" height="1085" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25430107" />
@@ -647,13 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTaskImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -700,11 +581,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" lean-forward="true" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="270">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
