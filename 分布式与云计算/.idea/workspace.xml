@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6070d775-6960-4028-9fc4-9452b2a8c139" name="Default Changelist" comment="" />
+    <list default="true" id="6070d775-6960-4028-9fc4-9452b2a8c139" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/client/PersonClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/client/PersonStub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonSkeleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/java.policy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_Client/src/someClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_Client/src/someInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/实验四_Server/src/someInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/实验/实验二/MyStreamSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/实验/实验二/MyStreamSocket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/实验二/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/实验二/Server.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,39 +32,45 @@
     <session id="-1113765794">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="14" />
+          <entry key="java" value="42" />
+          <entry key="policy" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="42" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1842" />
+          <entry key="dummy" value="10" />
+          <entry key="java" value="3904" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1842" />
+          <entry key="JAVA" value="3904" />
+          <entry key="PLAIN_TEXT" value="10" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/实验二/MyStreamSocket.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+            <state relative-caret-position="162">
+              <caret line="6" lean-forward="true" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,14 +78,95 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/实验二/MyStreamServerSocket.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="258">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="28" selection-start-line="28" selection-end-line="45" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/java.policy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTaskImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -70,6 +176,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -91,6 +198,31 @@
         <option value="$PROJECT_DIR$/src/实验二/MyStreamServerSocket.java" />
         <option value="$PROJECT_DIR$/src/实验二/Server.java" />
         <option value="$PROJECT_DIR$/src/实验二/MyStreamSocket.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/server/HelloTask.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/server/IHello.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/server/HelloTaskImpl.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/server/HelloServer.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI/client/HelloClient.java" />
+        <option value="$PROJECT_DIR$/src/实验四_RMI_v1/client/HelloClient.java" />
+        <option value="$PROJECT_DIR$/src/实验四/server/Person.java" />
+        <option value="$PROJECT_DIR$/src/实验四/server/PersonStub.java" />
+        <option value="$PROJECT_DIR$/src/实验四/client/PersonStub.java" />
+        <option value="$PROJECT_DIR$/src/实验四/server/PersonServer.java" />
+        <option value="$PROJECT_DIR$/src/实验四/server/PersonSkeleton.java" />
+        <option value="$PROJECT_DIR$/src/实验四/client/PersonClient.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/server/HelloServer.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTask.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI_v1/server/HelloServer.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI_v1/client/HelloClient.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTaskImpl.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy" />
+        <option value="$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java" />
       </list>
     </option>
   </component>
@@ -107,8 +239,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1913" />
-    <option name="y" value="2" />
+    <option name="x" value="2016" />
+    <option name="y" value="61" />
     <option name="width" value="1932" />
     <option name="height" value="1085" />
   </component>
@@ -135,17 +267,30 @@
               <item name="实验" type="b2602c69:ProjectViewProjectNode" />
               <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验一" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="实验" type="b2602c69:ProjectViewProjectNode" />
               <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="实验二" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="实验" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="实验" type="b2602c69:ProjectViewProjectNode" />
+              <item name="分布式与云计算" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四" type="462c0819:PsiDirectoryNode" />
+              <item name="实验四_final" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -157,10 +302,19 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591590627843" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591687655659" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="terminal" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="实验四.实验四_final.client" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\日常\人工智能Github\CSU_CS_Experiment\分布式与云计算\src\实验四\实验四_final\server" />
+      <recent name="E:\日常\人工智能Github\CSU_CS_Experiment\分布式与云计算\src" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -174,13 +328,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="实验二.Client" />
+  <component name="RunManager" selected="Application.someClient">
+    <configuration name="HelloClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="实验四.实验四_RMI.实验四_RMI_v1.client.HelloClient" />
       <module name="实验" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="实验二.*" />
+          <option name="PATTERN" value="实验四.实验四_RMI.实验四_RMI_v1.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -188,12 +342,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="实验一.client.ClientMain" />
+    <configuration name="PersonClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="实验四.实验四_RMI.client.PersonClient" />
       <module name="实验" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="实验一.client.*" />
+          <option name="PATTERN" value="实验四.实验四_RMI.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -201,12 +355,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="实验二.Server" />
+    <configuration name="PersonServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="实验四.实验四_RMI.server.PersonServer" />
       <module name="实验" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="实验二.*" />
+          <option name="PATTERN" value="实验四.实验四_RMI.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -214,12 +368,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="实验一.server.ServerMain" />
+    <configuration name="someClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="实验四.实验四_final.client.someClient" />
       <module name="实验" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="实验一.server.*" />
+          <option name="PATTERN" value="实验四.实验四_final.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="someServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="实验四.实验四_final.server.someServer" />
+      <module name="实验" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="实验四.实验四_final.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -228,17 +395,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ServerMain" />
-      <item itemvalue="Application.ClientMain" />
-      <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.HelloClient" />
+      <item itemvalue="Application.PersonServer" />
+      <item itemvalue="Application.PersonClient" />
+      <item itemvalue="Application.someServer" />
+      <item itemvalue="Application.someClient" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="Application.ClientMain" />
-        <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.someClient" />
+        <item itemvalue="Application.someServer" />
+        <item itemvalue="Application.PersonClient" />
+        <item itemvalue="Application.PersonServer" />
+        <item itemvalue="Application.HelloClient" />
       </list>
     </recent_temporary>
   </component>
@@ -252,45 +421,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1591411750945</updated>
-      <workItem from="1591411752927" duration="13426000" />
+      <workItem from="1591411752927" duration="34200000" />
+      <workItem from="1591687387270" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13426000" />
+    <option name="totallyTimeSpent" value="34282000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1913" y="2" width="1932" height="1085" extended-state="0" />
+    <frame x="2239" y="86" width="1932" height="1085" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25053763" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25430107" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.35783783" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36038962" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,23 +481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/实验二/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/实验二/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -365,6 +518,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验二/MyStreamServerSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/实验二/MyStreamSocket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -375,10 +538,170 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/实验二/MyStreamServerSocket.java">
+    <entry file="file://$PROJECT_DIR$/src/实验二/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="311">
+          <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验二/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="826">
+          <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/server/PersonSkeleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/client/PersonStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/client/HelloClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/IHello.java" />
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/HelloTaskImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/HelloTask.java" />
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/实验四_RMI_v1/server/HelloServer.java" />
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI/client/PersonClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/server/HelloServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/client/HelloClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/java.policy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/java.policy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/IHello.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTaskImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_RMI_v1/HelloTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/client/someClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="28" selection-start-line="28" selection-end-line="45" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/实验四/实验四_final/server/someInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" lean-forward="true" selection-start-line="2" selection-end-line="9" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
