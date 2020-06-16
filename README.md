@@ -1,4 +1,7 @@
 # CSU_CS_experiment
+
+[![license](https://img.shields.io/github/license/leo6033/CSU_CS_Experiment)](LICENSE)
+
 ## 概要
 上过的课的课程实验与课设代码开源，其目的为：  
  1. 让学校课程使用了十几年的实验内容进行更新
@@ -22,3 +25,7 @@
  + 该项目中还未涉及到的课程
  + 该项目中未包括的实验
  + 对已有代码进行优化
+
+## License
+
+[MIT © Richard McRichface.](LICENSE)
