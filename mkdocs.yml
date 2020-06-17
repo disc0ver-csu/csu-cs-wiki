@@ -1,13 +1,13 @@
 site_name: CSU CS wiki
 site_description: CSU CS wiki 
 site_author: 妄想
-# site_url: 
+site_url: https://leo6033.github.io/CSU_CS_Experiment/
 strict: true
 
 # Repository
 repo_name: 'leo6033/CSU_CS_Experiment'
 repo_url: 'https://github.com/leo6033/CSU_CS_Experiment'
-# edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
+edit_uri: 'https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref='
 
 # Contents
 nav:
@@ -18,10 +18,10 @@ nav:
 
 # Theme
 theme:
-  name: null
+  name: material
   custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
+  # static_templates:
+  #   - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -45,16 +45,19 @@ extra:
   disqus: 'CSU CS Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
-  manifest: 'manifest.webmanifest'
   githash: '2ac34dc'
+#   palette:
+#     primary: 'Blue Grey'
+#     accent: 'Pink'
 
 extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - '_static/js/extra.js?v=16'
   
 
+
 extra_css:
   - '_static/css/extra.css?v=13'
-
 # Extensions
 markdown_extensions:
   - admonition

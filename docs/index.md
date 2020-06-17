@@ -1,3 +1,7 @@
+disqus:
+pagetime:
+title: CSU CS Wiki
+
 # CSU CS Wiki
 
 ## Material color palette 颜色主题

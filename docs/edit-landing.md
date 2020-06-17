@@ -19,6 +19,7 @@
 		}
 		return dft;
 	}
-	document.getElementById("btn-startedit").href = "https://github.com/leo6033/Experiment/edit/master/docs" + getQueryVariable("ref", "");
+	document.getElementById("btn-startedit").href = "https://github.com/leo6033/CSU_CS_Experiment/edit/master/docs" + getQueryVariable("ref", "");
 </script>
+
 
