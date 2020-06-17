@@ -468,3 +468,14 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+
+# Wiki
+_build/
+site/
+mkdocs-material/
+.vscode/
+.DS_Store
+.env
+.well-known/
+node_modules/
