@@ -7,7 +7,7 @@ strict: true
 # Repository
 repo_name: 'leo6033/CSU_CS_Experiment'
 repo_url: 'https://github.com/leo6033/CSU_CS_Experiment'
-edit_uri: 'https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref='
+edit_uri: 'https://leo6033.github.io/CSU_CS_Experiment/docs/edit-landing/?ref='
 
 # Contents
 nav:
@@ -20,8 +20,8 @@ nav:
 theme:
   name: material
   custom_dir: 'mkdocs-material/material'
-  # static_templates:
-  #   - 404.html
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -52,12 +52,12 @@ extra:
 
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - '_static/js/extra.js?v=16'
+  - '_static/js/extra.js'
   
 
 
 extra_css:
-  - '_static/css/extra.css?v=13'
+  - '_static/css/extra.css'
 # Extensions
 markdown_extensions:
   - admonition
