@@ -2,8 +2,8 @@
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/leo6033/CSU_CS_Experiment) 
 [![license](https://img.shields.io/github/license/leo6033/CSU_CS_Experiment)](LICENSE)
-[![GitHub watchers](https://img.shields.io/github/watchers/leo6033/CSU_CS_Experiment.svg?style=social&label=Watch)](https://github.com/leo6033/CSU_CS_Experiment)
-[![GitHub stars](https://img.shields.io/github/stars/leo6033/CSU_CS_Experiment.svg?style=social&label=Stars)](https://github.com/leo6033/CSU_CS_Experiment)
+[![GitHub watchers](https://img.shields.io/github/watchers/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
+[![GitHub stars](https://img.shields.io/github/stars/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
 
 ## 概要
 本项目主要用于上过的课的课程实验与课设代码开源,，以及使用 wiki 对部分课程知识点进行补充讲解，其目的为：  
