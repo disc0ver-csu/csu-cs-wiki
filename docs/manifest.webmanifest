@@ -3,8 +3,8 @@
   "name": "CSU CS Wiki",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "48x48"
+      "src": "favicon.png",
+      "sizes": "100x100"
     },
     {
       "src": "favicon_192x192.png",
