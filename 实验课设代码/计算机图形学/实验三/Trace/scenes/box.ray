@@ -1,0 +1,36 @@
+SBT-raytracer 1.0
+
+camera {
+	position = (4,0,0);
+	viewdir = (-1,0,0);
+	aspectratio = 1;
+	updir = (0,1,0);
+}
+
+point_light {
+	position = (4, 4, 0);
+	color = (.5, .5, .5);
+	constant_attenuation_coeff= 0.25;
+	linear_attenuation_coeff = 0.003372407;
+	quadratic_attenuation_coeff = 0.000045492;	
+}
+
+directional_light {
+	direction = (0, -1, 0);
+	colour = (1.0, 1.0, 1.0);
+}
+
+directional_light {
+	direction = (0,1,0);
+	colour = (0.2,0.2,0.2);
+}
+
+rotate( 0, 1, 1, -2,
+box { 
+	material = { 
+		diffuse = map("box_map1.bmp");
+//		diffuse = (0.7, 0, 1.0);
+		specular = (0.9,0.4,0.0);
+		shininess = 76.8;
+	};
+})
