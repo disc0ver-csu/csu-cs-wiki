@@ -5,19 +5,8 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - echo -e "machine github.com\n  login ${GH_TOKEN}" > ~/.netrc
 
 script:
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
-  - mkdocs build --clean
-  - mkdocs build
-
-after_success:
-  if [ -n "$GH_TOKEN" ]; then
-    cd "$TRAVIS_BUILD_DIR"
-    cd site
-    git init
-    git add .
-    git -c user.name=$GITHUB_NAME -c user.email=$GITHUB_EMAIL commit -m "Auto Deployment"
-    git push -f -q https://$GITHUB_NAME:$GH_TOKEN@CSU_CS_Experiment master:gh-pages
-    cd "$TRAVIS_BUILD_DIR"
-  fi
+  - mkdocs gh-deploy --force --clean
