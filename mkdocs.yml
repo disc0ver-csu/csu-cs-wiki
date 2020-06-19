@@ -13,6 +13,8 @@ edit_uri: 'https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref='
 nav:
   - 简介:
     - Getting Started: index.md
+  - 数字图像处理:
+    - 理想滤波器与振铃特性: imageprocess/ilpf.md
   # - 密码学:
     
 

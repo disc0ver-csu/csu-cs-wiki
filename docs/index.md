@@ -8,7 +8,7 @@ title: CSU CS Wiki
 
 ### Primary colors 主色
 
-> 默认为 `white` 
+> 默认为 `white`
 
 点击色块可更换主题的主色
 
@@ -47,7 +47,7 @@ title: CSU CS Wiki
 
 ### Accent colors 辅助色
 
-> 默认为 `red` 
+> 默认为 `red`
 
 点击色块更换主题的辅助色
 
