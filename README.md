@@ -1,7 +1,15 @@
+<!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-04-04 15:13:21
+ * @LastEditTime: 2020-06-19 15:25:45
+ * @LastEditors: 妄想
+--> 
 # CSU_CS_experiment
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/leo6033/CSU_CS_Experiment) 
 [![license](https://img.shields.io/github/license/leo6033/CSU_CS_Experiment)](LICENSE)
+[![Build Status](https://travis-ci.com/leo6033/CSU_CS_Experiment.svg?branch=master)](https://travis-ci.com/leo6033/CSU_CS_Experiment)
 [![GitHub watchers](https://img.shields.io/github/watchers/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
 [![GitHub stars](https://img.shields.io/github/stars/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
 
@@ -33,6 +41,12 @@
    + 对已有代码进行优化
 
    **需保证代码质量**
+
+   非 wiki 部分 commit 时加入 [ci skip]，例如
+
+   ```
+   git commit -m "分布式与云计算 实验1 finish [ci skip]"
+   ```
 
 2. 关于课程 wiki：
 
