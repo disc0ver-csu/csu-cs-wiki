@@ -2,7 +2,7 @@
  # @Description: 
  # @Author: 妄想
  # @Date: 2020-06-19 12:37:24
- # @LastEditTime: 2020-06-19 13:13:04
+ # @LastEditTime: 2020-06-19 13:42:19
  # @LastEditors: 妄想
 ### 
 #!/usr/bin/env bash
@@ -16,10 +16,17 @@ EMAIL=long452a@163.com
 
 set -e
 
-git remote add gh-token "https://${GH_TOKEN}@github.com/$ORG/$REPO.git";
+git remote add gh-token "https://${GH_TOKEN}@github.com/${GITHUB_NAME}/$REPO.git";
 git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
 
-git config user.name "leo6033"
-git config user.email "$EMAIL"
+echo $GH_TOKEN
+echo $GITHUB_EMAIL
+echo $GITHUB_NAME
+
+if [ "$1" != "dry" ]; then
+    # Update git config.
+    git config user.name "${GITHUB_NAME}"
+    git config user.email "${GITHUB_EMAIL}"
+fi
 
 mkdocs gh-deploy -v --clean --remote-name gh-token;
