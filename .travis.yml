@@ -12,6 +12,12 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: chmod +x ./scripts/deploy.sh && ./scripts/deploy.sh
+  github-token: $GH_TOKEN
   on:
     branch: master
+
+after_deploy:
+  - git config user.name "${GITHUB_NAME}"
+  - git config user.email "${GITHUB_EMAIL}"
+  - git remote add gh-token "https://${GH_TOKEN}@github.com/${GITHUB_NAME}/CSU_CS_Experiment.git";
+  - mkdocs gh-deploy -v --clean --remote-name gh-token;
