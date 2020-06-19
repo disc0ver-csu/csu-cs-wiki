@@ -5,8 +5,17 @@ python:
 
 install:
   - pip install -r requirements.txt
-  - echo -e "machine github.com\n  login ${GH_TOKEN}" > ~/.netrc
 
 script:
-  - chmod +x ./scripts/build.sh && ./scripts/build.sh
-  - mkdocs gh-deploy --force --clean
+  - chmod +x ./scripts/build.sh && ./scripts/build.sh 
+
+branches:
+  only:
+    - master
+
+after_success:
+  - git config user.name "leo6033"
+  - git config user.email "long452a@163.com"
+  - git remote add gh-token "https://${GH_TOKEN}@github.com/leo6033/CSU_CS_Experiment.git";
+  - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
+  - mkdocs gh-deploy -v --clean --remote-name gh-token;
