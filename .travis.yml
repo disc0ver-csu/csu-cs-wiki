@@ -13,7 +13,15 @@ branches:
   only:
     - master
 
-after_success:
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
+
+after_deploy:
   - git config user.name "leo6033"
   - git config user.email "long452a@163.com"
   - git remote add gh-token "https://${GH_TOKEN}@github.com/leo6033/CSU_CS_Experiment.git";
