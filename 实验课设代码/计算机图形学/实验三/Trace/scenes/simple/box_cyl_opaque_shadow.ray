@@ -1,0 +1,45 @@
+SBT-raytracer 1.0
+
+// box_cyl_opaque_shadow.ray
+// Test opaque shadows
+
+// This was rendered with the following attenuation
+// settings:
+// Constant term:  0.25
+// Linear term:    0.25
+// Quadratic term: 0.25
+
+camera
+{
+	position = (15, 0, 5);
+	viewdir = (-1, 0, -.3);
+	updir = (0, 0, 1);
+}
+
+// This light should cast the shadow of the
+// cylinder on the box.
+point_light
+{
+	position = (3, 0, 6);
+	color = (1, 1, 1);
+	constant_attenuation_coeff= 0.25;
+	linear_attenuation_coeff = 0.003372407;
+	quadratic_attenuation_coeff = 0.000045492;	
+}
+
+// The box forms a plane
+translate( 0, 0, -2,
+	scale( 15, 15, 1, 
+		box {
+			material = { 
+				diffuse = (0.5, 0, 0); 
+			}
+		} ) )
+
+translate( 0, 0, 1,
+	cylinder {
+		material = {
+			diffuse = (0, 0.9, 0);
+			ambient = (0, 0.3, 0);
+		}
+	} )
