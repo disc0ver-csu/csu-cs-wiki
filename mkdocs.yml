@@ -14,6 +14,8 @@ nav:
   - 简介:
     - Getting Started: index.md
     - 如何参与: intro/htc.md
+  - 数字图像处理:
+    - 理想滤波器与振铃特性: imageprocess/ilpf.md
   # - 密码学:
     
 
