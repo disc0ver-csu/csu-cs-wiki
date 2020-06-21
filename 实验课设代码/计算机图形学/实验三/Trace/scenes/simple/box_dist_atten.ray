@@ -1,0 +1,35 @@
+SBT-raytracer 1.0
+
+// box_dist_atten.ray
+// Test for distance attenuation
+
+// This was rendered with the following attenuation
+// settings:
+// Constant term:  0.25
+// Linear term:    0.25
+// Quadratic term: 0.25
+
+camera
+{
+	position = (7, 0, 0);
+	viewdir = (-1, 0, 0);
+	updir = (0, 0, 1);
+}
+
+// Point light just above the center of the box.
+point_light
+{
+	position = (0, 0, 1);
+	color = (1, 1, 1);
+	constant_attenuation_coeff= 0.2;
+	linear_attenuation_coeff = 0.3;
+	quadratic_attenuation_coeff = 0.0;
+}
+
+// The box forms a plane, which should be noticably 
+// brighter in the middle than on the edges
+translate( 0, 0, -2,
+	scale( 15, 15, 1, 
+		box {
+			material = { diffuse = (0, 1, 0); }
+	} ) )
