@@ -4,6 +4,12 @@ title: CSU CS Wiki
 
 # CSU CS Wiki
 
+本项目 Wiki 部分目的在于帮助同学们更好地理解或复习课程的**核心知识点**，以及竞赛相关内容。
+
+本项目受 [OI Wiki](https://oi-wiki.org/) 的启发，在编写过程中参考了其资料，在此致谢。
+
+项目目前在起步阶段，参与人数较少，期待你的加入。
+
 ## Material color palette 颜色主题
 
 ### Primary colors 主色
