@@ -1,4 +1,3 @@
-
 # 理想滤波器
 
 频率域平滑锐化常用的几个滤波器的数学表达和实现都已经在[数字图像处理——频率域平滑锐化图像常用滤波器](https://www.edwardzcn98yx.com/post/e371c683.html)一文中实现。
@@ -131,3 +130,7 @@ for d in d_list:
 分别对应了上面的阈值，观察其滤波器的空间与表示，在$D_0$较小的时候有很明显的波动函数形状。
 
 > ILPF 的模糊和振铃特性可用卷积定理来解释。由于 ILPF 在频率域的剖面图类似于盒状滤波器，因此可以预料相应空间滤波器具有 sinc 函数形状。空间域滤波可通过$h(x,y)$于图像卷积来实现。讲图像中的每个像素想象为一个离散冲击，它的强度与所在位置的灰度成正比。一个 sinc 函数与一个冲激卷积就是在冲激处复制这个 sinc 函数。**sinc 函数的中心波瓣是引起模糊的主因，而外侧较小的波瓣是造成振铃的主要原因。sinc 函数“展开度”与$H(u,v)$半径成反比，所以$D_0$越大，空间 sinc 函数就趋近于一个卷积时不会导致模糊但也不会产生振铃的冲激**
+
+搬运 DJ 的密码学视频来做测试
+
+<iframe src="//player.bilibili.com/player.html?aid=926047364&amp;bvid=BV17T4y1J7N7&amp;cid=203084465&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; height: 500px; max-width: 100%；align:center; padding:20px 0;"> </iframe>
