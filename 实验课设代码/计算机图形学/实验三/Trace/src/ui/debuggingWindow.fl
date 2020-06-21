@@ -1,0 +1,171 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0010 
+header_name {.h} 
+code_name {.cxx} 
+gridx 5 
+gridy 5 
+snap 3
+class DebuggingWindow {open
+} {
+  Function {DebuggingWindow()} {open
+  } {
+    Fl_Window m_debuggingWindow {
+      label {Debugging trace} open
+      xywh {571 341 386 395} resizable visible
+    } {
+      Fl_Menu_Bar m_debuggingMenuBar {open
+        xywh {0 0 390 25} box NO_BOX
+      } {
+        submenu {} {
+          label Shading open
+          xywh {0 0 100 20}
+        } {
+          menuitem {} {
+            label Normal
+            callback {m_debuggingView->setShadingMode(DebuggingView::NORMAL);}
+            xywh {0 0 100 20} type Radio value 1
+          }
+          menuitem {} {
+            label {Flat shading}
+            callback {m_debuggingView->setShadingMode(DebuggingView::FLAT_SHADING);}
+            xywh {0 0 100 20} type Radio
+          }
+          menuitem {} {
+            label Wireframe
+            callback {m_debuggingView->setShadingMode(DebuggingView::WIREFRAME);}
+            xywh {0 0 100 20} type Radio divider
+          }
+          submenu {} {
+            label Quality open
+            xywh {0 0 100 20}
+          } {
+            menuitem {} {
+              label High
+              callback {m_debuggingView->setQuality(DebuggingView::HIGH_QUALITY);}
+              xywh {0 0 100 20} type Radio
+            }
+            menuitem {} {
+              label Medium
+              callback {m_debuggingView->setQuality(DebuggingView::MEDIUM_QUALITY);}
+              xywh {0 0 100 20} type Radio value 1
+            }
+            menuitem {} {
+              label Low
+              callback {m_debuggingView->setQuality(DebuggingView::LOW_QUALITY);}
+              xywh {0 0 100 20} type Radio
+            }
+            menuitem {} {
+              label Poor
+              callback {m_debuggingView->setQuality(DebuggingView::POOR_QUALITY);}
+              xywh {0 0 100 20} type Radio
+            }
+          }
+        }
+        submenu {} {
+          label Lighting open
+          xywh {0 0 100 20}
+        } {
+          menuitem {} {
+            label {Default lighting}
+            callback {m_debuggingView->setLighting(DebuggingView::DEFAULT_LIGHTING);}
+            xywh {15 15 100 20} type Radio value 1
+          }
+          menuitem {} {
+            label {Scene lighting}
+            callback {m_debuggingView->setLighting(DebuggingView::SCENE_LIGHTING);}
+            xywh {15 15 100 20} type Radio
+          }
+        }
+        submenu {} {
+          label Materials open
+          xywh {0 0 100 20}
+        } {
+          menuitem {} {
+            label {Use scene materials}
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setUseSceneMaterials(m[16].value() != 0);}
+            xywh {0 0 100 20} type Toggle value 1
+          }
+        }
+        submenu {} {
+          label Display open
+          xywh {0 0 100 20}
+        } {
+          menuitem {} {
+            label Geometry
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowGeometry(m[19].value() != 0);}
+            xywh {0 0 100 20} type Toggle value 1
+          }
+          menuitem {} {
+            label Lights
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowLights(m[20].value() != 0);}
+            xywh {0 0 100 20} type Toggle value 1
+          }
+          menuitem {} {
+            label Camera
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowCamera(m[21].value() != 0);}
+            xywh {0 0 100 20} type Toggle value 1
+          }
+          menuitem {} {
+            label Axes
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowAxes(m[22].value() != 0);}
+            xywh {0 0 100 20} type Toggle value 1
+          }
+          menuitem {} {
+            label Normals
+            callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowNormals(m[23].value() != 0);} selected
+            xywh {0 0 100 20} type Toggle value 1
+          }
+          submenu {} {
+            label Rays open
+            xywh {0 0 100 20}
+          } {
+            menuitem {} {
+              label Visibility
+              callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowVisibilityRays(m[25].value() != 0);}
+              xywh {0 0 100 20} type Toggle value 1
+            }
+            menuitem {} {
+              label Reflection
+              callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowReflectionRays(m[26].value() != 0);}
+              xywh {0 0 100 20} type Toggle value 1
+            }
+            menuitem {} {
+              label Refraction
+              callback {const Fl_Menu_Item *m = m_debuggingMenuBar->menu();
+m_debuggingView->setShowRefractionRays(m[27].value() != 0);}
+              xywh {0 0 100 20} type Toggle value 1
+            }
+          }
+        }
+      }
+      Fl_Box m_debuggingView {
+        label DebuggingView
+        xywh {0 25 385 370} resizable
+        code0 {\#include "debuggingView.h"}
+        class DebuggingView
+      }
+    }
+  }
+  Function {show()} {open
+  } {
+    code {m_debuggingWindow->show();
+m_debuggingView->show();} {}
+  }
+  Function {hide()} {open
+  } {
+    code {m_debuggingView->hide();
+m_debuggingWindow->hide();} {}
+  }
+  Function {redraw()} {open
+  } {
+    code {m_debuggingView->redraw();} {}
+  }
+} 
