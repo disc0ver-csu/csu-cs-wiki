@@ -1,0 +1,8 @@
+module experiment5{
+    module HelloApp{
+
+        interface Hello{
+            string asyHello(in string sayHello);
+        };
+    };
+};

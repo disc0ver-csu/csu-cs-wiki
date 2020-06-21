@@ -1,0 +1,27 @@
+SBT-raytracer 1.0
+
+camera {
+	position = (0,0,-4);
+	viewdir = (0,0,1);
+	aspectratio = 1;
+	updir = (0,1,0);
+}
+
+directional_light {
+	direction = (0, 0, 1);
+	colour = (0.2, 0.2, 0.2);
+}
+
+point_light {
+	position = (-2, 2, -2);
+	colour = (1, 0.3, 0.3);
+}
+
+scale(1.5,
+	square { 
+		material = { 
+			diffuse = map("skin1.bmp");
+			specular = (1,1,0);
+			shininess = 64;
+		} 
+	})
