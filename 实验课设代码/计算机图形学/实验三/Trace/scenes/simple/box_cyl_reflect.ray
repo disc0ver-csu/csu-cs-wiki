@@ -1,0 +1,55 @@
+SBT-raytracer 1.0
+
+// box_cyl_reflect.ray
+// Test the reflection term
+// Don't forget to increase the trace depth to >= 2!
+
+
+
+camera
+{
+	position = (15, 0, 5);
+	viewdir = (-1, 0, -.3);
+	updir = (0, 0, 1);
+}
+
+// Using ambient intensity of 0.25
+ambient_light
+{
+	color = (0.25, 0.25, 0.25);
+}
+
+// Directional light which shouldn't
+// cast any shadows
+directional_light
+{
+	direction = (-1, 0, -0.2);
+	color = (1, 1, 1);
+}
+
+// The box forms a plane, which should reflect the cylinder
+translate( 0, 0, -2,
+	scale( 15, 15, 1, 
+		box {
+			material = { 
+				diffuse = (0.5, 0, 0); 
+				specular = (0.5, 0.5, 0.5);
+				reflective = (1, 1, 1);
+				shininess = 25.6;
+			}
+		} ) )
+
+// We'll give this a little ambient intensity to ensure
+// that the bottom, which doesn't face the light, is still 
+// reflected properly (this is a common hack, since with 
+// raytracing you don't have diffuse-diffuse reflections)
+translate( 0, 0, 1,
+	cylinder {
+		material = {
+			ambient = (0, 1, 0);
+			diffuse = (0, 0.5, 0);
+			specular = (0.5, 0.5, 0.5);
+			reflective = (1, 1, 1);
+			shininess = 25.6;
+		}
+	} )
