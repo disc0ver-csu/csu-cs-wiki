@@ -20,6 +20,8 @@ nav:
       - 白盒测试开发: softwaretesting/white-box.md
       - 黑盒测试开发: softwaretesting/black-box.md
       - TDD测试驱动开发: softwaretesting/tdd.md
+  - 编译原理:
+      - 算符优先文法: compilerprincipal/opg.md
       # - 密码学:
 
 # Theme
