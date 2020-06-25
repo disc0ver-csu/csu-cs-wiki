@@ -2,7 +2,7 @@
 @Description: 
 @Author: 妄想
 @Date: 2020-06-23 13:34:08
-@LastEditTime: 2020-06-24 20:29:37
+@LastEditTime: 2020-06-25 16:07:22
 @LastEditors: 妄想
 '''
 
@@ -12,16 +12,17 @@ from scrapy.spiders import Spider
 from scrapy.selector import Selector
 from myspider.items import MyspiderItem
 from util.redisUtil import RedisUtil
+from util.config import Config
 import re
 
 class MySpider(RedisSpider):
-    name = 'myspidersalve'
+    name = 'myspider'
     redis_key = 'start_urls'
     # allowed_domains = ['cnblogs.com']
     # start_urls = [
     #     "https://www.cnblogs.com/csu-lmw/"
     # ]
-    redis_util = RedisUtil("120.26.177.209", 6379)
+    redis_util = RedisUtil(Config.ip, Config.REDIS_PORT, Config.REDIS_PASSWORD)
 
     def parse(self, response):
         selector = Selector(response)
@@ -58,10 +59,12 @@ class MySpider(RedisSpider):
             self.redis_util.insert(url, 2)
             # yield response.follow(url, callback=self.parse) 
         
-        yield {
-            "url": myspiderItem['url'],
-            "size": myspiderItem['size']
-        }
+        # yield {
+        #     "url": myspiderItem['url'],
+        #     "size": myspiderItem['size']
+        # }
+
+        yield myspiderItem
             
     def format_bytes(self, size):
         # 2**10 = 1024

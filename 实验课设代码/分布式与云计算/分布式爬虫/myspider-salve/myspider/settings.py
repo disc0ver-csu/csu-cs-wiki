@@ -2,7 +2,7 @@
 @Description: 
 @Author: 妄想
 @Date: 2020-06-23 13:27:00
-@LastEditTime: 2020-06-24 20:16:02
+@LastEditTime: 2020-06-25 14:42:17
 @LastEditors: 妄想
 '''
 # -*- coding: utf-8 -*-
@@ -55,6 +55,11 @@ DOWNLOADER_MIDDLEWARES = {
     'myspider.useragent_dowmload_middleware.RotateUserAgentMiddleware':400,
     # 'myspider.redirect_middleware.Redirect_Middleware':500,
 
+}
+
+#设置数据入库pipline
+ITEM_PIPELINES = {
+    'myspider.mysql_pipeline.MysqlPipeline': 10,
 }
 
 # Disable cookies (enabled by default)
