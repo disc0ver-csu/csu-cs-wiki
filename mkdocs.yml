@@ -22,6 +22,10 @@ nav:
       - TDD测试驱动开发: softwaretesting/tdd.md
   - 编译原理:
       - 算符优先文法: compilerprincipal/opg.md
+  - 分布式系统与云计算:
+      - 时间同步算法: distributedsystems/sync-clock.md
+      - Lamport逻辑时钟: distributedsystems/logic-clock.md
+      - 期末汇总（临时）: distributedsystems/sumup.md
       # - 密码学:
 
 # Theme
