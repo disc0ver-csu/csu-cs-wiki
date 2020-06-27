@@ -2,13 +2,67 @@
 
 ## 前言
 
+## Happen Before
 
+逻辑时钟的本质是基于 Lamport 定义的定义的“在先发生关系”（优先发生关系），~~这个翻译太生草了~~我更习惯按照原文直接称之为`happen before`关系。Lamport 定义不依赖于物理时钟的`happen before`关系如下（用$\rightarrow$ 表示）：
 
-## The Partial Ordering
+- 如果 $a$，$b$ 是相同进程的两个事件，且$a$出现在$b$之前，那么$a \rightarrow b$。
+- 如果$a$是某进程消息发送的一方，b 是另一进程接收该消息的一方，则$a \rightarrow b$。
+- 该关系具备传递性，即$a \rightarrow b$ ，$b \rightarrow c$，则$a \rightarrow c$。如果$a \nrightarrow b$，$b \nrightarrow a$，那我们称 $a$，$b$ 是并发（concurrent）的。
+- 另外补充，该关系是反自反的，即，对 $\forall a,a \nrightarrow a$，（系统中一个时间可以在它自身之前发生没有实际意义）。
 
-定义不依赖于物理时钟的`happen before`关系如下（用$\rightarrow$ 表示）
+> Happened Before 的理论和狭义相对论中的物理世界中的观念十分的类似，即 event 的先后是相对的，在实际世界中的不同惯性坐标系下，2 个 event 的先后关系可能发生变化。
 
-1. 如果 $a$，$b$ 是相同进程的两个事件，且$a$出现在$b$之前，那么$a \rightarrow b$。
-2. 如果$a$是某进程消息发送的一方，b 是另一进程接收该消息的一方，则$a \rightarrow b$。
-3. 该关系具备传递性，即$a \rightarrow b$ ，$b \rightarrow c$，则$a \rightarrow c$。如果$a \nrightarrow b$，$b \nrightarrow a$，那我们称 $a$，$b$ 是并发（concurrent）的。
-4. 另外补充，该关系是反自反的，即，对 $\forall a,a \nrightarrow a$，（系统中一个时间可以在它自身之前发生没有实际意义）。
+## Logical Clocks
+
+为什么管 Lamport 发明的这个时钟叫逻辑时钟呢？答案很明晰，因为描述时钟值的函数（把进程号和事件当作变量）并没能和物理时间关联起来，所以我们将其值认为是逻辑时间，而这个函数就称作“逻辑时钟”啦。
+
+> 注意！下面的 Note 可能会让你觉得有些废话，尤其是在你做了一些简单的逻辑时钟题目后。但笔者（~~坑爹的老学长~~）希望你能从设计者的角度理解它的设计来源，这样也能帮你理解它的正确性以及后续的改良方式，所以笔者是按照原文（而非老师 PPT）的行文写的。
+
+现在考虑引入逻辑时钟，先以数学的方式为每个事件分配一个数字来代表其事件发生的时间。以时钟函数$C_i(x)$表示$P_i$进程各事件的时钟值（角标$i$对应），其中$C_i \langle a \rangle$表示该进程 a 事件的值。$C$ 函数表示整个系统的时钟，如果 b 是进程$P_i$的事件之一，则$C \langle b \rangle = C_i \langle b \rangle$。
+
+我们无法根据物理时间验证（这会要求基于物理时间的时钟引入），那怎么确定我们设计出的时钟是符合需求的呢（~~防止没用~~）？检测基于下面这个原则：
+
+!!! success "Clock Condition"
+
+    For any events a, b:
+
+    if $a \rightarrow b$ then $C \langle a \rangle < C \langle b \rangle$
+
+又要注意了！时钟条件的逆命题不成立（否则会要求所有并发事件同时发生，伪命题，这个同学们自己思考下吧！），即只具备充分性。
+
+??? note "一点补充"
+
+    PPT中用通俗语言讲了这个逻辑时钟条件的**充分不必要性**，称为：**没有捕获事件的因果关系**。老师的举例也非常非常准确（~~但我觉得他在后面向量时钟再拿这个图就用错了~~），我就借来用了。
+
+    节点 B 发布一篇文章并传送给节点 A 和 C，节点 A 就此发表评论并传送给节点 B 和 C。
+
+    ![logi-clock-1](./images/logic-clock-1.png)
+
+    由于分布式系统中可怜的通信延时，C节点先获得了“评论”后获得“文章”，在现实逻辑中我们能确定两事件因存在因果关系，但现有逻辑时钟不能**捕获**这个因果关系，类似这样的关系在Lamport论文中被称为“外部因果关系”，那对于这些因果关系的修正方式，同学们自己查阅资料吧。
+
+我们将时钟条件拆分成两个子条件，当满足下面两子条件时，时钟条件（Clock Condition）是满足的。
+
+> **C1.** 如果 a 和 b 是同一进程的两个事件且 a 发生在 b 之前，则$C_i \langle a \rangle < C_i \langle b \rangle$。
+>
+> **C2.** 如果 a 是 i 进程消息发送方，而 b 是 j 进程中该消息的接收方，则$C_i \langle a \rangle < C_j \langle b \rangle$。
+
+为满足 C1 和 C2，分别设定两条规则：
+
+> **IR1.** 同一进程的相邻事件，其时钟值是递增的。
+>
+> **IR2.** i 进程 a 活动发送的消息会携带一个时间戳$T_m = C_i \langle a \rangle$，则接收方 b 进程活动 b 设定其时钟值为$C_j \langle b \rangle = MAX(T_m,C_j \langle b \rangle)+1$。
+
+两条分别对应两条规则（~~如果余老师 PPT 没改，IR2 就对应它 PPT 里的校正算法~~），所以时钟条件也得到满足，保证了具备逻辑时钟的合理系统。
+
+## Vector Clocks
+
+先修正一个谬误，Vector Clocks 并不是又 Lamport 在他那篇著名的 Paper 中提出的，而是又 Colin Fidge and Friedemann Mattern 在 1988 年各自独立提出的。
+
+定义因果的两个条件
+
+> **C1**. 对于所有的下标$k$，都有$C_i[k]≤C_j[k]$
+>
+> **C2**. 存在下标$k_0$，使得$C_i[k_0]<C_j[k_0]$
+
+结论就是，用向量替代标量，$i$维表示$i$进程的 Lamport 逻辑时钟，这样在比较向量大小时，$\le$必须保证存在一个严格小，这样就说明有一个因果传递的过程。
