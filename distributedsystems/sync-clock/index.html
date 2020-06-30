@@ -1,0 +1,1088 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="dns-prefetch" href="//leo6033.github.io/CSU_CS_Experiment/">
+      <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+      <link rel="dns-prefetch" href="//api.github.com">
+      <link rel="dns-prefetch" href="//www.google-analytics.com">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="CSU CS wiki">
+      
+      
+        <link rel="canonical" href="https://leo6033.github.io/CSU_CS_Experiment/distributedsystems/sync-clock/">
+      
+      
+        <meta name="author" content="妄想">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>时间同步算法 - CSU CS wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://leo6033.github.io/CSU_CS_Experiment/" title="CSU CS wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                CSU CS wiki
+              </span>
+              <span class="md-header-nav__topic">
+                时间同步算法
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/leo6033/CSU_CS_Experiment/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      leo6033/CSU_CS_Experiment
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="简介" class="md-tabs__link">
+          简介
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../imageprocess/ilpf/" title="数字图像处理" class="md-tabs__link">
+          数字图像处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../softwaretesting/white-box/" title="软件测试" class="md-tabs__link">
+          软件测试
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../compilerprincipal/opg/" title="编译原理" class="md-tabs__link">
+          编译原理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" title="分布式系统与云计算" class="md-tabs__link md-tabs__link--active">
+          分布式系统与云计算
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../competition/" title="竞赛" class="md-tabs__link">
+          竞赛
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://leo6033.github.io/CSU_CS_Experiment/" title="CSU CS wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    CSU CS wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/leo6033/CSU_CS_Experiment/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      leo6033/CSU_CS_Experiment
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      简介
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        简介
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/htc/" title="如何参与" class="md-nav__link">
+      如何参与
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      数字图像处理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        数字图像处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../imageprocess/ilpf/" title="理想滤波器与振铃特性" class="md-nav__link">
+      理想滤波器与振铃特性
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      软件测试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        软件测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../softwaretesting/white-box/" title="白盒测试开发" class="md-nav__link">
+      白盒测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../softwaretesting/black-box/" title="黑盒测试开发" class="md-nav__link">
+      黑盒测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../softwaretesting/tdd/" title="TDD测试驱动开发" class="md-nav__link">
+      TDD测试驱动开发
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      编译原理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        编译原理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../compilerprincipal/opg/" title="算符优先文法" class="md-nav__link">
+      算符优先文法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      分布式系统与云计算
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        分布式系统与云计算
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        时间同步算法
+      </label>
+    
+    <a href="./" title="时间同步算法" class="md-nav__link md-nav__link--active">
+      时间同步算法
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="物理时钟" class="md-nav__link">
+    物理时钟
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="时间同步算法" class="md-nav__link">
+    时间同步算法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#christian" title="Christian 算法" class="md-nav__link">
+    Christian 算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#berkeley" title="Berkeley 算法" class="md-nav__link">
+    Berkeley 算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="平均值算法" class="md-nav__link">
+    平均值算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="多重外部时间源法" class="md-nav__link">
+    多重外部时间源法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="同步时钟的应用" class="md-nav__link">
+    同步时钟的应用
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../logic-clock/" title="Lamport逻辑时钟" class="md-nav__link">
+      Lamport逻辑时钟
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sumup/" title="期末汇总（临时）" class="md-nav__link">
+      期末汇总（临时）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      竞赛
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        竞赛
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../competition/" title="关于竞赛" class="md-nav__link">
+      关于竞赛
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="物理时钟" class="md-nav__link">
+    物理时钟
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="时间同步算法" class="md-nav__link">
+    时间同步算法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#christian" title="Christian 算法" class="md-nav__link">
+    Christian 算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#berkeley" title="Berkeley 算法" class="md-nav__link">
+    Berkeley 算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="平均值算法" class="md-nav__link">
+    平均值算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="多重外部时间源法" class="md-nav__link">
+    多重外部时间源法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="同步时钟的应用" class="md-nav__link">
+    同步时钟的应用
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref=/distributedsystems/sync-clock.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="_1">时间同步算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>分布式系统中，时间一个重要的问题</p>
+<ul>
+<li>时间是我们想要精确度量的量</li>
+<li>很多算法依赖于时钟同步（或者说，从单机迁移至分布式系统的一些算法需要保证在单机环境下的时钟同步性质）</li>
+</ul>
+<p>在分布式系统中，物理时间的概念也是不准确的。这不是由于相对性的影响，相对性在常规计算机中可以忽略或不存在，主要是问题是：受目前技术能力的限制，不能准确记录不同结点上的事件的时间，以便知道事件发生的顺序或事件是否同时发生。</p>
+<p>所以就造成了如下困境。<strong>分布式系统中没有绝对的全局时间</strong>，<strong>但却需要确定一些事件状态的先后顺序（“同时”发生）</strong>。</p>
+<h2 id="_3">物理时钟<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>物理时钟是最先能想到的时间同步方法，但是由于分布式系统中不同节点有不同时钟值。时钟值各自孤立是无意义的，我们需要途径将他们组织起来尽可能达成一致/同步。我们可以在实际时间的一个<strong>区间</strong>上定义两个同步模式：</p>
+<ul>
+<li>
+<p>外部同步（external synchronization）</p>
+<ul>
+<li>为了知道分布式系统 P 的进程中事件发生的具体时间，有必要用权威的外部时间源同步进程的时钟<span><span class="MathJax_Preview">C_i</span><script type="math/tex">C_i</script></span></li>
+<li>设一个同步范围<span><span class="MathJax_Preview">D&gt;0</span><script type="math/tex">D>0</script></span>，UTC 时间源为<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>，<span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>中的所有实际时间<span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，满足<span><span class="MathJax_Preview">|S(t)-C_i(t)|&lt;D</span><script type="math/tex">|S(t)-C_i(t)|<D</script></span>，其中<span><span class="MathJax_Preview">i=1,2, \cdots ,N</span><script type="math/tex">i=1,2, \cdots ,N</script></span>。软件时钟<span><span class="MathJax_Preview">C_i</span><script type="math/tex">C_i</script></span>在范围<span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span>中是准确的。</li>
+</ul>
+</li>
+<li>
+<p>内部同步（internal synchronization）</p>
+<ul>
+<li>如果时钟<span><span class="MathJax_Preview">C_i</span><script type="math/tex">C_i</script></span>与其他时钟同步到一个已知的精度，那么我们就能通过本地时钟度量在不同计算机上发生的两个事件的间隔</li>
+<li>设同步范围<span><span class="MathJax_Preview">D&gt;0</span><script type="math/tex">D>0</script></span>，<span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>中所有实际时间<span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，则有<span><span class="MathJax_Preview">|C_i(t)-C_j(t)|&lt;D</span><script type="math/tex">|C_i(t)-C_j(t)|<D</script></span>，其中<span><span class="MathJax_Preview">i,j=1,2, \cdots ,N</span><script type="math/tex">i,j=1,2, \cdots ,N</script></span>。时钟<span><span class="MathJax_Preview">C_i</span><script type="math/tex">C_i</script></span>在范围<span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span>中是一致的。</li>
+<li>内部同步的时钟未必是外部同步的。（在外部 UTC 确定情况下，可能距离各时钟分布的时间范围很远）。</li>
+</ul>
+</li>
+<li>
+<p>一个推论：如果系统 P 在范围 D 内是外部同步的，那么该系统在范围 2D 内是内部同步的。</p>
+</li>
+</ul>
+<p><del>初学的时候莫名回忆起了函数的一致连续性和绝对连续性</del>，推论你可以这么理解，时间轴上极差最大的两个时钟，临界情况<span><span class="MathJax_Preview">D = \frac{C(t)_{max}- C(t)_{min}}{2}</span><script type="math/tex">D = \frac{C(t)_{max}- C(t)_{min}}{2}</script></span>，那么最远距离就是<span><span class="MathJax_Preview">2D</span><script type="math/tex">2D</script></span>，所以各点间距均在<span><span class="MathJax_Preview">2D</span><script type="math/tex">2D</script></span>范围内。</p>
+<h2 id="_4">时间同步算法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>下面着重讲解一些典型的时间同步算法</p>
+<h3 id="christian">Christian 算法<a class="headerlink" href="#christian" title="Permanent link">&para;</a></h3>
+<ul>
+<li>时间服务器，可接受 WWV 的 UTC 时间<span><span class="MathJax_Preview">C_{UTC}</span><script type="math/tex">C_{UTC}</script></span>（标准时间）</li>
+<li>每隔<span><span class="MathJax_Preview">δ/(2ρ)</span><script type="math/tex">δ/(2ρ)</script></span>，客户机<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>向服务器询问时间</li>
+<li>服务器返回<span><span class="MathJax_Preview">C_{UTC}</span><script type="math/tex">C_{UTC}</script></span></li>
+<li>客户机<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>校正自己时间，<span><span class="MathJax_Preview">C_i=C_{UTC}+TransTime</span><script type="math/tex">C_i=C_{UTC}+TransTime</script></span></li>
+<li>
+<p><span><span class="MathJax_Preview">TransTime=\frac{(T_1-T_0-I)}{2}</span><script type="math/tex">TransTime=\frac{(T_1-T_0-I)}{2}</script></span></p>
+<ul>
+<li><span><span class="MathJax_Preview">T_0</span><script type="math/tex">T_0</script></span>：请求的本地时间</li>
+<li><span><span class="MathJax_Preview">T_1</span><script type="math/tex">T_1</script></span>：到达的本地时间</li>
+<li><span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>:中断处理时间</li>
+<li>假定双向路径相同</li>
+</ul>
+</li>
+<li>
+<p>优化处理</p>
+<ul>
+<li>设定传播阈值,超出阈值，认定无效</li>
+</ul>
+</li>
+</ul>
+<h3 id="berkeley">Berkeley 算法<a class="headerlink" href="#berkeley" title="Permanent link">&para;</a></h3>
+<p>时间守护进程（时间服务器）定期地询问每台机器的时间。然后基于这些回答计算出平均值并告诉所有的机器将它们的时钟拨快或拨慢到一个新的值（适合于没有 WWV 接收器的系统）。下面以 2 台节点服务器和 1 台节点服务器的时间矫正过程为例：</p>
+<ul>
+<li>时间服务器向 node 1 和 node2 广播服务器时间<span><span class="MathJax_Preview">T_0 = 740</span><script type="math/tex">T_0 = 740</script></span>，</li>
+<li>node 1 返回其本地当前时间（加延迟）为<span><span class="MathJax_Preview">T_1 = 724+10 = 734</span><script type="math/tex">T_1 = 724+10 = 734</script></span></li>
+<li>node 2 返回其本地当前时间（加延迟）为<span><span class="MathJax_Preview">T_2 = 738+5 = 743</span><script type="math/tex">T_2 = 738+5 = 743</script></span></li>
+<li>时间服务器计算平均时间<span><span class="MathJax_Preview">T_0' = 739</span><script type="math/tex">T_0' = 739</script></span>。</li>
+<li>时间服务器通知 node 1：向前拨<span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span></li>
+<li>时间服务器通知 node 2：放慢时钟<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span></li>
+</ul>
+<h3 id="_5">平均值算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>划分固定时间间隔<span><span class="MathJax_Preview">R</span><script type="math/tex">R</script></span>;
+  在每个间隔，所有机器广播自己的时钟时间
+  启动本地计时器收集在 S 时间间隔中到达的其他机器广播的时间
+  执行平均时间计算算法，得到新的时间值</li>
+</ul>
+<h3 id="_6">多重外部时间源法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>这个比较容易理解，区间覆盖。例：OSF DCE 方法</p>
+<ul>
+<li>接受所有时间源的当前 UTC 区间</li>
+<li>去掉与其他区间不相交的区间</li>
+<li>将相交部分的重点作为校准时间</li>
+</ul>
+<h2 id="_7">同步时钟的应用<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">最多一次消息提交</p>
+<p>At most once，对于保证幂等性非常重要，以及在一些分布式算法中，需要时间戳的认证，所以保证最早时间戳消息也是必要的。</p>
+<ul>
+<li>每个消息携带一个 ID 和一个时间戳<span><span class="MathJax_Preview">ts</span><script type="math/tex">ts</script></span>（timestamp）</li>
+<li>服务器的表<span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>中，记录每个连接<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>最近的时间戳<span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span></li>
+<li>对到达的消息<span><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span>，如果<span><span class="MathJax_Preview">ts(m) &lt; t</span><script type="math/tex">ts(m) < t</script></span>，则拒绝<span><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">基于时钟的缓存一致性</p>
+<p>下面是老师PPT的描述，<del>讲真我还没看到哪个一致性协议涌租期来直接决定副本有效性，So理解一下大意</del></p>
+<ul>
+<li>当客户读取一个副本到缓存时，设置一个租期（lease）</li>
+<li>在租期过期之前，客户可更新副本，重新续租</li>
+<li>如果已经过期，缓存中的副本失效</li>
+</ul>
+<p>Raft共识算法的leader是有租期（lease）限制的，但是我记不大清楚租期的作用了，等我补一下论文再来写这部分。</p>
+</div>
+                
+                  
+                
+              
+              
+                <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:58:10
+ * @LastEditors: 妄想
+--> 
+
+
+ 
+ 
+  <hr><blockquote class="page-copyright">
+    <span><i class="md-icon">build</i>本页面最近更新：</span><span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+    <span><i class="md-icon">edit</i>发现错误？想一起完善？ <a href="https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref=/distributedsystems/sync-clock.md" title="编辑此页" class="page_edit_url">在 GitHub 上编辑此页！</a></span><br>
+    <span><i class="md-icon">people</i>本页面贡献者：</span><span class="page_contributors">CSU CS Wiki</span><br>
+    <span><i class="md-icon">copyright</i>本页面的全部内容在 <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+  </blockquote>
+
+
+  <!--outline-->
+  <h2 id="__comments" data-no-instant>评论</h2>
+  <form id="gitalk-form" onsubmit="return false;" data-no-instant>
+    <div id="gitalk-container" data-no-instant></div>
+  </form>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+  <script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '06889186a27dcdd511d2',
+      clientSecret: '99da13004fe06bd7793d9ca01537db730cb5a0e6',
+      repo: 'comment',  // 使用单独的仓评论
+      owner: 'leo6033',  // 仓库所有者
+      admin: ['妄想'],  // 仓库管理员列表
+      //id: '时间同步算法',  // 页面唯一标识
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // 全屏遮罩效果
+      pagerDirection: 'last'  // 排序方式：first按评论创建时间正序，last倒序
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:37:13
+ * @LastEditors: 妄想
+--> 
+
+<script>function scrollFunction(){20<document.body.scrollTop||20<document.documentElement.scrollTop?document.getElementById("myBtn").style.display="block":document.getElementById("myBtn").style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}window.onscroll=function(){scrollFunction()}</script>
+<button onclick="topFunction()" id="myBtn" class="data-tip-left" data-tip="回到顶部">
+  <svg class="Zi Zi--BackToTop data-tip-left" data-tip="回到顶部" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path>
+  </svg>
+</button>
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../compilerprincipal/opg/" title="算符优先文法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                算符优先文法
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../logic-clock/" title="Lamport逻辑时钟" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                Lamport逻辑时钟
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <!-- <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div> -->
+      
+        
+      
+    </div>
+    <div class="sponsor" style="text-align: center;color: white;vertical-align: middle;">
+      <span />
+     <a href="/intro/csu/">
+       <img src="https://upload.wikimedia.org/wikipedia/zh/4/4d/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%BE%BD.png" style="
+         vertical-align: -12px;
+         width: 60px;
+         margin-left:5px;
+       ">
+     </a>
+   </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.5e60981f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../_static/js/extra.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
