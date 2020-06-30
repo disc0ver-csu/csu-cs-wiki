@@ -1,0 +1,24 @@
+SBT-raytracer 1.0
+
+
+camera {
+	position = (0,0,-4);
+	viewdir = (0,0,1);
+	aspectratio = 1;
+	updir = (0,1,0);
+}
+
+
+ambient_light {
+	color = (1, 0, .1);
+}
+
+scale(1.5,
+	sphere { 
+		material = { 
+			ambient = (0, 1, 1);
+			diffuse = (0.4,0.4,0);
+			specular = (1,1,0);
+			shininess = 64;
+		} 
+	})
