@@ -26,7 +26,8 @@ nav:
       - 时间同步算法: distributedsystems/sync-clock.md
       - Lamport逻辑时钟: distributedsystems/logic-clock.md
       - 期末汇总（临时）: distributedsystems/sumup.md
-      # - 密码学:
+  - 竞赛:
+      - 关于竞赛:  competition/index.md
 
 # Theme
 theme:
