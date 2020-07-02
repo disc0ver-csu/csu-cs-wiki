@@ -1,0 +1,120 @@
+clear screen
+conn c##_J305/c##_J305
+
+drop table attend_J305;
+drop table stud_atte_J305;
+drop table major_atte_J305;
+drop table stud_J305;
+drop table major_J305;
+
+create table major_J305(MajorNo char(2) primary key,
+MNAME varchar(32),
+loc varchar(10) check (loc in ('主校区', '南校区', '新校区', '铁道校区', '湘雅校区')),
+mdean char(10)
+);
+
+create table stud_J305(SNO char(10) primary key,
+SNAME varchar(32),
+SEX varchar(4) check (sex in ('男', '女', '其他', '其它')),
+TEL varchar(32),
+E_MAIL varchar(32) check (e_mail like '%@%.%'),
+birthday date check (birthday>=to_date('19990731', 'yyyymmdd')),
+MNO char(10) references stud_J305(sno),
+MajorNo char(2) references major_J305(MajorNo),
+constraint ck_majorno check(MajorNo in substr(SNO,3,2))
+);
+
+delete from stud_J305;
+delete from major_J305;
+
+insert into major_J305(MajorNo, MNAME, loc, mdean) values ('02','计算机科学与技术','新校区','0902170301');
+insert into major_J305(MajorNo, MNAME, loc, mdean) values ('03','物联网工程','新校区','0903170401');
+insert into major_J305(MajorNo, MNAME, loc, mdean) values ('04','数据科学与大数据','新校区','0904170310');
+
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170310', 'e3J', '男', '0902170310', '0902170310@163.com',to_date('19990804', 'yyyymmdd'),'0902170310', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170301', 'a3J', '男', '0902170301', '0902170301@163.com',to_date('19990801', 'yyyymmdd'),'0902170310', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170302', 'b3J', '女', '0902170302', '0902170302@163.com',to_date('19990802', 'yyyymmdd'),'0902170310', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170303', 'c3J', '男', '0902170303', '0902170303@163.com',to_date('19990803', 'yyyymmdd'),'0902170310', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170305', '吕明伟', '男', '15367822985', 'long452a@163.com',to_date('19990808', 'yyyymmdd'),'0902170310', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170401', 'a4J', '女', '0902170401', '0902170401@163.com',to_date('19990801', 'yyyymmdd'),'0902170401', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170402', 'b4J', '男', '0902170402', '0902170402@163.com',to_date('19990902', 'yyyymmdd'),'0902170401', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170403', 'c4J', '女', '0902170403', '0902170403@163.com',to_date('19991003', 'yyyymmdd'),'0902170401', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170405', 'd4J', '男', '0902170405', '0902170405@163.com',to_date('19990808', 'yyyymmdd'),'0902170401', '02');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0902170406', 'e4J', '男', '0902170406', '0902170406@163.com',to_date('19990804', 'yyyymmdd'),'0902170401', '02');
+
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170310', 'e3W', '男', '0903170310', '0903170310@163.com',to_date('19990804', 'yyyymmdd'),'0903170310', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170301', 'a3W', '男', '0903170301', '0903170301@163.com',to_date('19990801', 'yyyymmdd'),'0903170310', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170302', 'b3W', '女', '0903170302', '0903170302@163.com',to_date('19990802', 'yyyymmdd'),'0903170310', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170303', 'c3W', '男', '0903170303', '0903170303@163.com',to_date('19990803', 'yyyymmdd'),'0903170310', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170305', 'd3W', '男', '0903170305', '0903170305@163.com',to_date('19990808', 'yyyymmdd'),'0903170310', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170401', 'a4W', '女', '0903170401', '0903170401@163.com',to_date('19990801', 'yyyymmdd'),'0903170401', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170402', 'b4W', '男', '0903170402', '0903170402@163.com',to_date('19990902', 'yyyymmdd'),'0903170401', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170403', 'c4W', '女', '0903170403', '0903170403@163.com',to_date('19991003', 'yyyymmdd'),'0903170401', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170405', 'd4W', '男', '0903170405', '0903170405@163.com',to_date('19990808', 'yyyymmdd'),'0903170401', '03');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0903170506', 'a5W', '男', '0903170506', '0903170506@163.com',to_date('19990804', 'yyyymmdd'),'0903170506', '03');
+
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170310', 'e3D', '男', '0904170310', '0904170310@163.com',to_date('19990804', 'yyyymmdd'),'0904170310', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170301', 'a3D', '男', '0904170301', '0904170301@163.com',to_date('19990801', 'yyyymmdd'),'0904170310', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170302', 'b3D', '女', '0904170302', '0904170302@163.com',to_date('19990802', 'yyyymmdd'),'0904170310', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170605', 'd6D', '男', '0904170605', '0904170605@163.com',to_date('19990808', 'yyyymmdd'),'0904170605', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170603', 'c6D', '男', '0904170603', '0904170603@163.com',to_date('19990803', 'yyyymmdd'),'0904170605', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170401', 'a4D', '女', '0904170401', '0904170401@163.com',to_date('19990801', 'yyyymmdd'),'0904170401', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170402', 'b4D', '男', '0904170402', '0904170402@163.com',to_date('19990902', 'yyyymmdd'),'0904170401', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170403', 'c4D', '女', '0904170403', '0904170403@163.com',to_date('19991003', 'yyyymmdd'),'0904170401', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170405', 'd4D', '男', '0904170405', '0904170405@163.com',to_date('19990808', 'yyyymmdd'),'0904170401', '04');
+insert into stud_J305(sno, sname, sex, tel, e_mail, birthday, mno, majorno) values ('0904170506', 'a5D', '男', '0904170506', '0904170506@163.com',to_date('19990804', 'yyyymmdd'),'0904170506', '04');
+
+--显示数据
+column NajorNo format a3;
+column MNAME format a32;
+column loc format a10;
+column mdean format a10;
+select * from major_J305;
+
+column SNO format a10;
+column SNAME format a7;
+column SEX format a4;
+column TEL format a12;
+column E_MAIL format a32;
+column birthday format a11;
+column MNO format a11;
+column MajorNo format a3;
+set linesize 150;
+set pagesize 100;
+select * from stud_J305;
+
+--权限管理：为学生、班长、年级长分别建立视图并赋予相应查看权限
+set heading off
+set feedback off
+set echo off
+set termout off
+spool C:\Users\ITryagain\Desktop\大型数据库\实验\实验一\users.txt
+--删除用户
+select 'drop user c##u'||sno||';' from stud_J305;
+--新建用户（为每个学生）
+select 'create user c##u'||sno||' identified by p'||sno||';' from stud_J305;
+--授予connect权限
+select 'grant connect to c##u'||sno||';' from stud_J305;
+
+spool off
+set heading on
+set feedback on
+set echo on
+set termout on
+
+@C:\Users\ITryagain\Desktop\大型数据库\实验\实验一\users.txt
+
+drop view vi_stu;
+create view vi_stu as select * from stud_J305 where
+  'C##U'||sno =user or substr(user,5)=mno or (stud_J305.MajorNo =( select MajorNo from major_J305 where substr(user,5)=mdean));
+grant select on vi_stu to public;
+
+-- 年级长
+conn c##u0902170301/p0902170301
+select * from c##_J305.vi_stu;
+-- 班长
+conn c##u0902170310/p0902170310
+select * from c##_J305.vi_stu;
+-- 普通学生
+conn c##u0902170305/p0902170305
+select * from c##_J305.vi_stu;
