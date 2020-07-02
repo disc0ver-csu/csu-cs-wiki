@@ -1,12 +1,4 @@
-<!--
- * @Description:
- * @Author: 妄想
- * @Date: 2020-04-04 15:13:21
- * @LastEditTime: 2020-06-19 15:25:45
- * @LastEditors: 妄想
--->
-
-# CSU_CS_experiment
+# CSU CS Experiment
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/leo6033/CSU_CS_Experiment)
 [![license](https://img.shields.io/github/license/leo6033/CSU_CS_Experiment)](LICENSE)
@@ -16,7 +8,7 @@
 
 语言： [English](https://github.com/leo6033/CSU_CS_Experiment/blob/master/README-en.md) | [中文简体](https://github.com/leo6033/CSU_CS_Experiment/blob/master/README.md)
 
-## 概要
+## 关于项目
 
 本项目开源了部分 CS 专业的课程实验与课程设计的源码,我们同时还架设了一个 Wiki 网站，我们的核心想法是：
 
@@ -39,55 +31,37 @@
 7. [分布式与云计算（未完成）](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97)
 8. [Java](https://github.com/leo6033/Java_Project)
 9. [动画与游戏程序设计](https://github.com/leo6033/UnityLearing/tree/master/TanksWar)
+10. [编译原理](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/CompilerPrincipal)
+11. [软件测试](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/SoftwareTesting)
 
 ## 参与贡献
 
-<!-- TODO -->
+### Quick Start
 
-欢迎大家参与该项目，参与的方式大概如下：
+[项目本地部署 QuickStart](https://leo6033.github.io/CSU_CS_Experiment/intro/quick-start/)
 
-1. 关于实验课设代码开源：
+你可以直接在 Github 上编辑 Wiki 的源文档，但如果需要较大范围改动，那么我们建议你采取**本地部署**的方式。
 
-   - 该项目中还未涉及到的课程
-   - 该项目中未包括的实验
-   - 对已有代码进行优化
+### 贡献 Wiki 词条
 
-   **需保证代码质量**
+[贡献 Wiki 词条参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/docs-guide/)
 
-   非 wiki 部分 commit 时加入 [ci skip]，例如
+### 贡献代码
 
-   ```
-   git commit -m "分布式与云计算 实验1 finish [ci skip]"
-   ```
+[贡献代码参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/codes-guide/)
 
-2. 关于课程 wiki：
+关于实验课设代码开源：
 
-   本地部署方式
+- 该项目中还未涉及到的课程
+- 该项目中未包括的实验
+- 对已有代码进行优化
 
-   ```
-   git clone git@github.com:leo6033/CSU_CS_Experiment.git --depth=1
+由于**需保证代码质量**，非项目团队成员开源的代码请先通过 Issue 联系我们，提交 PR，经团队 Review 后我们会选择合适片段添加至仓库中。
 
-   cd CSU_CS_Experiment
+!!! warning "特别注意"
 
-   # 安装 mkdocs，需要 Python3 环境
-   pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+    特别注意：**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！相反，我们希望通过开源已有的（部分）实现形式，促进教学方和学生方良性发展，所以我们也会跟课程老师进行沟通（~~相信你也不希望全班代码一个样子吧~~）。
 
-   # 使用自定义主题
-   chmod +x ./scripts/build.sh && ./scripts/build.sh
-
-   # 两种方法（选其一即可）：
-   # 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
-   mkdocs serve
-
-   # 2. 在 site 文件夹下得到静态页面
-   mkdocs build
-
-   # 获取 mkdocs 的命令行工具的说明（解释了命令和参数的含义）
-   mkdocs --help
-   ```
-
-   在 `docs` 目录下对应位置进行 wiki 内容编写，如有目录新增，需在 `mkdocs.yml` 中 `nav` 部分添加。
-
-## License
+## 开源许可
 
 [MIT © Richard McRichface.](LICENSE)

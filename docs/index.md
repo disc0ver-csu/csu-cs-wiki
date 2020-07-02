@@ -8,7 +8,30 @@ title: CSU CS Wiki
 
 本项目受 [OI Wiki](https://oi-wiki.org/) 的启发，在编写过程中参考了其资料，在此致谢。
 
-项目目前在起步阶段，参与人数较少，期待你的加入。
+项目目前在起步阶段，急需优质的 Wiki 词条内容，我们期待你的加入。
+
+如果你喜欢，别忘了点击右上角，给我们一个 Star💫！
+
+## 参与贡献
+
+### Quick Start
+
+[项目本地部署 QuickStart](https://leo6033.github.io/CSU_CS_Experiment/intro/quick-start/)
+
+你可以直接在 Github 上编辑 Wiki 的源文档，但如果需要较大范围改动，那么我们建议你采取**本地部署**的方式。
+
+### 贡献 Wiki 词条
+
+[贡献 Wiki 词条参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/docs-guide/)
+
+### 贡献代码
+
+[贡献代码参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/codes-guide/)
+
+
+!!! warning "特别注意"
+
+    特别注意：**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！相反，我们希望通过开源已有的（部分）实现形式，促进教学方和学生方良性发展，所以我们也会跟课程老师进行沟通（~~相信你也不希望全班代码一个样子吧~~）。
 
 ## Material color palette 颜色主题
 
