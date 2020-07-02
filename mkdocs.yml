@@ -12,8 +12,10 @@ edit_uri: "https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref="
 # Contents
 nav:
   - 简介:
-      - Getting Started: index.md
-      - 如何参与: intro/htc.md
+      - 关于我们: index.md
+      - 贡献Wiki词条标准: intro/docs-guide.md
+      - 贡献代码标准: intro/codes-guide.md
+      - Commit 标准: intro/commit-guide.md
   - 数字图像处理:
       - 理想滤波器与振铃特性: imageprocess/ilpf.md
   - 软件测试:
