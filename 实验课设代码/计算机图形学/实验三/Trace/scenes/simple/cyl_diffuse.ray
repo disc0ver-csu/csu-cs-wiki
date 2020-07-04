@@ -1,0 +1,28 @@
+SBT-raytracer 1.0
+
+// cyl_diffuse.ray
+// Test for the diffuse term
+
+camera
+{
+	position = (5, 0, 0);
+	viewdir = (-1, 0, 0);
+	updir = (0, 1, 0);
+}
+
+// This is a directional light coming from the
+// left of the scene.
+directional_light
+{
+	// Direction is automatically normalized
+	direction = (-1, -0.5, -1);
+	color = (1, 0, 1);
+}
+
+// The cylinder should turn out a shaded blue.
+rotate( 1, 0, 0, 1.6, 
+	rotate( 0, 1, 0, -0.5,
+		cylinder {
+			material = { diffuse = (0, 0, 0.8); 
+		}
+	} ) )
