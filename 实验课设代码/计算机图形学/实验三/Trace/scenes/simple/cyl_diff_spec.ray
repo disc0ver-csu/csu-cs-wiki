@@ -1,0 +1,29 @@
+SBT-raytracer 1.0
+
+// cyl_diff_spec.ray
+// Test for specular term added to diffuse
+
+camera
+{
+	position = (5, 0, 0);
+	viewdir = (-1, 0, 0);
+	updir = (0, 1, 0);
+}
+
+// This is a directional light coming from behind us
+directional_light
+{
+	direction = (-1, 0, 0);
+	color = (1, 0, 1);
+}
+
+// The cylinder should have a specular highlight
+// in the middle.
+rotate( 1, 0, 0, 1.6, 
+		cylinder {
+			material = { 
+				diffuse = (0, 0, 1); 
+				specular = (1, 0, 1); 
+				shininess = 128.0;
+			}
+	} )
