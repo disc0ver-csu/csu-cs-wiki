@@ -1,8 +1,11 @@
 # 网络爬虫
 
-<img src="./images/image-20200704111155136.png" alt="image-20200704111155136" style="zoom:50%;" />
+> 爬取指定url内的文字内容，高亮其中的敏感词汇
+>
+> - 开发环境：JDK 11, IntelliJ IDEA
 
-<img src="./images/image-20200704111221465.png" alt="image-20200704111221465" style="zoom:50%;" />
+1. 输入框中输入单个网址 / 选择网址文件（e.g. 项目文件夹下的urls.txt）
+2. 在爬取结果界面输入框输入敏感词/选择敏感词库文件（e.g. 项目文件夹下的sensitiveWords.txt）
 
-<img src="./images/image-20200704111247679.png" alt="image-20200704111247679" style="zoom:50%;" />
+3. 点击按钮高亮敏感词
 

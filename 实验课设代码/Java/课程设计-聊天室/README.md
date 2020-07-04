@@ -25,71 +25,27 @@
 
 1. 双击`用户名`称出现弹窗，进行私聊
 
-   ![image-20200704104601732](./images/image-20200704104601732.png)
-
 2. 双击`创建群聊`，可选择用户进行群聊
 
-   <img src="./images/image-20200704104811203.png" alt="image-20200704104811203" style="zoom: 33%;" />
-
-<img src="./images/image-20200704105021350.png" alt="image-20200704105021350" style="zoom:33%;" />
 
 3. 服务器管理员可与用户私聊信息
 
-   <img src="./images/image-20200704105151850.png" alt="image-20200704105151850" style="zoom:33%;" />
-
 4. 服务器可强制下线用户
-
-   <img src="./images/image-20200704105224308.png" alt="image-20200704105224308" style="zoom:33%;" />
 
 5. 用户上线、下线时所有在线用户会受到消息
 
-   <img src="./images/image-20200704105317998.png" alt="image-20200704105317998" style="zoom:33%;" />
+   
 
 ## PP-无弹窗
 
-### 登录界面
+1. 登录界面：考虑密码错误、注册时已有重复用户
+2. 客户端：
+   - 用户上线广播
+   - 聊天室内广播消息
+   - 私聊用户
+   - 创建群聊
 
-<img src="./images/image-20200704110427678.png" alt="image-20200704110427678" style="zoom:40%;" />
-
-- 密码错误：
-
-  <img src="./images/image-20200704110558754.png" alt="image-20200704110558754" style="zoom:40%;" />
-
-- 注册时用户已存在
-
-<img src="./images/image-20200704110641969.png" alt="image-20200704110641969" style="zoom:40%;" />
-
-### 客户端
-
-- 用户上线
-
-<img src="./images/image-20200704110739947.png" alt="image-20200704110739947" style="zoom:40%;" />
-
-- 广播消息
-
-<img src="./images/image-20200704110820396.png" alt="image-20200704110820396" style="zoom:50%;" />
-
-- 私聊
-
-<img src="./images/image-20200704110835398.png" alt="image-20200704110835398" style="zoom:50%;" />
-
-- 创建群聊
-
-<img src="./images/image-20200704110904737.png" alt="image-20200704110904737" style="zoom:30%;" />
-
-<img src="./images/image-20200704110926662.png" alt="image-20200704110926662" style="zoom:25%;" />
-
-### 服务器端
-
-- 广播
-
-<img src="./images/image-20200704111004491.png" alt="image-20200704111004491" style="zoom:50%;" />
-
-- 私聊用户
-
-<img src="./images/image-20200704111019795.png" alt="image-20200704111019795" style="zoom:50%;" />
-
-- 强制下线
-
-<img src="./images/image-20200704111040440.png" alt="image-20200704111040440" style="zoom:30%;" />
-
+3. 服务器端：
+   - 管理员向用户广播消息
+   - 管理员私聊用户
+   - 管理员强制下线用户
