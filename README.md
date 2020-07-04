@@ -29,7 +29,7 @@
 5. [数字图像处理](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86)
 6. [汇编](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E6%B1%87%E7%BC%96%E8%AF%BE%E8%AE%BE)
 7. [分布式与云计算（未完成）](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97)
-8. [Java](https://github.com/leo6033/Java_Project)
+8. [Java](https://github.com/leo6033/CSU_CS_Experiment/blob/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/Java/README.md)
 9. [动画与游戏程序设计](https://github.com/leo6033/UnityLearing/tree/master/TanksWar)
 10. [编译原理](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/CompilerPrincipal)
 11. [软件测试](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/SoftwareTesting)
@@ -60,7 +60,10 @@
 
 !!! warning "特别注意"
 
-    特别注意：**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！**开源代码的初衷不是为了敷衍实验/课设**！相反，我们希望通过开源已有的（部分）实现形式，促进教学方和学生方良性发展，所以我们也会跟课程老师进行沟通（~~相信你也不希望全班代码一个样子吧~~）。
+    特别注意：**开源代码的初衷不是为了敷衍实验/课设**！
+             **开源代码的初衷不是为了敷衍实验/课设**！
+             **开源代码的初衷不是为了敷衍实验/课设**！
+             相反，我们希望通过开源已有的（部分）实现形式，促进教学方和学生方良性发展，所以我们也会跟课程老师进行沟通（~~相信你也不希望全班代码一个样子吧~~）。
 
 ## 开源许可
 
