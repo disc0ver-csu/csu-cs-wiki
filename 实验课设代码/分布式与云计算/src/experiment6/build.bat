@@ -1,0 +1,1 @@
+idlj -oldImplBase -fall Vote.idl
