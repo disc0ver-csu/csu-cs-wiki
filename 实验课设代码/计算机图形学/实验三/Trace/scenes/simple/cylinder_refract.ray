@@ -1,0 +1,50 @@
+SBT-raytracer 1.0
+
+// cyl_cyl_refract.ray
+// purpose: Test the refraction term
+// depth: 10
+// Don't forget to increase the trace depth to >= 2!
+
+camera
+{
+	position = (5, 0, 0);
+	viewdir = (-1, 0, 0);
+	updir = (0, 0, 1);
+}
+
+directional_light
+{
+	direction = (-1, -1, -0.2);
+	color = (1, 1, 1);
+}
+
+// Sphere acts as a lens
+translate( 0, 0, -0.5, 
+scale(.2, 1.5, 1.5, cylinder {
+	material = { 
+		emissive = (0, 0.12, 0);
+		transmissive = (0.7, 0.7, 0.7);
+		index = 1.5;
+	}
+} ) )
+
+// Add a couple of crossed cylinders behind the sphere to
+// see the refractive effect.
+
+// Note that the reason these are emissive is that otherwise
+// you have problems if transparent shadows aren't implemented.
+translate( -2, -1, -10,
+scale( .2, .2, 20,
+	cylinder {
+		material = { emissive = (0.8, 0.4, 0); }
+	} ) )
+
+
+translate( 0, 0.5, 0, 
+rotate( 1, 0, 0, .6,
+translate( -2, -1, -10,
+scale( .2, .2, 20,
+	cylinder {
+		material = { emissive = (0.8, 0.0, 0.4); }
+	} ) ) ) )
+
