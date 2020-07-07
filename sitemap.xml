@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/intro/htc/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/imageprocess/ilpf/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/softwaretesting/white-box/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/softwaretesting/black-box/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leo6033.github.io/CSU_CS_Experiment/softwaretesting/tdd/</loc>
+     <lastmod>2020-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
