@@ -1,0 +1,15 @@
+module VoteAppTest{
+
+    struct Vote{
+        string name;
+        long value;
+    };
+
+    typedef sequence<Vote> voteArray;
+
+    interface Votes{
+
+        void castVote(in string name);
+        attribute voteArray getList;
+    };
+};
