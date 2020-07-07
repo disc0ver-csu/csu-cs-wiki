@@ -25,7 +25,7 @@ nav:
       - TDD测试驱动开发: softwaretesting/tdd.md
   - 编译原理:
       - 语言与语法描述: compilerprincipal/language-grammar.md
-      - 词法分析——有限自动机与正则式: compilerprincipal/lexer-dfa.md
+      - 词法分析——有限自动机: compilerprincipal/lexer-dfa.md
       - 词法分析——转换算法: compilerprincipal/lexer-trans-algorithm.md
       - 语法分析——算符优先: compilerprincipal/parser-opg.md
       - 语法分析——LR(0): compilerprincipal/parser-lr0.md
