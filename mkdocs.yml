@@ -13,6 +13,7 @@ edit_uri: "https://leo6033.github.io/CSU_CS_Experiment/edit-landing/?ref="
 nav:
   - 简介:
       - 关于我们: index.md
+      - Quick Start: intro/quick-start.md
       - 贡献Wiki词条标准: intro/docs-guide.md
       - 贡献代码标准: intro/codes-guide.md
       - Commit 标准: intro/commit-guide.md
@@ -23,7 +24,11 @@ nav:
       - 黑盒测试开发: softwaretesting/black-box.md
       - TDD测试驱动开发: softwaretesting/tdd.md
   - 编译原理:
-      - 算符优先文法: compilerprincipal/opg.md
+      - 语言与语法描述: compilerprincipal/language-grammar.md
+      - 词法分析——有限自动机与正则式: compilerprincipal/lexer-dfa.md
+      - 词法分析——转换算法: compilerprincipal/lexer-trans-algorithm.md
+      - 语法分析——算符优先: compilerprincipal/parser-opg.md
+      - 语法分析——LR(0): compilerprincipal/parser-lr0.md
   - 分布式系统与云计算:
       - 时间同步算法: distributedsystems/sync-clock.md
       - Lamport逻辑时钟: distributedsystems/logic-clock.md
