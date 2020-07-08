@@ -1,0 +1,5 @@
+create user c##_J305 identified by c##_J305;
+grant resource,connect, dba to c##_J305;
+connect c##_J305/c##_J305
+
+alter user c##_J305 quota unlimited on users;
