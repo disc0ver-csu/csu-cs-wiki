@@ -16,17 +16,17 @@ title: CSU CS Wiki
 
 ### Quick Start
 
-[项目本地部署 QuickStart](https://leo6033.github.io/CSU_CS_Experiment/Intro/quick-start/)
+[项目本地部署 QuickStart](https://leo6033.github.io/CSU_CS_Experiment/intro/quick-start/)
 
 你可以直接在 Github 上编辑 Wiki 的源文档，但如果需要较大范围改动，那么我们建议你采取**本地部署**的方式。
 
 ### 贡献 Wiki 词条
 
-[贡献 Wiki 词条参考标准](https://leo6033.github.io/CSU_CS_Experiment/Intro/docs-guide/)
+[贡献 Wiki 词条参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/docs-guide/)
 
 ### 贡献代码
 
-[贡献代码参考标准](https://leo6033.github.io/CSU_CS_Experiment/Intro/codes-guide/)
+[贡献代码参考标准](https://leo6033.github.io/CSU_CS_Experiment/intro/codes-guide/)
 
 !!! warning "特别注意"
 

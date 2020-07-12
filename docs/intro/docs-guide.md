@@ -18,7 +18,7 @@ docs
 ├─DistributedSystems
 │  └─images
 ├─...
-├─Intro
+├─intro
 │  └─images
 ├─SoftwareTesting
 │  └─images
@@ -33,7 +33,7 @@ docs
 
 ## 文档编写规范
 
-你可以使用我们提供的[模板](https://github.com/leo6033/CSU_CS_Experiment/tree/master/docs/Intro/docs-template.md)
+你可以使用我们提供的[模板](https://github.com/leo6033/CSU_CS_Experiment/tree/master/docs/intro/docs-template.md)
 
 1.  一级标题应与`mkdocs.yml`中`nav`标签对应。
 2.  二级标题应为多个，覆盖该词条的主要子知识点。
