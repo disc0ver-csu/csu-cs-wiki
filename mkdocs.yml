@@ -17,22 +17,26 @@ nav:
       - 贡献Wiki词条标准: Intro/docs-guide.md
       - 贡献代码标准: Intro/codes-guide.md
       - Commit 标准: Intro/commit-guide.md
-  - 数字图像处理:
-      - 理想滤波器与振铃特性: DigitalImageProcess/ilpf.md
-  - 软件测试:
-      - 白盒测试开发: SoftwareTesting/white-box.md
-      - 黑盒测试开发: SoftwareTesting/black-box.md
-      - TDD测试驱动开发: SoftwareTesting/tdd.md
+  - 操作系统:
+      - 进程管理: OperatingSystems/process-mgmt.md
+  - 分布式系统与云计算:
+      - 时间同步算法: DistributedSystems/sync-clock.md
+      - Lamport逻辑时钟: DistributedSystems/logic-clock.md
+      - 期末汇总（临时）: DistributedSystems/sumup.md
   - 编译原理:
       - 语言与语法描述: CompilerPrinciples/language-grammar.md
       - 词法分析——有限自动机: CompilerPrinciples/lexer-dfa.md
       - 词法分析——转换算法: CompilerPrinciples/lexer-trans-algorithm.md
       - 语法分析——算符优先: CompilerPrinciples/parser-opg.md
       - 语法分析——LR(0): CompilerPrinciples/parser-lr0.md
-  - 分布式系统与云计算:
-      - 时间同步算法: DistributedSystems/sync-clock.md
-      - Lamport逻辑时钟: DistributedSystems/logic-clock.md
-      - 期末汇总（临时）: DistributedSystems/sumup.md
+
+  - 数字图像处理:
+      - 理想滤波器与振铃特性: DigitalImageProcess/ilpf.md
+  - 软件测试:
+      - 白盒测试开发: SoftwareTesting/white-box.md
+      - 黑盒测试开发: SoftwareTesting/black-box.md
+      - TDD测试驱动开发: SoftwareTesting/tdd.md
+
   - 竞赛:
       - 关于竞赛:  Competition/index.md
 
