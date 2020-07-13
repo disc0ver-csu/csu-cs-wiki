@@ -12,28 +12,28 @@ Wiki 源文件储存在`./docs`目录下，目录结构如下：
 
 ```bash
 docs
-├─competition
+├─Competition
 │  └─images
-├─compilerprincipal
-├─distributedsystems
+├─CompilerPrinciples
+├─DistributedSystems
 │  └─images
 ├─...
-├─intro
+├─Intro
 │  └─images
-├─softwaretesting
+├─SoftwareTesting
 │  └─images
 └─_static
     ├─css
     └─js
 ```
 
-1. 你应该在`docs`下的一个子目录中进行贡献，该目录名应为一个课程（或子类名），如`competition`对应竞赛，`softwaretesting`对应软件测试。然后再在该文件内编辑`.md`后缀的 Markdown 文件。
+1. 你应该在`docs`下的一个子目录中进行贡献，该目录名应为一个课程（或子类名），如`Competition`对应竞赛，`SoftwareTesting`对应软件测试。然后再在该文件内编辑`.md`后缀的 Markdown 文件。
 2. 如有目录新增，需在 `mkdocs.yml` 中 `nav` 部分添加标签名和地址。
 3. 注意，**文件名小写**，**以 `-` 分割**，如`sync-clock.md`对应时钟同步知识点，`white-box.md`对应白盒测试知识点。另外，**文件名简单且容易理解**，合理的文件命名有助于长期维护。
 
 ## 文档编写规范
 
-你可以使用我们提供的[模板](https://github.com/leo6033/CSU_CS_Experiment/tree/master/docs/intro/docs-template.md)
+你可以使用我们提供的[模板](https://github.com/leo6033/CSU_CS_Experiment/tree/master/docs/Intro/docs-template.md)
 
 1.  一级标题应与`mkdocs.yml`中`nav`标签对应。
 2.  二级标题应为多个，覆盖该词条的主要子知识点。
