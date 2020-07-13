@@ -23,6 +23,13 @@ nav:
       - 时间同步算法: DistributedSystems/sync-clock.md
       - Lamport逻辑时钟: DistributedSystems/logic-clock.md
       - 期末汇总（临时）: DistributedSystems/sumup.md
+  - 离散数学:
+      - 离散数学概论: DiscreteMathematics/intro.md
+      - 逻辑与证明: DiscreteMathematics/logic-proof.md
+      - 集合: DiscreteMathematics/sets.md
+      - 关系: DiscreteMathematics/relations.md
+      - 函数: DiscreteMathematics/functions.md
+      - 图论: DiscreteMathematics/graphs.md
   - 编译原理:
       - 语言与语法描述: CompilerPrinciples/language-grammar.md
       - 词法分析——有限自动机: CompilerPrinciples/lexer-dfa.md
