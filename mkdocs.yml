@@ -35,7 +35,7 @@ nav:
       - 词法分析——有限自动机: CompilerPrinciples/lexer-dfa.md
       - 词法分析——转换算法: CompilerPrinciples/lexer-trans-algorithm.md
       - 语法分析——算符优先: CompilerPrinciples/parser-opg.md
-      - 语法分析——LR(0): CompilerPrinciples/parser-lr0.md
+      - 语法分析——LR分析法: CompilerPrinciples/parser-lr.md
 
   - 数字图像处理:
       - 理想滤波器与振铃特性: DigitalImageProcess/ilpf.md
