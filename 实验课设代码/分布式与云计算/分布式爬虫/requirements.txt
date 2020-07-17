@@ -1,3 +1,0 @@
-scrapy
-scrapy-redis
-sqlalchemy
