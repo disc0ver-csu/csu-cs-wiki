@@ -1,0 +1,85 @@
+SBT-raytracer 1.0
+
+camera {
+  position = (5.26211, 3.09263, -1.38722);
+  viewdir = (-0.853042, -0.383547, 0.353853);
+  aspectratio = 1;
+  updir = (0.345784, 0.0924084, 0.933753);
+}
+
+point_light {
+  position = (5.21898, 4.68627, -2.04877);
+  colour = (1, 1, 1);
+}
+
+directional_light {
+  direction = (-0.853042, -0.383547, 0.353853);
+  color = (1, 1, 1);
+}
+
+translate( 1.02616, -0.365439, -1.13081, 
+	scale(0.288315,
+		sphere {
+		  material = {
+			diffuse = (0.2, 0.6, 0.75);
+			ambient = (0.2, 0.2, 0.2);
+			shininess = 25.6;
+		  }}))
+
+translate( 0, 2.78629, 0.116676,
+	scale( 0.310878,
+		sphere {
+		  material = {
+			diffuse = (0.8,0.2,0.5);
+			ambient = (0.2,0.2,0.2);
+			shininess = 25.6;
+		}}))
+
+translate( 1.39952, 0.365459, 2.25247,
+	scale( 0.312566,
+		sphere {
+		  material = {
+			diffuse = (0.5,0.75,0.2);
+			ambient = (0.2,0.2,0.2);
+			shininess = 25.6;
+		}}))
+
+translate( 0, 2.01869, 0.108636,
+	scale( 0.670496,
+		sphere {
+		  material = {
+			diffuse = (0.34,0.07,0.56);
+			ambient = (0.2,0.2,0.2);
+			specular = (0.4,0.4,0.4);
+			shininess = 122.074112;
+		}}))
+
+translate( 0.990468, 0.489687, 1.61544,
+	scale( 0.636615,
+		sphere {
+		  material = {
+			diffuse = (0.56,0.24,0.12);
+			ambient = (0.2,0.2,0.2);
+			specular = (0.4,0.4,0.4);
+			shininess = 120.888832;
+		}}))
+
+translate( 0.709821, -0.124101, -0.637882,
+	scale( 0.597582,
+		sphere {
+		  material = {
+			diffuse = (0.04,0.56,0.28);
+			ambient = (0.2,0.2,0.2);
+			specular = (0.4,0.4,0.4);
+			shininess = 124.444416;
+		}}))
+
+translate( 0.0579858, 0.496598, 0.550744,
+	scale( 1.18902,
+		sphere {
+		  material = {
+			diffuse = (0.6, 0.6, 0.6);
+			ambient = (0.2,0.2,0.2);
+			specular = (0.5,0.5,0.5);
+			shininess = 118.518528;
+		}}))
