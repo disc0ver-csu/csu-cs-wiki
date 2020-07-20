@@ -28,6 +28,7 @@ nav:
       - 逻辑与证明——概论: DiscreteMathematics/logic-proof-intro.md
       - 逻辑与证明——命题与逻辑等价: DiscreteMathematics/logic-proof-prop.md
       - 逻辑与证明——谓词与量词: DiscreteMathematics/logic-proof-pred.md
+      - 逻辑与证明——推理证明方法: DiscreteMathematics/logic-proof-proof.md
       - 集合: DiscreteMathematics/sets.md
       - 关系: DiscreteMathematics/relations.md
       - 函数: DiscreteMathematics/functions.md
