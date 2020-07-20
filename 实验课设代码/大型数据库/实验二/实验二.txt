@@ -1,0 +1,347 @@
+conn c##_J305/c##_J305
+
+alter table stud_J305 add sum_evaluation number(3) default 100;
+alter table major_J305 add sum_evaluation number(3) default 500;
+
+--建立考勤表
+--正常：A
+--迟到：B
+--旷课：C
+--请假：D
+drop table attend_J305;
+create table attend_J305(
+	nowdate date not null,
+	sno char(10) references stud_J305(sno) not null,
+	SNAME varchar(32) not null, 
+	class12 varchar(4) not null,
+	class34 varchar(4) not null,
+	class56 varchar(4) not null,
+	class78 varchar(4) not null,
+	class90 varchar(4) not null,
+	constraint pk_attend_nowdate_sno primary key(nowdate,sno),
+	constraint ck_attend_class12 check(class12 in('A','B','C','D','E'))，
+	constraint ck_attend_class34 check(class34 in('A','B','C','D','E'))，
+	constraint ck_attend_class56 check(class56 in('A','B','C','D','E'))，
+	constraint ck_attend_class78 check(class78 in('A','B','C','D','E'))，
+	constraint ck_attend_class90 check(class90 in('A','B','C','D','E'))
+);
+
+--插入一周数据：2019.10.10至2019.10.16
+insert into attend_J305 values(to_date('20191010','yyyymmdd'),'0902170301','a3J','A','B','C','A','E');
+insert into attend_J305 values(to_date('20191011','yyyymmdd'),'0902170301','a3J','B','B','C','A','E');
+insert into attend_J305 values(to_date('20191012','yyyymmdd'),'0902170301','a3J','A','A','C','A','E');
+insert into attend_J305 values(to_date('20191013','yyyymmdd'),'0902170301','a3J','A','A','C','A','E');
+insert into attend_J305 values(to_date('20191014','yyyymmdd'),'0902170301','a3J','A','A','C','A','E');
+insert into attend_J305 values(to_date('20191015','yyyymmdd'),'0902170301','a3J','A','B','C','A','E');
+insert into attend_J305 values(to_date('20191016','yyyymmdd'),'0902170301','a3J','A','B','C','A','E');
+insert into attend_J305 values(to_date('20191013','yyyymmdd'),'0902170302','b3J','A','E','C','E','E');
+insert into attend_J305 values(to_date('20191013','yyyymmdd'),'0902170310','e3J','A','B','E','A','D');
+insert into attend_J305 values(to_date('20191013','yyyymmdd'),'0902170303','c3J','E','A','E','E','D');
+
+insert into attend_J305 values(to_date('20191016','yyyymmdd'),'0903170310','e3W','A','B','C','A','E');
+insert into attend_J305 values(to_date('20191014','yyyymmdd'),'0904170310','e3D','A','E','C','E','E');
+insert into attend_J305 values(to_date('20191014','yyyymmdd'),'0904170301','a3D','A','B','E','A','D');
+insert into attend_J305 values(to_date('20191014','yyyymmdd'),'0903170402','b4W','E','A','E','E','D');
+
+
+--显示考勤表
+set linesize 150;
+set pagesize 100;
+col name format a7;
+col sno format a11;
+col class12 format a7;
+col class34 format a7;
+col class65 format a7;
+col class78 format a7;
+col class90 format a7;
+alter session set nls_date_format = 'yyyy-mm-dd';
+select * from attend_J305;
+
+
+--建立学生考勤表
+drop table stud_atte_J305;
+create table stud_atte_J305(
+	startdate date default to_date('21000101','yyyyddmm'),
+	stopdate date default to_date('19000101','yyyyddmm'),
+	sno char(10) references stud_J305(sno),
+	SNAME varchar(32),
+	class_a number(3) default 0,
+	class_b number(3) default 0,
+	class_c number(3) default 0,
+	class_d number(3) default 0,
+	result number(3) default 100,
+	constraint pk_stud_atte_sno primary key(sno)
+);
+ 
+--将学生表的所有学生插入学生考勤表
+insert into stud_atte_J305(sno,sname) select stud_J305.sno,stud_J305.SNAME from stud_J305;
+
+--显示学生考勤表
+col SNAME format a7;
+alter session set nls_date_format = 'yyyy-mm-dd';
+select * from stud_atte_J305;
+
+--建立专业考勤表
+drop table major_atte_J305;
+create table major_atte_J305(
+	startdate date default to_date('20181001','yyyyddmm'),
+	stopdate date default to_date('20181001','yyyyddmm'),
+	MajorNo char(2) references major_J305(MajorNo),
+	MNAME varchar(32),
+	class_a number(3) default 0,
+	class_b number(3) default 0,
+	class_c number(3) default 0,
+	class_d number(3) default 0,
+	result number(3) default 500,
+	constraint pk_major_atte_sno primary key(MajorNo)
+);
+
+--将专业表的所有专业插入专业考勤表
+insert into major_atte_J305(MajorNo,MNAME) select major_J305.MajorNo,major_J305.MNAME from major_J305;
+
+--显示专业考勤表
+col mname format a20;
+alter session set nls_date_format = 'yyyy-mm-dd';
+select * from major_atte_J305;
+
+--建立过程：汇总学生考勤数据，并将成绩更新到学生表中
+create or replace procedure p_stud_atte_J305
+as
+cursor stud_atte_line is select * from attend_J305;
+cur_atte attend_J305%rowtype;
+class_sa number(3);
+class_sb number(3);
+class_sc number(3);
+class_sd number(3);
+class_res number(3);
+
+time_min date;
+time_max date;
+begin
+delete from stud_atte_J305;
+insert into stud_atte_J305(sno,sname) select stud_J305.sno,stud_J305.SNAME from stud_J305;
+for cur_atte in stud_atte_line loop
+ 
+	select startdate into time_min from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	select stopdate into time_max from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	select class_a into class_sa from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	select class_b into class_sb from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	select class_c into class_sc from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	select class_d into class_sd from stud_atte_J305 where stud_atte_J305.sno=cur_atte.sno;
+	
+	if(time_min>cur_atte.nowdate)then
+		time_min:=cur_atte.nowdate;
+	end if;
+	if(time_max<cur_atte.nowdate)then
+		time_max:=cur_atte.nowdate;
+	end if;
+ 
+	if(cur_atte.class12='A')then
+		class_sa:=class_sa+1;
+	elsif(cur_atte.class12='B')then
+		class_sb:=class_sb+1;
+	elsif(cur_atte.class12='C')then
+		class_sc:=class_sc+1;
+	elsif(cur_atte.class12='D')then
+		class_sd:=class_sd+1;
+	end if;
+ 
+	if(cur_atte.class34='A')then
+		class_sa:=class_sa+1;
+	elsif(cur_atte.class34='B')then
+		class_sb:=class_sb+1;
+	elsif(cur_atte.class34='C')then
+		class_sc:=class_sc+1;
+	elsif(cur_atte.class34='D')then
+		class_sd:=class_sd+1;
+	end if;
+ 
+	if(cur_atte.class56='A')then
+		class_sa:=class_sa+1;
+	elsif(cur_atte.class56='B')then
+		class_sb:=class_sb+1;
+	elsif(cur_atte.class56='C')then
+		class_sc:=class_sc+1;
+	elsif(cur_atte.class56='D')then
+		class_sd:=class_sd+1;
+	end if;
+ 
+	if(cur_atte.class78='A')then
+		class_sa:=class_sa+1;
+	elsif(cur_atte.class78='B')then
+		class_sb:=class_sb+1;
+	elsif(cur_atte.class78='C')then
+		class_sc:=class_sc+1;
+	elsif(cur_atte.class78='D')then
+		class_sd:=class_sd+1;
+	end if;
+ 
+	if(cur_atte.class90='A')then
+		class_sa:=class_sa+1;
+	elsif(cur_atte.class90='B')then
+		class_sb:=class_sb+1;
+	elsif(cur_atte.class90='C')then
+		class_sc:=class_sc+1;
+	elsif(cur_atte.class90='D')then
+		class_sd:=class_sd+1;
+	end if;
+ 
+	class_res:=100-class_sb*2-class_sc*5-class_sd;
+	
+	update stud_atte_J305 set stud_atte_J305.startdate=time_min where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.stopdate=time_max where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.class_a=class_sa where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.class_b=class_sb where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.class_c=class_sc where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.class_d=class_sd where stud_atte_J305.sno=cur_atte.sno;
+	update stud_atte_J305 set stud_atte_J305.result=class_res where stud_atte_J305.sno=cur_atte.sno;
+	update stud_J305 set stud_J305.sum_evaluation=class_res where stud_J305.sno=cur_atte.sno;
+
+end loop;
+end;
+/
+show error
+
+--显示学生考勤表
+exec p_stud_atte_J305;
+col sname format a7;
+alter session set nls_date_format = 'yyyy-mm-dd';
+select * from stud_atte_J305;
+
+--查看两名学生的考勤记录，查看数据汇总是否正确
+select * from attend_J305 where SNAME='e3J';
+select * from attend_J305 where SNAME='a3J';
+
+
+--13.建立过程：汇总专业考勤数据，并将成绩更新到专业表中
+create or replace procedure p_major_atte_J305(start_mtime date,stop_mtime date)
+as
+cursor major_atte_line is select * from attend_J305 where attend_J305.nowdate>=start_mtime and attend_J305.nowdate<=stop_mtime;
+cur_atte attend_J305%rowtype;
+class_ma number(3);
+class_mb number(3);
+class_mc number(3);
+class_md number(3);
+class_res number(3);
+begin
+delete from major_atte_J305;
+insert into major_atte_J305(MajorNo,MNAME) select major_J305.MajorNo,major_J305.MNAME from major_J305;
+
+ 
+for cur_atte in major_atte_line loop
+ 
+	select class_a into class_ma from major_atte_J305 where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	select class_b into class_mb from major_atte_J305 where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	select class_c into class_mc from major_atte_J305 where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	select class_d into class_md from major_atte_J305 where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+ 
+	if(cur_atte.class12='A')then
+		class_ma:=class_ma+1;
+	elsif(cur_atte.class12='B')then
+		class_mb:=class_mb+1;
+	elsif(cur_atte.class12='C')then
+		class_mc:=class_mc+1;
+	elsif(cur_atte.class12='D')then
+		class_md:=class_md+1;
+	end if;
+ 
+	if(cur_atte.class34='A')then
+		class_ma:=class_ma+1;
+	elsif(cur_atte.class34='B')then
+		class_mb:=class_mb+1;
+	elsif(cur_atte.class34='C')then
+		class_mc:=class_mc+1;
+	elsif(cur_atte.class34='D')then
+		class_md:=class_md+1;
+	end if;
+ 
+	if(cur_atte.class56='A')then
+		class_ma:=class_ma+1;
+	elsif(cur_atte.class56='B')then
+		class_mb:=class_mb+1;
+	elsif(cur_atte.class56='C')then
+		class_mc:=class_mc+1;
+	elsif(cur_atte.class56='D')then
+		class_md:=class_md+1;
+	end if;
+ 
+	if(cur_atte.class78='A')then
+		class_ma:=class_ma+1;
+	elsif(cur_atte.class78='B')then
+		class_mb:=class_mb+1;
+	elsif(cur_atte.class78='C')then
+		class_mc:=class_mc+1;
+	elsif(cur_atte.class78='D')then
+		class_md:=class_md+1;
+	end if;
+ 
+	if(cur_atte.class90='A')then
+		class_ma:=class_ma+1;
+	elsif(cur_atte.class90='B')then
+		class_mb:=class_mb+1;
+	elsif(cur_atte.class90='C')then
+		class_mc:=class_mc+1;
+	elsif(cur_atte.class90='D')then
+		class_md:=class_md+1;
+	end if;
+ 
+	class_res:=500-class_mb*2-class_mc*5-class_md;
+	
+	update major_atte_J305 set major_atte_J305.startdate=start_mtime where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.stopdate=stop_mtime where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.class_a=class_ma where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.class_b=class_mb where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.class_c=class_mc where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.class_d=class_md where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_atte_J305 set major_atte_J305.result=class_res where major_atte_J305.MajorNo=substr(cur_atte.sno,3,2);
+	update major_J305 set major_J305.sum_evaluation=class_res where major_J305.MajorNo=substr(cur_atte.sno,3,2);
+end loop;
+end;
+/
+show error
+
+--14.显示专业考勤表
+exec p_major_atte_J305(to_date('20191010'),to_date('20191016'));
+col mname format a20;
+alter session set nls_date_format = 'yyyy-mm-dd';
+select * from major_atte_J305;
+
+--建立触发器：当对考勤表进行相应插入、删除、修改时，对stud表的sum_evaluation数值进行相应的数据更新
+create or replace trigger tg_attend_J305
+after insert or update or delete on attend_J305
+begin
+update stud_J305 set SUM_EVALUATION=100;
+p_stud_atte_J305;
+end;
+/
+
+--16.测试触发器
+column SNO format a10;
+column SNAME format a7;
+column SEX format a4;
+column TEL format a12;
+column E_MAIL format a32;
+column birthday format a11;
+column MNO format a11;
+column MajorNo format a3;
+set linesize 150;
+set pagesize 100;
+alter session set nls_date_format = 'yyyy-mm-dd';
+
+--插入测试
+select * from stud_J305 where sname='a4J';
+insert into attend_J305 values(to_date('20191017','yyyymmdd'),'0902170401','a4J','B','B','B','E','E');
+select * from stud_J305 where sname='a4J';
+
+--删除测试
+select * from stud_J305 where sname='a4J';
+delete from attend_J305 where sname='a4J' and nowdate=to_date('20191017','yyyymmdd');
+select * from stud_J305 where sname='a4J';
+ 
+--更新测试
+select * from attend_J305 where sname='a4J';
+select * from stud_J305 where sname='a4J';
+update attend_J305 set class12='C' where sname='a4J' and nowdate=to_date('20191017','yyyymmdd');
+select * from attend_J305 where sname='a4J';
+select * from stud_J305 where sname='a4J';
+
