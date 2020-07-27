@@ -18,7 +18,7 @@ Language: [English](https://github.com/leo6033/CSU_CS_Experiment/blob/master/REA
 
 ## Abstract
 
-The project has opened some source codes ralted to a list of labs which students majoring in Computer Science should complete in some courses. We also build a Wiki. Well, our main purposes are as followed:
+The project has opened some source codes related to a list of projects which students majoring in Computer Science should complete in some courses. We also build a Wiki. Our main purposes are as followed:
 
 - Contribute to the Open Source Project.
 - Use Wiki to help students have a better comprehension of or review the **key points** of several courses.
@@ -28,9 +28,9 @@ Don't forget to give us a star💫 :)
 
 ## Courses List
 
-(We need contributors to proofreading the translation :) Join us! )
+(We need contributors to proofread the translation :) Join us! )
 
-Now we have these courses available.
+These courses are available at present.
 
 <!-- Remeber to change the links after reconstraction -->
 
