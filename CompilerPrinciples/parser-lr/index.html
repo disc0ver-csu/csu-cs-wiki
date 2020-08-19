@@ -1,0 +1,1672 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="dns-prefetch" href="//leo6033.github.io/CSU_CS_Experiment/">
+      <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+      <link rel="dns-prefetch" href="//api.github.com">
+      <link rel="dns-prefetch" href="//www.google-analytics.com">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="CSU CS wiki">
+      
+      
+        <link rel="canonical" href="https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/CompilerPrinciples/parser-lr/">
+      
+      
+        <meta name="author" content="妄想">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>语法分析——LR分析法 - CSU CS wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#lr" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/" title="CSU CS wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                CSU CS wiki
+              </span>
+              <span class="md-header-nav__topic">
+                语法分析——LR分析法
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      CSU-CS-WIKI/CSU_CS_Experiment
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="简介" class="md-tabs__link">
+          简介
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../OperatingSystems/process-mgmt/" title="操作系统" class="md-tabs__link">
+          操作系统
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DistributedSystems/sync-clock/" title="分布式系统与云计算" class="md-tabs__link">
+          分布式系统与云计算
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DiscreteMathematics/intro/" title="离散数学" class="md-tabs__link">
+          离散数学
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../language-grammar/" title="编译原理" class="md-tabs__link md-tabs__link--active">
+          编译原理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DigitalImageProcess/ilpf/" title="数字图像处理" class="md-tabs__link">
+          数字图像处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../SoftwareTesting/white-box/" title="软件测试" class="md-tabs__link">
+          软件测试
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Competition/" title="竞赛" class="md-tabs__link">
+          竞赛
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/" title="CSU CS wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    CSU CS wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      CSU-CS-WIKI/CSU_CS_Experiment
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      简介
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        简介
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="关于我们" class="md-nav__link">
+      关于我们
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/docs-guide/" title="贡献Wiki词条标准" class="md-nav__link">
+      贡献Wiki词条标准
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/codes-guide/" title="贡献代码标准" class="md-nav__link">
+      贡献代码标准
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/commit-guide/" title="Commit 标准" class="md-nav__link">
+      Commit 标准
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      操作系统
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        操作系统
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../OperatingSystems/process-mgmt/" title="进程管理" class="md-nav__link">
+      进程管理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      分布式系统与云计算
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        分布式系统与云计算
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/sync-clock/" title="时间同步算法" class="md-nav__link">
+      时间同步算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/logic-clock/" title="Lamport逻辑时钟" class="md-nav__link">
+      Lamport逻辑时钟
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/sumup/" title="期末汇总（临时）" class="md-nav__link">
+      期末汇总（临时）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      离散数学
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        离散数学
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/intro/" title="离散数学概论" class="md-nav__link">
+      离散数学概论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-intro/" title="逻辑与证明——概论" class="md-nav__link">
+      逻辑与证明——概论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-prop/" title="逻辑与证明——命题与逻辑等价" class="md-nav__link">
+      逻辑与证明——命题与逻辑等价
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-pred/" title="逻辑与证明——谓词与量词" class="md-nav__link">
+      逻辑与证明——谓词与量词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-proof/" title="逻辑与证明——推理证明方法" class="md-nav__link">
+      逻辑与证明——推理证明方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/sets/" title="集合" class="md-nav__link">
+      集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/relations/" title="关系" class="md-nav__link">
+      关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/functions/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/graphs/" title="图论" class="md-nav__link">
+      图论
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      编译原理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        编译原理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-grammar/" title="语言与语法描述" class="md-nav__link">
+      语言与语法描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lexer-dfa/" title="词法分析——有限自动机" class="md-nav__link">
+      词法分析——有限自动机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lexer-trans-algorithm/" title="词法分析——转换算法" class="md-nav__link">
+      词法分析——转换算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../parser-opg/" title="语法分析——算符优先" class="md-nav__link">
+      语法分析——算符优先
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        语法分析——LR分析法
+      </label>
+    
+    <a href="./" title="语法分析——LR分析法" class="md-nav__link md-nav__link--active">
+      语法分析——LR分析法
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="优缺点" class="md-nav__link">
+    优缺点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="分析表" class="md-nav__link">
+    分析表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr_1" title="LR 分析器" class="md-nav__link">
+    LR 分析器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr_2" title="LR 文法" class="md-nav__link">
+    LR 文法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="定义" class="md-nav__link">
+    定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="性质" class="md-nav__link">
+    性质
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr0" title="LR(0)分析器" class="md-nav__link">
+    LR(0)分析器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="概念解释" class="md-nav__link">
+    概念解释
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="关于活前缀" class="md-nav__link">
+    关于活前缀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa" title="构造识别活前缀 DFA （方法一）" class="md-nav__link">
+    构造识别活前缀 DFA （方法一）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="构造文法的所有项目" class="md-nav__link">
+    构造文法的所有项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfa" title="构造 NFA" class="md-nav__link">
+    构造 NFA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa_1" title="转换成 DFA" class="md-nav__link">
+    转换成 DFA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa_2" title="构造识别活前缀 DFA （方法二）" class="md-nav__link">
+    构造识别活前缀 DFA （方法二）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="构造闭包" class="md-nav__link">
+    构造闭包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="有效项目" class="md-nav__link">
+    有效项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="构造算法" class="md-nav__link">
+    构造算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr0_1" title="LR(0) 分析表的构造" class="md-nav__link">
+    LR(0) 分析表的构造
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      数字图像处理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        数字图像处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DigitalImageProcess/ilpf/" title="理想滤波器与振铃特性" class="md-nav__link">
+      理想滤波器与振铃特性
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      软件测试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        软件测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../SoftwareTesting/white-box/" title="白盒测试开发" class="md-nav__link">
+      白盒测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../SoftwareTesting/black-box/" title="黑盒测试开发" class="md-nav__link">
+      黑盒测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../SoftwareTesting/tdd/" title="TDD测试驱动开发" class="md-nav__link">
+      TDD测试驱动开发
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      竞赛
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        竞赛
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Competition/" title="关于竞赛" class="md-nav__link">
+      关于竞赛
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="优缺点" class="md-nav__link">
+    优缺点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="分析表" class="md-nav__link">
+    分析表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr_1" title="LR 分析器" class="md-nav__link">
+    LR 分析器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr_2" title="LR 文法" class="md-nav__link">
+    LR 文法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="定义" class="md-nav__link">
+    定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="性质" class="md-nav__link">
+    性质
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lr0" title="LR(0)分析器" class="md-nav__link">
+    LR(0)分析器
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="概念解释" class="md-nav__link">
+    概念解释
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="关于活前缀" class="md-nav__link">
+    关于活前缀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa" title="构造识别活前缀 DFA （方法一）" class="md-nav__link">
+    构造识别活前缀 DFA （方法一）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="构造文法的所有项目" class="md-nav__link">
+    构造文法的所有项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfa" title="构造 NFA" class="md-nav__link">
+    构造 NFA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa_1" title="转换成 DFA" class="md-nav__link">
+    转换成 DFA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dfa_2" title="构造识别活前缀 DFA （方法二）" class="md-nav__link">
+    构造识别活前缀 DFA （方法二）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="构造闭包" class="md-nav__link">
+    构造闭包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="有效项目" class="md-nav__link">
+    有效项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="构造算法" class="md-nav__link">
+    构造算法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr0_1" title="LR(0) 分析表的构造" class="md-nav__link">
+    LR(0) 分析表的构造
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/edit-landing/?ref=/CompilerPrinciples/parser-lr.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="lr">语法分析——LR 分析法<a class="headerlink" href="#lr" title="Permanent link">&para;</a></h1>
+<h2 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本节介绍一个有效的自下而上分析技术，它可用于很大一类上下文无关文法的语法分析，这种技术被称做 LR 分析法（LR Parsing）。这里 L 表示从左到右扫描输入串，R 表示构造一个最右推导的逆过程。</p>
+<blockquote>
+<p><strong>L</strong>eft to right within each line producing a <strong>R</strong>ightmost derivation in reverse.</p>
+</blockquote>
+<h3 id="_2">优缺点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>其主要的优缺点为:</p>
+<ol>
+<li>
+<p><strong>能力较强</strong>：大多数用上下文无关文法（CFG）描述的程序语言都可用 LR 分析器予以识别。</p>
+<p>比算符优先分析法或其他“移进——归约”技术更加广泛，识别效率不比他们差。能用 LR 分析器分析的文法类，包含能用 LL(1)分析器分析的全部文法类，LR 分析法在自左至右扫描输入串时就能发现其中的任何错误，并能准确地指出出错地点。</p>
+</li>
+<li>
+<p><strong>工作量大</strong>：若用手工构造分析程序则工作量相当大。</p>
+<p>因此，必须求助于自动产生这种分析程序的产生器。现在人们已设计初这样的专用工具，如 YACC（还有相关的 GNU Bison）。</p>
+</li>
+</ol>
+<h3 id="_3">分析表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>自下而上的分析法的关键是：<strong>分析表</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">回忆：算符优先分析</p>
+<p>算符优先分析过程中，在归约条件限制下，实际上<strong>算符优先表</strong>充当了分析表。</p>
+</div>
+<p>LR 分析器的核心就是构造并使用这样一张对应的分析表，这张分析表包括两部分，一是“动作”（ACTION）表，另一是“状态转换”（GOTO）表。它们都是二维数组。</p>
+<ul>
+<li><span><span class="MathJax_Preview">\mathrm{ACTION}[s,a]</span><script type="math/tex">\mathrm{ACTION}[s,a]</script></span>规定了当状态为<span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span>，面临输入符号<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>时应采取什么动作。</li>
+<li><span><span class="MathJax_Preview">\mathrm{GOTO}[s,X]</span><script type="math/tex">\mathrm{GOTO}[s,X]</script></span>规定了当状态为<span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span>（终结符或非终结符），面临文法符号<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>时应采取什么动作。</li>
+</ul>
+<p>笔者从后面的学习中理解到，其实<span><span class="MathJax_Preview">\mathrm{ACTION}</span><script type="math/tex">\mathrm{ACTION}</script></span>与<span><span class="MathJax_Preview">\mathrm{GOTO}</span><script type="math/tex">\mathrm{GOTO}</script></span>根本上是一致的，请参见下面 LR 分析器部分。</p>
+<p>构造分析表的流程为：</p>
+<p><img alt="lr-1" src="../images/lr-1.png" /></p>
+<h2 id="lr_1">LR 分析器<a class="headerlink" href="#lr_1" title="Permanent link">&para;</a></h2>
+<p>从逻辑上说，一个 LR 分析器包括两部分：</p>
+<ul>
+<li>一个总控（驱动）程序</li>
+<li>一张分析表</li>
+</ul>
+<p>其中<strong>分析表</strong>是关键，所有 LR 分析器的总控程序都是相近的，只是分析表各不相同。</p>
+<p>LR 分析器模型如下:</p>
+<p><img alt="lr-2" src="../images/lr-2.png" /></p>
+<p>LR 方法的基本思想：</p>
+<ul>
+<li>在分析中，记住已移进和归约出的符号串，根据所用的产生式推测未来可能碰到的输入符号；</li>
+<li>根据“历史”、“未来”以及“现在”的输入符号这三方面的信息，来确定已经被扫描的符号串中是否有句柄在其中。</li>
+</ul>
+<p>一个 LR 分析器实质上是一个带先进后出存储器（栈）的 DFA。</p>
+<details class="note"><summary>从分析表的角度理解 LR 分析器是带栈的 DFA</summary><p>之前我们已经见到过DFA的状态转换表，实际上，在LR分析表中，我们引入了<span><span class="MathJax_Preview">ACTION</span><script type="math/tex">ACTION</script></span>和<span><span class="MathJax_Preview">GOTO</span><script type="math/tex">GOTO</script></span>，状态机的行为似乎比DFA更复杂了。</p>
+<p>实际上，复杂是复杂了，但并不在<span><span class="MathJax_Preview">ACTION</span><script type="math/tex">ACTION</script></span>和<span><span class="MathJax_Preview">GOTO</span><script type="math/tex">GOTO</script></span>，参考下面两幅图。</p>
+<p><img alt="lr-3.png" src="../images/lr-3.png" /></p>
+<p>所谓“带栈”，核心区别是多了<span><span class="MathJax_Preview">r_n</span><script type="math/tex">r_n</script></span>的状态机行为，即需按照文法，将“吃进去”（入栈）的字符串“吐出来”变为非终结符。对比DFA，就是无栈只管眼前的输入。所以说LR分析器是带栈的DFA。</p>
+</details>
+<p>具体识别例子请参考 PPT 或者教材。</p>
+<h2 id="lr_2">LR 文法<a class="headerlink" href="#lr_2" title="Permanent link">&para;</a></h2>
+<h3 id="_4">定义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>就像算符优先文法一样，给出分析表，我们便能接着进行文法分析，我们<strong>关心</strong>分析表是如何构造出来的。</p>
+<div class="admonition note">
+<p class="admonition-title">LR 文法</p>
+<p>对于一个文法，如果能够构造一张分析表，使得它的每个入口均是唯一确定的，则我们就把这个文法称为 LR 文法。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">LR(k) 文法</p>
+<p>对于一个文法，如果能用一个每步顶多向前检查 k 步输入符号的 LR 分析器进行分析，则这个文法就是 LR(k)文法。</p>
+</div>
+<p>但对多数的程序语言来说，<span><span class="MathJax_Preview">k=0</span><script type="math/tex">k=0</script></span>或<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>就足够了。因此，我们只考虑<span><span class="MathJax_Preview">k \le 1</span><script type="math/tex">k \le 1</script></span>的情形。</p>
+<h3 id="_5">性质<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>LR 文法是文法无二义性的<strong>充分条件</strong>。</li>
+<li>LR 文法属于上下文无关文法（CFG），但并非所有上下文无关文法都是 LR 文法。</li>
+<li>大多数程序语言都可用 LR 文法描述。</li>
+</ol>
+<h2 id="lr0">LR(0)分析器<a class="headerlink" href="#lr0" title="Permanent link">&para;</a></h2>
+<h3 id="_6">概念解释<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>前缀</strong>:</p>
+<p>字符串的前缀是该字符串的任意首部。</p>
+</li>
+<li>
+<p><strong>活前缀</strong>：</p>
+<p>活前缀是指规范句型的一个前缀，这种前缀不含句柄之后的任何符号。</p>
+<ol>
+<li>
+<p><strong>可归活前缀</strong>：</p>
+<p>活前缀的尾部正好是句柄，这时，可以进行归约。</p>
+<p>归约之后又成为另一句型的活前缀；</p>
+</li>
+<li>
+<p><strong>非可归活前缀</strong>：</p>
+<p>句柄尚未形成，需要继续移进若干符号之后才能形成句柄。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>项目</strong>：</p>
+<p>对于一个文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，构造一个能识别<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>的所有活前缀，这个 NFA 的每个状态时下面定义的一个“项目”。文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>每一个产生式的右部添加一个圆点称为<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>的一个<strong>LR(0)项目（简称项目）</strong>。</p>
+<details class="note"><summary>产生式<span><span class="MathJax_Preview">A \rightarrow XYZ</span><script type="math/tex">A \rightarrow XYZ</script></span>对应的四个项目</summary><div>
+<div class="MathJax_Preview">A\rightarrow \cdot XYZ</div>
+<script type="math/tex; mode=display">A\rightarrow \cdot XYZ</script>
+</div>
+<div>
+<div class="MathJax_Preview">A\rightarrow X \cdot YZ</div>
+<script type="math/tex; mode=display">A\rightarrow X \cdot YZ</script>
+</div>
+<div>
+<div class="MathJax_Preview">A\rightarrow XY \cdot Z</div>
+<script type="math/tex; mode=display">A\rightarrow XY \cdot Z</script>
+</div>
+<div>
+<div class="MathJax_Preview">A\rightarrow XYZ \cdot </div>
+<script type="math/tex; mode=display">A\rightarrow XYZ \cdot </script>
+</div>
+</details>
+<p>加"<span><span class="MathJax_Preview">\cdot</span><script type="math/tex">\cdot</script></span>"的<strong>目的</strong>是用来表示分析过程中的状态（机器“目视”位置）</p>
+<ul>
+<li>"<span><span class="MathJax_Preview">\cdot</span><script type="math/tex">\cdot</script></span>"的左边是历史</li>
+<li>"<span><span class="MathJax_Preview">\cdot</span><script type="math/tex">\cdot</script></span>"的右边是展望</li>
+</ul>
+</li>
+</ol>
+<p>LR（0）项目集族是只概括历史而不含展望的许多项目集，每一个项目集是一个状态；这些状态能够识别活前缀和句柄。</p>
+<p>自底向上分析法的关键是：</p>
+<ul>
+<li>在分析过程中确定<strong>句柄</strong>；</li>
+<li>LR 方法中的句柄是通过求<strong>可归前缀</strong>而求得。</li>
+</ul>
+<h3 id="_7">关于活前缀<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>通俗版解释：可以合成<strong>符合语言语法</strong>的字符串的前缀（viable prefix）。</p>
+<p>一个简单的推理：<strong>如果某字符串是活前缀</strong>，<strong>则它的所有前缀也都是活前缀</strong>。</p>
+<p>形式描述：</p>
+<p>文法<span><span class="MathJax_Preview">G=(V_n,V_t,P,S)</span><script type="math/tex">G=(V_n,V_t,P,S)</script></span>，若有<span><span class="MathJax_Preview">S' \overset{*}{ \Rightarrow } \alpha A \omega \Rightarrow \alpha \beta \omega</span><script type="math/tex">S' \overset{*}{ \Rightarrow } \alpha A \omega \Rightarrow \alpha \beta \omega</script></span>，<span><span class="MathJax_Preview">A \rightarrow \beta</span><script type="math/tex">A \rightarrow \beta</script></span>，则<span><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span>是句柄。</p>
+<ul>
+<li><span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>是<span><span class="MathJax_Preview">\alpha \beta</span><script type="math/tex">\alpha \beta</script></span>的前缀，则称<span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>是文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>的<strong>活前缀</strong>。</li>
+<li><span><span class="MathJax_Preview">\alpha \beta</span><script type="math/tex">\alpha \beta</script></span>含句柄的活前缀，并且句柄是<span><span class="MathJax_Preview">\alpha \beta</span><script type="math/tex">\alpha \beta</script></span>的后端，则称<span><span class="MathJax_Preview">\alpha \beta</span><script type="math/tex">\alpha \beta</script></span>是<strong>可归前缀</strong>（也作<strong>归态活前缀</strong>）。</li>
+</ul>
+<p>在 LR 分析过程中，实际上是把<span><span class="MathJax_Preview">αβ</span><script type="math/tex">αβ</script></span>的前缀（即文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>的活前缀）列出放在符号栈中；</p>
+<p>一旦在栈中出现<span><span class="MathJax_Preview">αβ</span><script type="math/tex">αβ</script></span>（形成可归前缀），即句柄已经形成，则用产生式<span><span class="MathJax_Preview">A \rightarrow β</span><script type="math/tex">A \rightarrow β</script></span>进行归约。</p>
+<p>识别活前缀只是表面现象！真实的目的是，找到<strong>句柄</strong>！</p>
+<h3 id="dfa">构造识别活前缀 DFA （方法一）<a class="headerlink" href="#dfa" title="Permanent link">&para;</a></h3>
+<h4 id="_8">构造文法的所有项目<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>对于每个产生式，去标“点”吧！</p>
+<p>下图给出文法</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+    S' &amp; \rightarrow E \\
+    E &amp; \rightarrow aA|bB \\
+    A &amp; \rightarrow cA | d \\
+    B &amp; \rightarrow cB | d \\
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    S' & \rightarrow E \\
+    E & \rightarrow aA|bB \\
+    A & \rightarrow cA | d \\
+    B & \rightarrow cB | d \\
+\end{aligned}
+</script>
+</div>
+<details class="note"><summary>对应的项目构造</summary><p><img alt="lr-4" src="../images/lr-4.png" /></p>
+</details>
+<ul>
+<li>加入<span><span class="MathJax_Preview">S' \rightarrow E</span><script type="math/tex">S' \rightarrow E</script></span>是为了使得结束状态唯一。</li>
+<li><span><span class="MathJax_Preview">S'</span><script type="math/tex">S'</script></span>不会出现在任何产生式的右边，因此含有<span><span class="MathJax_Preview">S'</span><script type="math/tex">S'</script></span>的可归项目（状态）就是唯一的。</li>
+</ul>
+<h4 id="nfa">构造 NFA<a class="headerlink" href="#nfa" title="Permanent link">&para;</a></h4>
+<p>用项目作为状态来构造 NFA，用来识别这个<strong>文法的所有活前缀</strong>，规定项目 1 为 NFA 的唯一初态。</p>
+<p>任何状态（项目）均认为是 NFA 的终态（活前缀识别态）。</p>
+<p>如果状态 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 和 <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 出自同一产生式，而且状态 <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 的圆点只落后于状态 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 的圆点一个位置，即：</p>
+<ul>
+<li><span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 状态：<span><span class="MathJax_Preview">X \rightarrow X_1X_{i-1} \cdot X_iX_n</span><script type="math/tex">X \rightarrow X_1X_{i-1} \cdot X_iX_n</script></span></li>
+<li><span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 状态：<span><span class="MathJax_Preview">X \rightarrow X_1X_i \cdot  X_{i+1}X_n</span><script type="math/tex">X \rightarrow X_1X_i \cdot  X_{i+1}X_n</script></span></li>
+</ul>
+<p>那么，就从状态 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 画一条标志为 <span><span class="MathJax_Preview">X_i</span><script type="math/tex">X_i</script></span> 的弧到状态 <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>。</p>
+<p>假如状态<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>的圆点之后为非终结符，如<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 为 <span><span class="MathJax_Preview">X \rightarrow \alpha \cdot A \beta</span><script type="math/tex">X \rightarrow \alpha \cdot A \beta</script></span>，<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>为非终结符，则从状态<span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>画<span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span>弧到所有<span><span class="MathJax_Preview">A \rightarrow \cdot \gamma</span><script type="math/tex">A \rightarrow \cdot \gamma</script></span>。</p>
+<h4 id="dfa_1">转换成 DFA<a class="headerlink" href="#dfa_1" title="Permanent link">&para;</a></h4>
+<p>使用词法分析部分介绍过的<strong>子集构造法</strong>，将识别活前缀的 NFA 确定化得到 DFA。</p>
+<p>最终得到的这个 DFA 是建立 LR 分析的基础。</p>
+<h3 id="dfa_2">构造识别活前缀 DFA （方法二）<a class="headerlink" href="#dfa_2" title="Permanent link">&para;</a></h3>
+<p>通过 CLOSURE 的方法构造识别活前缀的 DFA（计算机善用）。</p>
+<h4 id="_9">构造闭包<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>闭包，不再增大。</p>
+<p>假定<span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>是文法<span><span class="MathJax_Preview">G'</span><script type="math/tex">G'</script></span>的任一项目集，定义和构造<span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>的闭包<span><span class="MathJax_Preview">\mathrm{CLOSURE(I)}</span><script type="math/tex">\mathrm{CLOSURE(I)}</script></span>的方法：</p>
+<ol>
+<li><span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>的任何项都属于<span><span class="MathJax_Preview">\mathrm{CLOSURE(I)}</span><script type="math/tex">\mathrm{CLOSURE(I)}</script></span></li>
+<li>若<span><span class="MathJax_Preview">A \rightarrow \alpha \cdot B \beta</span><script type="math/tex">A \rightarrow \alpha \cdot B \beta</script></span>属于<span><span class="MathJax_Preview">\mathrm{CLOSURE(I)}</span><script type="math/tex">\mathrm{CLOSURE(I)}</script></span>，那么，对任何关于<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>的产生式<span><span class="MathJax_Preview">B \rightarrow \gamma</span><script type="math/tex">B \rightarrow \gamma</script></span>，项目<span><span class="MathJax_Preview">B \rightarrow \cdot \gamma</span><script type="math/tex">B \rightarrow \cdot \gamma</script></span>也属于<span><span class="MathJax_Preview">\mathrm{CLOSURE(I)}</span><script type="math/tex">\mathrm{CLOSURE(I)}</script></span>。</li>
+<li>重复执行上述两部分直至<span><span class="MathJax_Preview">\mathrm{CLOSURE(I)}</span><script type="math/tex">\mathrm{CLOSURE(I)}</script></span>不再增大为止。</li>
+</ol>
+<h4 id="_10">有效项目<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>通俗解释：任意一条 DFA 开始状态到某状态所经路径上的字符串是活前缀，而此状态中的项目对此活前缀都是有效的，因此，是这个活前缀的有效项目。</p>
+<h4 id="_11">构造算法<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<!-- TODO -->
+
+<p>待后续补充</p>
+<h3 id="lr0_1">LR(0) 分析表的构造<a class="headerlink" href="#lr0_1" title="Permanent link">&para;</a></h3>
+<p>对于 LR(0)文法，可直接从它的项目集规范族 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 和活前缀识别自动机的状态转换函数 <span><span class="MathJax_Preview">\mathrm{GO}</span><script type="math/tex">\mathrm{GO}</script></span> 构造出 LR 分析表。</p>
+<ol>
+<li>若项目<span><span class="MathJax_Preview">A→α \cdot aβ</span><script type="math/tex">A→α \cdot aβ</script></span>属于<span><span class="MathJax_Preview">I_k</span><script type="math/tex">I_k</script></span>，且<span><span class="MathJax_Preview">GO\{I_k,a\}=I_j</span><script type="math/tex">GO\{I_k,a\}=I_j</script></span>，<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>为终结符，则置<span><span class="MathJax_Preview">\mathrm{ACTION} [k，a]</span><script type="math/tex">\mathrm{ACTION} [k，a]</script></span>为“把<span><span class="MathJax_Preview">(j,a)</span><script type="math/tex">(j,a)</script></span>移进栈”，简记为“<span><span class="MathJax_Preview">s_j</span><script type="math/tex">s_j</script></span>”。</li>
+<li>若项目<span><span class="MathJax_Preview">A \rightarrow α \cdot</span><script type="math/tex">A \rightarrow α \cdot</script></span>属于<span><span class="MathJax_Preview">I_k</span><script type="math/tex">I_k</script></span>，那么，对任何终结符<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>（或结束符<span><span class="MathJax_Preview">\#</span><script type="math/tex">\#</script></span>），置<span><span class="MathJax_Preview">\mathrm{ACTION} [k，a]</span><script type="math/tex">\mathrm{ACTION} [k，a]</script></span>为“用产生式<span><span class="MathJax_Preview">A \rightarrow α</span><script type="math/tex">A \rightarrow α</script></span>进行归约”，简记为“<span><span class="MathJax_Preview">r_j</span><script type="math/tex">r_j</script></span>”(假定产生式<span><span class="MathJax_Preview">A \rightarrow α</span><script type="math/tex">A \rightarrow α</script></span>是文法 <span><span class="MathJax_Preview">G'</span><script type="math/tex">G'</script></span>的第 <span><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> 个产生式)</li>
+<li>若项目<span><span class="MathJax_Preview">S' \rightarrow S \cdot</span><script type="math/tex">S' \rightarrow S \cdot</script></span>属于<span><span class="MathJax_Preview">I_k</span><script type="math/tex">I_k</script></span>，则置<span><span class="MathJax_Preview">\mathrm{ACTION}[k,\#]</span><script type="math/tex">\mathrm{ACTION}[k,\#]</script></span>为“接受”，"<span><span class="MathJax_Preview">acc</span><script type="math/tex">acc</script></span>"。</li>
+<li>若<span><span class="MathJax_Preview">GO(I_k,A) = I_j</span><script type="math/tex">GO(I_k,A) = I_j</script></span>，<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>为非终结符，则置<span><span class="MathJax_Preview">\mathrm{GOTO}(k,A) = j</span><script type="math/tex">\mathrm{GOTO}(k,A) = j</script></span></li>
+<li>分析表中凡不能用规则 1 至 4 填入纤细的空白格均置上“报错标志”</li>
+</ol>
+                
+                  
+                
+              
+              
+                <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:58:10
+ * @LastEditors: 妄想
+--> 
+
+
+ 
+ 
+  <hr><blockquote class="page-copyright">
+    <span><i class="md-icon">build</i>本页面最近更新：</span><span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+    <span><i class="md-icon">edit</i>发现错误？想一起完善？ <a href="https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/edit-landing/?ref=/CompilerPrinciples/parser-lr.md" title="编辑此页" class="page_edit_url">在 GitHub 上编辑此页！</a></span><br>
+    <span><i class="md-icon">people</i>本页面贡献者：</span><span class="page_contributors">CSU CS Wiki</span><br>
+    <span><i class="md-icon">copyright</i>本页面的全部内容在 <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+  </blockquote>
+
+
+  <!--outline-->
+  <h2 id="__comments" data-no-instant>评论</h2>
+  <form id="gitalk-form" onsubmit="return false;" data-no-instant>
+    <div id="gitalk-container" data-no-instant></div>
+  </form>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+  <script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '06889186a27dcdd511d2',
+      clientSecret: '99da13004fe06bd7793d9ca01537db730cb5a0e6',
+      repo: 'comment',  // 使用单独的仓评论
+      owner: 'leo6033',  // 仓库所有者
+      admin: ['妄想'],  // 仓库管理员列表
+      //id: '语法分析——LR分析法',  // 页面唯一标识
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // 全屏遮罩效果
+      pagerDirection: 'last'  // 排序方式：first按评论创建时间正序，last倒序
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:37:13
+ * @LastEditors: 妄想
+--> 
+
+<script>function scrollFunction(){20<document.body.scrollTop||20<document.documentElement.scrollTop?document.getElementById("myBtn").style.display="block":document.getElementById("myBtn").style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}window.onscroll=function(){scrollFunction()}</script>
+<button onclick="topFunction()" id="myBtn" class="data-tip-left" data-tip="回到顶部">
+  <svg class="Zi Zi--BackToTop data-tip-left" data-tip="回到顶部" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path>
+  </svg>
+</button>
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../parser-opg/" title="语法分析——算符优先" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                语法分析——算符优先
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../DigitalImageProcess/ilpf/" title="理想滤波器与振铃特性" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                理想滤波器与振铃特性
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <!-- <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div> -->
+      
+        
+      
+    </div>
+    <div class="sponsor" style="text-align: center;color: white;vertical-align: middle;">
+      <span />
+     <a href="/intro/csu/">
+       <img src="https://upload.wikimedia.org/wikipedia/zh/4/4d/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%BE%BD.png" style="
+         vertical-align: -12px;
+         width: 60px;
+         margin-left:5px;
+       ">
+     </a>
+   </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.5e60981f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../_static/js/extra.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
