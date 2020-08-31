@@ -1,13 +1,13 @@
 site_name: CSU CS wiki
 site_description: CSU CS wiki
 site_author: 妄想
-site_url: https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/
+site_url: https://CSU-CS-WIKI.github.io/
 strict: true
 
 # Repository
 repo_name: "CSU-CS-WIKI/CSU_CS_Experiment"
 repo_url: "https://github.com/CSU-CS-WIKI/CSU_CS_Experiment"
-edit_uri: "https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/edit-landing/?ref="
+edit_uri: "https://CSU-CS-WIKI.github.io/edit-landing/?ref="
 
 # Contents
 nav:
