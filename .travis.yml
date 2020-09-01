@@ -24,6 +24,6 @@ deploy:
 after_deploy:
   # - git config user.name "leo6033"
   # - git config user.email "csulmw@163.com"
-  - git remote add gh-token "https://${GH_TOKEN}@github.com/CSU-CS-WIKI/CSU_CS_Experiment.git";
+  - git remote add gh-token "https://${GH_TOKEN}@github.com/CSU-CS-WIKI/csu-cs-wiki.git";
   - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
   - mkdocs gh-deploy -v --clean --remote-name gh-token;

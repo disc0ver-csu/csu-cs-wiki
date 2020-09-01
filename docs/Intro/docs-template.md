@@ -26,7 +26,7 @@
 
 ![这是图片链接](./images/qs1.png)
 
-[这是网页链接](https://leo6033.github.io/CSU_CS_Experiment/)
+[这是网页链接](https://CSU-CS-WIKI.github.io/csu-cs-wiki/)
 
 这是代码段（请在点点点后写明语言）
 

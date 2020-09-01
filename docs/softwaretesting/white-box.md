@@ -117,7 +117,7 @@ XUnit，各语言的单元测试框架，多数都贴近白盒测试，比如：
 
 <!-- TODO 指向代码仓库 -->
 
-[详细参见代码仓库](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/SoftwareTesting)。
+[详细参见代码仓库](https://github.com/CSU-CS-WIKI/software-testing)。
 
 这里只给出核心判断逻辑，以及对应部分覆盖原则的测例构造表格，如 MC/DC 的设计，可以查阅博客进一步学习。
 

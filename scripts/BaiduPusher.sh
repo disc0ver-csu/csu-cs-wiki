@@ -8,7 +8,7 @@
 #!/usr/bin/env bash
 source /etc/profile
 ORG=CSU
-REPO=CSU_CS_Experiment
+REPO=csu-cs-wiki
 # Baidu Pusher 
 
 # Sitemap Parser

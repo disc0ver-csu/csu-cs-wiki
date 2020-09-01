@@ -238,6 +238,6 @@ $$a_i > a_{i+1}$$
     }
     ```
 
-完整代码学习请访问[代码仓库](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/CompilerPrinciples)
+完整代码学习请访问[代码仓库](https://github.com/CSU-CS-WIKI/csu-cs-wiki/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/CompilerPrinciples)
 
 这篇文章是笔者学完编译原理一年以后写的，其中有很多有错误或表达不规范的地方，欢迎同学们讨论、指证。

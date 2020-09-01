@@ -83,7 +83,7 @@
 
 <!-- TODO 指向代码仓库 -->
 
-[详细参见代码仓库](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/SoftwareTesting)。
+[详细参见代码仓库](https://github.com/CSU-CS-WIKI/software-testing)。
 
 这里给出一个不完整的测例构造表格，以及部分 TDD 驱动开发过程中的代码。
 

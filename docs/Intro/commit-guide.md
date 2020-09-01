@@ -4,7 +4,7 @@
 
 ## 使用模板
 
-请使用`master`分支根目录下的`.gitmessage`，你可以预览一下[我写的参考模板](https://github.com/leo6033/CSU_CS_Experiment/blob/master/.gitmessage)。
+请使用`master`分支根目录下的`.gitmessage`，你可以预览一下[我写的参考模板](https://github.com/CSU-CS-WIKI/csu-cs-wiki/blob/master/.gitmessage)。
 
 使用方式
 

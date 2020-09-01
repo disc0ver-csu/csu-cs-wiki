@@ -3,7 +3,7 @@
 
 # Fill this out with the correct org/repo
 ORG=CSU
-REPO=CSU_CS_Experiment
+REPO=csu-cs-wiki
 # This probably should match an email for one of your users.
 EMAIL=csulmw@163.com
 

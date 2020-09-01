@@ -18,9 +18,9 @@
 Linux 在 clone 项目后运行 shell 脚本即可配置对应自定义主题。
 
 ```bash
-git clone git@github.com:leo6033/CSU_CS_Experiment.git --depth=1
+git clone git@github.com:CSU-CS-WIKI/csu-cs-wiki.git --depth=1
 
-cd CSU_CS_Experiment
+cd csu-cs-wiki
 
 # 安装 mkdocs，需要 Python3 环境
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -44,9 +44,9 @@ mkdocs --help
 Windows 在 CMD 或 Powershell 执行如下指令（注意检查 mkdocs 的环境变量是否正确配置）。
 
 ```bash
-git clone git@github.com:leo6033/CSU_CS_Experiment.git --depth=1
+git clone git@github.com:CSU-CS-WIKI/csu-cs-wiki.git --depth=1
 
-cd CSU_CS_Experiment
+cd csu-cs-wiki
 
 # 安装 mkdocs，需要 Python3 环境
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
