@@ -1,13 +1,13 @@
 site_name: CSU CS wiki
 site_description: CSU CS wiki
 site_author: 妄想
-site_url: https://CSU-CS-WIKI.github.io/CSU_CS_Experiment
+site_url: https://CSU-CS-WIKI.github.io/csu-cs-wiki
 strict: true
 
 # Repository
-repo_name: "CSU-CS-WIKI/CSU_CS_Experiment"
-repo_url: "https://github.com/CSU-CS-WIKI/CSU_CS_Experiment"
-edit_uri: "https://CSU-CS-WIKI.github.io/CSU_CS_Experiment/edit-landing/?ref="
+repo_name: "CSU-CS-WIKI/csu-cs-wiki"
+repo_url: "https://github.com/CSU-CS-WIKI/csu-cs-wiki"
+edit_uri: "https://CSU-CS-WIKI.github.io/csu-cs-wiki/edit-landing/?ref="
 
 # Contents
 nav:
@@ -85,7 +85,7 @@ extra:
 #     accent: 'Pink'
 
 extra_javascript:
-  - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
+  - "https://cdn.js.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
   - "_static/js/extra.js"
 
 extra_css:

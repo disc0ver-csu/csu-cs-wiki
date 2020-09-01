@@ -6,15 +6,15 @@
  * @LastEditors: 妄想
 -->
 
-# CSU_CS_experiment
+# CSU CS WIKI
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
-[![license](https://img.shields.io/github/license/CSU-CS-WIKI/CSU_CS_Experiment)](LICENSE)
-[![Build Status](https://travis-ci.org/CSU-CS-WIKI/CSU_CS_Experiment.svg?branch=master)](https://travis-ci.org/CSU-CS-WIKI/CSU_CS_Experiment)
-[![GitHub watchers](https://img.shields.io/github/watchers/CSU-CS-WIKI/CSU_CS_Experiment)](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
-[![GitHub stars](https://img.shields.io/github/stars/CSU-CS-WIKI/CSU_CS_Experiment)](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/CSU-CS-WIKI/csu-cs-wiki)
+[![license](https://img.shields.io/github/license/CSU-CS-WIKI/csu-cs-wiki)](LICENSE)
+[![Build Status](https://travis-ci.org/CSU-CS-WIKI/csu-cs-wiki.svg?branch=master)](https://travis-ci.org/CSU-CS-WIKI/csu-cs-wiki)
+[![GitHub watchers](https://img.shields.io/github/watchers/CSU-CS-WIKI/csu-cs-wiki)](https://github.com/CSU-CS-WIKI/csu-cs-wiki)
+[![GitHub stars](https://img.shields.io/github/stars/CSU-CS-WIKI/csu-cs-wiki)](https://github.com/CSU-CS-WIKI/csu-cs-wiki)
 
-Language: [English](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/blob/master/README-en.md) | [中文简体](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/blob/master/README.md) 
+Language: [English](https://github.com/CSU-CS-WIKI/csu-cs-wiki/blob/master/README-en.md) | [中文简体](https://github.com/CSU-CS-WIKI/csu-cs-wiki/blob/master/README.md) 
 
 ## Abstract
 
@@ -71,9 +71,9 @@ These courses are available at present.
    本地部署方式
 
    ```
-   git clone git@github.com:leo6033/CSU_CS_Experiment.git --depth=1
+   git clone git@github.com:leo6033/csu-cs-wiki.git --depth=1
 
-   cd CSU_CS_Experiment
+   cd csu-cs-wiki
 
    # 安装 mkdocs，需要 Python3 环境
    pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
