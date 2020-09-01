@@ -8,13 +8,13 @@
 
 # CSU_CS_experiment
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/leo6033/CSU_CS_Experiment)
-[![license](https://img.shields.io/github/license/leo6033/CSU_CS_Experiment)](LICENSE)
-[![Build Status](https://travis-ci.com/leo6033/CSU_CS_Experiment.svg?branch=master)](https://travis-ci.com/leo6033/CSU_CS_Experiment)
-[![GitHub watchers](https://img.shields.io/github/watchers/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
-[![GitHub stars](https://img.shields.io/github/stars/leo6033/CSU_CS_Experiment)](https://github.com/leo6033/CSU_CS_Experiment)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
+[![license](https://img.shields.io/github/license/CSU-CS-WIKI/CSU_CS_Experiment)](LICENSE)
+[![Build Status](https://travis-ci.org/CSU-CS-WIKI/CSU_CS_Experiment.svg?branch=master)](https://travis-ci.org/CSU-CS-WIKI/CSU_CS_Experiment)
+[![GitHub watchers](https://img.shields.io/github/watchers/CSU-CS-WIKI/CSU_CS_Experiment)](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
+[![GitHub stars](https://img.shields.io/github/stars/CSU-CS-WIKI/CSU_CS_Experiment)](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment)
 
-Language: [English](https://github.com/leo6033/CSU_CS_Experiment/blob/master/README-en.md) | [中文简体](https://github.com/leo6033/CSU_CS_Experiment/blob/master/README.md) 
+Language: [English](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/blob/master/README-en.md) | [中文简体](https://github.com/CSU-CS-WIKI/CSU_CS_Experiment/blob/master/README.md) 
 
 ## Abstract
 
@@ -34,15 +34,17 @@ These courses are available at present.
 
 <!-- Remeber to change the links after reconstraction -->
 
-1. [Computer Graphics](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6)
-2. [Cryptology](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E5%AF%86%E7%A0%81%E5%AD%A6)
-3. [Commercial Database](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E5%A4%A7%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93)
-4. [Linux](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/Linux)
-5. [Digital Image Process](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86)
-6. [Assembly Language](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E6%B1%87%E7%BC%96%E8%AF%BE%E8%AE%BE)
-7. [Distributed Systems and Cloud Computing(TODO)](https://github.com/leo6033/CSU_CS_Experiment/tree/master/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E8%AE%BE%E4%BB%A3%E7%A0%81/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97)
-8. [Java](https://github.com/leo6033/Java_Project)
+1. [Computer Graphics](https://github.com/CSU-CS-WIKI/computer-graphics)
+2. [Cryptology](https://github.com/CSU-CS-WIKI/cryptography)
+3. [Commercial Database](https://github.com/CSU-CS-WIKI/large-database-oracle)
+4. [Linux](https://github.com/CSU-CS-WIKI/linux-system)
+5. [Digital Image Process](https://github.com/CSU-CS-WIKI/digital-image-process)
+6. [Assembly Language](https://github.com/CSU-CS-WIKI/assembly-language)
+7. [Distributed Systems and Cloud Computing](https://github.com/CSU-CS-WIKI/distributed-systems)
+8. [Java](https://github.com/CSU-CS-WIKI/java-projects)
 9. [Animation and Game Programing](https://github.com/leo6033/UnityLearing/tree/master/TanksWar)
+10. [compiler principles](https://github.com/CSU-CS-WIKI/compiler-principles)
+11. [software testing](https://github.com/CSU-CS-WIKI/software-testing)
 
 ## Contribution
 
