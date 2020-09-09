@@ -1,13 +1,13 @@
 site_name: CSU CS Wiki
 site_description: CSU CS Wiki
 site_author: Disc0ver
-site_url: https://dic0ver-csu.github.io/csu-cs-wiki
+site_url: https://disc0ver-csu.github.io/csu-cs-wiki
 strict: true
 
 # Repository
-repo_name: "dic0ver-csu/csu-cs-wiki"
-repo_url: "https://github.com/dic0ver-csu/csu-cs-wiki"
-edit_uri: "https://dic0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref="
+repo_name: "disc0ver-csu/csu-cs-wiki"
+repo_url: "https://github.com/disc0ver-csu/csu-cs-wiki"
+edit_uri: "https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref="
 
 # Contents
 nav:
