@@ -1,13 +1,13 @@
-site_name: CSU CS wiki
-site_description: CSU CS wiki
-site_author: 妄想
-site_url: https://CSU-CS-WIKI.github.io/csu-cs-wiki
+site_name: CSU CS Wiki
+site_description: CSU CS Wiki
+site_author: Disc0ver
+site_url: https://dic0ver-csu.github.io/csu-cs-wiki
 strict: true
 
 # Repository
-repo_name: "CSU-CS-WIKI/csu-cs-wiki"
-repo_url: "https://github.com/CSU-CS-WIKI/csu-cs-wiki"
-edit_uri: "https://CSU-CS-WIKI.github.io/csu-cs-wiki/edit-landing/?ref="
+repo_name: "dic0ver-csu/csu-cs-wiki"
+repo_url: "https://github.com/dic0ver-csu/csu-cs-wiki"
+edit_uri: "https://dic0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref="
 
 # Contents
 nav:
