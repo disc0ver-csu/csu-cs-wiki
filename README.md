@@ -1,12 +1,12 @@
 # CSU CS WIKI
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/CSU-CS-WIKI/csu-cs-wiki)
-[![license](https://img.shields.io/github/license/CSU-CS-WIKI/csu-cs-wiki)](LICENSE)
-[![Build Status](https://travis-ci.org/CSU-CS-WIKI/csu-cs-wiki.svg?branch=master)](https://travis-ci.org/CSU-CS-WIKI/csu-cs-wiki)
-[![GitHub watchers](https://img.shields.io/github/watchers/CSU-CS-WIKI/csu-cs-wiki)](https://github.com/CSU-CS-WIKI/csu-cs-wiki)
-[![GitHub stars](https://img.shields.io/github/stars/CSU-CS-WIKI/csu-cs-wiki)](https://github.com/CSU-CS-WIKI/csu-cs-wiki)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/disc0ver-csu/csu-cs-wiki)
+[![license](https://img.shields.io/github/license/disc0ver-csu/csu-cs-wiki)](LICENSE)
+[![Build Status](https://travis-ci.org/disc0ver-csu/csu-cs-wiki.svg?branch=master)](https://travis-ci.org/disc0ver-csu/csu-cs-wiki)
+[![GitHub watchers](https://img.shields.io/github/watchers/disc0ver-csu/csu-cs-wiki)](https://github.com/disc0ver-csu/csu-cs-wiki)
+[![GitHub stars](https://img.shields.io/github/stars/disc0ver-csu/csu-cs-wiki)](https://github.com/disc0ver-csu/csu-cs-wiki)
 
-语言： [English](https://github.com/CSU-CS-WIKI/csu-cs-wiki/blob/master/README-en.md) | [中文简体](https://github.com/CSU-CS-WIKI/csu-cs-wiki/blob/master/README.md)
+语言： [English](https://github.com/disc0ver-csu/csu-cs-wiki/blob/master/README-en.md) | [中文简体](https://github.com/disc0ver-csu/csu-cs-wiki/blob/master/README.md)
 
 ## 关于项目
 
@@ -23,17 +23,17 @@
 
 目前已有开源代码的学科有：
 
-1. [计算机图形学](https://github.com/CSU-CS-WIKI/computer-graphics)
-2. [密码学](https://github.com/CSU-CS-WIKI/cryptography)
-3. [大型数据库技术](https://github.com/CSU-CS-WIKI/large-database-oracle)
-4. [Linux](https://github.com/CSU-CS-WIKI/linux-system)
-5. [数字图像处理](https://github.com/CSU-CS-WIKI/digital-image-process)
-6. [汇编](https://github.com/CSU-CS-WIKI/assembly-language)
-7. [分布式与云计算](https://github.com/CSU-CS-WIKI/distributed-systems)
-8. [Java](https://github.com/CSU-CS-WIKI/java-projects)
+1. [计算机图形学](https://github.com/disc0ver-csu/computer-graphics)
+2. [密码学](https://github.com/disc0ver-csu/cryptography)
+3. [大型数据库技术](https://github.com/disc0ver-csu/large-database-oracle)
+4. [Linux](https://github.com/disc0ver-csu/linux-system)
+5. [数字图像处理](https://github.com/disc0ver-csu/digital-image-process)
+6. [汇编](https://github.com/disc0ver-csu/assembly-language)
+7. [分布式与云计算](https://github.com/disc0ver-csu/distributed-systems)
+8. [Java](https://github.com/disc0ver-csu/java-projects)
 9. [动画与游戏程序设计](https://github.com/leo6033/UnityLearing/tree/master/TanksWar)
-10. [编译原理](https://github.com/CSU-CS-WIKI/compiler-principles)
-11. [软件测试](https://github.com/CSU-CS-WIKI/software-testing)
+10. [编译原理](https://github.com/disc0ver-csu/compiler-principles)
+11. [软件测试](https://github.com/disc0ver-csu/software-testing)
 
 ## 参与贡献
 

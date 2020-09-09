@@ -20,7 +20,7 @@
 		}
 		return dft;
 	}
-	document.getElementById("btn-startedit").href = "https://github.com/CSU-CS-WIKI/csu-cs-wiki/edit/master/docs" + getQueryVariable("ref", "");
+	document.getElementById("btn-startedit").href = "https://github.com/disc0ver-csu/csu-cs-wiki/edit/master/docs" + getQueryVariable("ref", "");
 </script>
 
 

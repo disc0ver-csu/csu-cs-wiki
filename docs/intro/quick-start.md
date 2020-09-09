@@ -18,7 +18,7 @@
 Linux 在 clone 项目后运行 shell 脚本即可配置对应自定义主题。
 
 ```bash
-git clone git@github.com:CSU-CS-WIKI/csu-cs-wiki.git --depth=1
+git clone git@github.com:disc0ver-csu/csu-cs-wiki.git --depth=1
 
 cd csu-cs-wiki
 
@@ -44,7 +44,7 @@ mkdocs --help
 Windows 在 CMD 或 Powershell 执行如下指令（注意检查 mkdocs 的环境变量是否正确配置）。
 
 ```bash
-git clone git@github.com:CSU-CS-WIKI/csu-cs-wiki.git --depth=1
+git clone git@github.com:disc0ver-csu/csu-cs-wiki.git --depth=1
 
 cd csu-cs-wiki
 

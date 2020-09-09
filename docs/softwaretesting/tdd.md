@@ -83,7 +83,7 @@
 
 <!-- TODO 指向代码仓库 -->
 
-[详细参见代码仓库](https://github.com/CSU-CS-WIKI/software-testing)。
+[详细参见代码仓库](https://github.com/disc0ver-csu/software-testing)。
 
 这里给出一个不完整的测例构造表格，以及部分 TDD 驱动开发过程中的代码。
 

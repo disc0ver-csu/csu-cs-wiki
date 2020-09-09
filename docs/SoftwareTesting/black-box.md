@@ -88,7 +88,7 @@
 
 <!-- TODO 指向代码仓库 -->
 
-[详细参见代码仓库](https://github.com/CSU-CS-WIKI/software-testing)。
+[详细参见代码仓库](https://github.com/disc0ver-csu/software-testing)。
 
 同样，只给出部分测例设计和核心逻辑代码（这个写的比较简陋，希望有同学能提供更好的版本）。
 
