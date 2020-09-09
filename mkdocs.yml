@@ -48,7 +48,7 @@ nav:
       - TDD测试驱动开发: SoftwareTesting/tdd.md
 
   - 竞赛:
-      - 关于竞赛:  Competition/index.md
+      - 关于竞赛: Competition/index.md
 
 # Theme
 theme:
@@ -85,7 +85,12 @@ extra:
 #     accent: 'Pink'
 
 extra_javascript:
-  - "https://cdn.js.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
+  # cloudflare的mathjax cdn挂了
+  # - "https://cdn.js.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
+  # 新的 mathjax链接
+  - "https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
+  # katex
+  # - "https://cdn.staticfile.org/KaTeX/0.11.1/"
   - "_static/js/extra.js"
 
 extra_css:
