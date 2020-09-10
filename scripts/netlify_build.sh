@@ -9,7 +9,7 @@
 # Push HTML files to gh-pages automatically.
 
 # Fill this out with the correct org/repo
-ORG=CSU
+ORG=disc0ver-csu
 REPO=csu-cs-wiki
 # This probably should match an email for one of your users.
 EMAIL=csulmw@163.com

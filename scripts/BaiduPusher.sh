@@ -7,7 +7,7 @@
 ### 
 #!/usr/bin/env bash
 source /etc/profile
-ORG=CSU
+ORG=disc0ver-csu
 REPO=csu-cs-wiki
 # Baidu Pusher 
 

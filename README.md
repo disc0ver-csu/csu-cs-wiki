@@ -39,7 +39,7 @@
 
 ### Quick Start
 
-[项目本地部署 QuickStart](https://csu-cs-wiki.github.io/csu-cs-wiki/Intro/quick-start/)
+[项目本地部署 QuickStart](https://disc0ver.github.io/csu-cs-wiki/Intro/quick-start/)
 
 你可以直接在 Github 上编辑 Wiki 的源文档，但如果需要较大范围改动，那么我们建议你采取**本地部署**的方式。
 
@@ -49,7 +49,7 @@
 
 ### 贡献代码
 
-[贡献代码参考标准](https://csu-cs-wiki.github.io/csu-cs-wiki/Intro/codes-guide/)
+[贡献代码参考标准](https://disc0ver.github.io/csu-cs-wiki/Intro/codes-guide/)
 
 ## 开源许可
 
