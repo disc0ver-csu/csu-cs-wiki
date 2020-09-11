@@ -39,7 +39,10 @@ nav:
       - 词法分析——转换算法: CompilerPrinciples/lexer-trans-algorithm.md
       - 语法分析——算符优先: CompilerPrinciples/parser-opg.md
       - 语法分析——LR分析法: CompilerPrinciples/parser-lr.md
-
+  - 计算机图形学:
+      - 前言: ComputerGraphics/index.md
+      - 光照:
+        - 冯氏光照模型: ComputerGraphics/phong-lighting-model.md
   - 数字图像处理:
       - 理想滤波器与振铃特性: DigitalImageProcess/ilpf.md
   - 软件测试:
