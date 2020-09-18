@@ -29,9 +29,10 @@ nav:
       - 逻辑与证明——命题与逻辑等价: DiscreteMathematics/logic-proof-prop.md
       - 逻辑与证明——谓词与量词: DiscreteMathematics/logic-proof-pred.md
       - 逻辑与证明——推理证明方法: DiscreteMathematics/logic-proof-proof.md
-      - 集合: DiscreteMathematics/sets.md
-      - 关系: DiscreteMathematics/relations.md
-      - 函数: DiscreteMathematics/functions.md
+      - 集合论——集合: DiscreteMathematics/set-theory-sets.md
+      - 集合论——关系及其性质: DiscreteMathematics/set-theory-relations-properties.md
+      - 集合论——序关系与等价关系: DiscreteMathematics/set-theory-order-equivalence.md
+      - 集合论——函数: DiscreteMathematics/set-theory-functions.md
       - 图论: DiscreteMathematics/graphs.md
   - 编译原理:
       - 语言与语法描述: CompilerPrinciples/language-grammar.md
@@ -62,7 +63,7 @@ theme:
     accent: "red"
   include_search_page: false
   search_index_only: true
-  favicon: "favicon.png"
+  favicon: "Disc0ver-blue.png"
 
   logo:
     icon: "school"
