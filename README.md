@@ -47,6 +47,8 @@
 - 通过写 wiki 或是相关实验课设代码以提升自己的代码能力
 - 你的创作将会被大多人看到，帮助其他人学到更多
 
+项目 QQ 交流群：1102036265
+
 ### Quick Start
 
 [项目本地部署 QuickStart](https://disc0ver-csu.github.io/csu-cs-wiki/Intro/quick-start/)
