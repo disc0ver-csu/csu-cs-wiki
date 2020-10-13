@@ -10,7 +10,7 @@
 
 1. 本 Wiki 将会维护计算机相关竞赛信息
 2. 计算机学院竞赛通知 QQ 群：143990148
-3. CSU数据竞赛QQ群：816893262，CSU DS CLUB(http://csuds.club/)
+3. CSU数据竞赛QQ群：816893262
 4. [我爱竞赛网](http://www.52jingsai.com/portal.php)
 5. ...
 
