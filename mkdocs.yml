@@ -50,6 +50,12 @@ nav:
 
   - 竞赛:
       - 关于竞赛: Competition/index.md
+  - 项目招新:
+      - 关于: JoinUs/index.md
+      - 本项目: JoinUs/disc0ver.md
+      - 开源项目: JoinUs/opensource-project.md
+      - 个人项目: JoinUs/personal-project.md
+      - 校内项目: JoinUs/campus-project.md
 
 # Theme
 theme:
