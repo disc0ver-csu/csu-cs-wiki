@@ -1,0 +1,1711 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="dns-prefetch" href="//disc0ver-csu.github.io/csu-cs-wiki/">
+      <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+      <link rel="dns-prefetch" href="//api.github.com">
+      <link rel="dns-prefetch" href="//www.google-analytics.com">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="CSU CS Wiki">
+      
+      
+        <link rel="canonical" href="https://disc0ver-csu.github.io/csu-cs-wiki/SoftwareTesting/white-box/">
+      
+      
+        <meta name="author" content="Disc0ver">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../Disc0ver-blue.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-3.0.6">
+    
+    
+      
+        <title>白盒测试开发 - CSU CS Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700|Fira+Mono">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../_static/css/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://disc0ver-csu.github.io/csu-cs-wiki" title="CSU CS Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">school</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                CSU CS Wiki
+              </span>
+              <span class="md-header-nav__topic">
+                白盒测试开发
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/disc0ver-csu/csu-cs-wiki/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      disc0ver-csu/csu-cs-wiki
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="简介" class="md-tabs__link">
+          简介
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../OperatingSystems/process-mgmt/" title="操作系统" class="md-tabs__link">
+          操作系统
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DistributedSystems/sync-clock/" title="分布式系统与云计算" class="md-tabs__link">
+          分布式系统与云计算
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DiscreteMathematics/intro/" title="离散数学" class="md-tabs__link">
+          离散数学
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CompilerPrinciples/language-grammar/" title="编译原理" class="md-tabs__link">
+          编译原理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../DigitalImageProcess/ilpf/" title="数字图像处理" class="md-tabs__link">
+          数字图像处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" title="软件测试" class="md-tabs__link md-tabs__link--active">
+          软件测试
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Competition/" title="竞赛" class="md-tabs__link">
+          竞赛
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../JoinUs/" title="项目招新" class="md-tabs__link">
+          项目招新
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://disc0ver-csu.github.io/csu-cs-wiki" title="CSU CS Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon">school</i>
+      
+    </a>
+    CSU CS Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/disc0ver-csu/csu-cs-wiki/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      disc0ver-csu/csu-cs-wiki
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      简介
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        简介
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="关于我们" class="md-nav__link">
+      关于我们
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/docs-guide/" title="贡献Wiki词条标准" class="md-nav__link">
+      贡献Wiki词条标准
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/codes-guide/" title="贡献代码标准" class="md-nav__link">
+      贡献代码标准
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Intro/commit-guide/" title="Commit 标准" class="md-nav__link">
+      Commit 标准
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      操作系统
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        操作系统
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../OperatingSystems/process-mgmt/" title="进程管理" class="md-nav__link">
+      进程管理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      分布式系统与云计算
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        分布式系统与云计算
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/sync-clock/" title="时间同步算法" class="md-nav__link">
+      时间同步算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/logic-clock/" title="Lamport逻辑时钟" class="md-nav__link">
+      Lamport逻辑时钟
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DistributedSystems/sumup/" title="期末汇总（临时）" class="md-nav__link">
+      期末汇总（临时）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      离散数学
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        离散数学
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/intro/" title="离散数学概论" class="md-nav__link">
+      离散数学概论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-intro/" title="逻辑与证明——概论" class="md-nav__link">
+      逻辑与证明——概论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-prop/" title="逻辑与证明——命题与逻辑等价" class="md-nav__link">
+      逻辑与证明——命题与逻辑等价
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-pred/" title="逻辑与证明——谓词与量词" class="md-nav__link">
+      逻辑与证明——谓词与量词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/logic-proof-proof/" title="逻辑与证明——推理证明方法" class="md-nav__link">
+      逻辑与证明——推理证明方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/set-theory-sets/" title="集合论——集合" class="md-nav__link">
+      集合论——集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/set-theory-relations-properties/" title="集合论——关系及其性质" class="md-nav__link">
+      集合论——关系及其性质
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/set-theory-order-equivalence/" title="集合论——序关系与等价关系" class="md-nav__link">
+      集合论——序关系与等价关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/set-theory-functions/" title="集合论——函数" class="md-nav__link">
+      集合论——函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DiscreteMathematics/graphs/" title="图论" class="md-nav__link">
+      图论
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      编译原理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        编译原理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CompilerPrinciples/language-grammar/" title="语言与语法描述" class="md-nav__link">
+      语言与语法描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CompilerPrinciples/lexer-dfa/" title="词法分析——有限自动机" class="md-nav__link">
+      词法分析——有限自动机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CompilerPrinciples/lexer-trans-algorithm/" title="词法分析——转换算法" class="md-nav__link">
+      词法分析——转换算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CompilerPrinciples/parser-opg/" title="语法分析——算符优先" class="md-nav__link">
+      语法分析——算符优先
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CompilerPrinciples/parser-lr/" title="语法分析——LR分析法" class="md-nav__link">
+      语法分析——LR分析法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      数字图像处理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        数字图像处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../DigitalImageProcess/ilpf/" title="理想滤波器与振铃特性" class="md-nav__link">
+      理想滤波器与振铃特性
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      软件测试
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        软件测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        白盒测试开发
+      </label>
+    
+    <a href="./" title="白盒测试开发" class="md-nav__link md-nav__link--active">
+      白盒测试开发
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="基本概念" class="md-nav__link">
+    基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="测试技术" class="md-nav__link">
+    测试技术
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="逻辑覆盖法" class="md-nav__link">
+    逻辑覆盖法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="语句覆盖" class="md-nav__link">
+    语句覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="判定覆盖" class="md-nav__link">
+    判定覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="条件覆盖" class="md-nav__link">
+    条件覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" title="判定-条件覆盖" class="md-nav__link">
+    判定-条件覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="条件组合覆盖" class="md-nav__link">
+    条件组合覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="路径覆盖" class="md-nav__link">
+    路径覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdc" title="MC/DC 覆盖" class="md-nav__link">
+    MC/DC 覆盖
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="程序插桩" class="md-nav__link">
+    程序插桩
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" title="常见的白盒测试工具" class="md-nav__link">
+    常见的白盒测试工具
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="课程小实验" class="md-nav__link">
+    课程小实验
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="实验内容" class="md-nav__link">
+    实验内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="实验过程" class="md-nav__link">
+    实验过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../black-box/" title="黑盒测试开发" class="md-nav__link">
+      黑盒测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tdd/" title="TDD测试驱动开发" class="md-nav__link">
+      TDD测试驱动开发
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      竞赛
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        竞赛
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Competition/" title="关于竞赛" class="md-nav__link">
+      关于竞赛
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      项目招新
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        项目招新
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../JoinUs/" title="关于" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../JoinUs/disc0ver/" title="本项目" class="md-nav__link">
+      本项目
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../JoinUs/opensource-project/" title="开源项目" class="md-nav__link">
+      开源项目
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../JoinUs/personal-project/" title="个人项目" class="md-nav__link">
+      个人项目
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../JoinUs/campus-project/" title="校内项目" class="md-nav__link">
+      校内项目
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="基本概念" class="md-nav__link">
+    基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="测试技术" class="md-nav__link">
+    测试技术
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="逻辑覆盖法" class="md-nav__link">
+    逻辑覆盖法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="语句覆盖" class="md-nav__link">
+    语句覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="判定覆盖" class="md-nav__link">
+    判定覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="条件覆盖" class="md-nav__link">
+    条件覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" title="判定-条件覆盖" class="md-nav__link">
+    判定-条件覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="条件组合覆盖" class="md-nav__link">
+    条件组合覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="路径覆盖" class="md-nav__link">
+    路径覆盖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdc" title="MC/DC 覆盖" class="md-nav__link">
+    MC/DC 覆盖
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="程序插桩" class="md-nav__link">
+    程序插桩
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" title="常见的白盒测试工具" class="md-nav__link">
+    常见的白盒测试工具
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="课程小实验" class="md-nav__link">
+    课程小实验
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="实验内容" class="md-nav__link">
+    实验内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="实验过程" class="md-nav__link">
+    实验过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="评论" class="md-nav__link md-nav__link--active">
+            评论
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/SoftwareTesting/white-box.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="_1">白盒测试方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">基本概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>白盒测试</strong>（white-box testing）又称<strong>透明盒测试</strong>（glass box testing）、<strong>结构化测试</strong>（structural testing）等，软件测试的主要方法之一。白盒测试是基于代码的测试，测试应用程序的内部结构或运作，而不是测试应用程序的功能（即黑盒测试）。在白盒测试时，以编程语言的角度来设计测试案例。测试者输入数据验证数据流在程序中的流动路径，并确定适当的输出，类似测试电路中的节点。测试者了解待测试程序的内部结构、算法等信息，这是从程序设计者的角度对程序进行的测试。</p>
+<p>白盒测试可以应用于单元测试（unit testing）、集成测试（integration testing）和系统的软件测试流程，可测试在集成过程中每一单元之间的路径，或者主系统跟子系统中的测试。尽管这种测试的方法可以发现许多的错误或问题，它可能无法检测未使用部分的规范。</p>
+<p>本问后面主要讲白盒测试逻辑覆盖的不同类型（从弱到强），着重对 MC/DC（修正条件/判定覆盖）进行介绍，并补充程序插桩知识以及常见的白盒测试工具。</p>
+<h2 id="_3">测试技术<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">逻辑覆盖法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>白盒测试中的逻辑覆盖主要有以下六种</p>
+<ul>
+<li>语句覆盖</li>
+<li>判定覆盖</li>
+<li>条件覆盖</li>
+<li>判定－条件覆盖</li>
+<li>条件组合覆盖</li>
+<li>路径覆盖</li>
+</ul>
+<p>下面逐一解释</p>
+<h4 id="_5">语句覆盖<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计若干测试用例，运行被测程序，使程序中<strong>每个可执行语句至少执行一次</strong>（不考虑分支情况）。</li>
+<li>优点：可直观得到测例。</li>
+<li>缺点：由于这种测试方法仅仅针对程序逻辑中显式存在的语句，但<strong>对于隐藏的条件</strong>是无法测试的。如在多分支的逻辑运算中无法全面的考虑。语句覆盖是<strong>最弱的逻辑覆盖</strong>。</li>
+</ul>
+<h4 id="_6">判定覆盖<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计若干测试用例，运行被测程序，使程序中<strong>每个判断的取真分支和取假分支至少经历一次</strong>，<strong>即判断真假值均曾被满足</strong>（不考虑分支内部情况）。</li>
+<li>优点：可直观得到测例，相对简单，无须细分每个判定。</li>
+<li>缺点：往往大部分的判定语句是由多个逻辑条件组合而成，若仅仅判断其整个最终结果，而<strong>忽略每个条件的取值情况</strong>，必然会遗漏部分测试路径。判定覆盖仍是<strong>弱的逻辑覆盖</strong>。</li>
+</ul>
+<h4 id="_7">条件覆盖<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计若干测试用例，执行被测程序以后要<strong>使每个判断中每个条件的可能取值至少满足一次</strong>。</li>
+<li>优点：增加了对条件判定情况的测试，增加了测试路径。</li>
+<li>缺点：条件覆盖不一定包含判定覆盖，条件覆盖只能保证每个条件（这里没有条件组合）至少有一次为真，而不考虑所有的判定结果。</li>
+</ul>
+<h4 id="-">判定-条件覆盖<a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计足够的测试用例，执行被测程序以后要<strong>使得判断条件中的所有条件可能至少执行一次取值</strong>，<strong>同时</strong>，<strong>所有判断的可能结果至少执行一次</strong>。</li>
+<li>优点：能同时满足判定、条件两种覆盖标准。</li>
+<li>缺点：判定/条件覆盖准则的缺点是<strong>未考虑条件的组合</strong>情况。</li>
+</ul>
+<h4 id="_8">条件组合覆盖<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计足够的测试用例，执行被测程序以后要<strong>使得所有可能的条件取值组合至少执行一次</strong>。</li>
+<li>优点：条件组合覆盖准则满足判定覆盖、条件覆盖和判定/条件覆盖准则。</li>
+<li>缺点：线性（个人认为是指数）地增加了测试用例的数量。</li>
+<li>备注：这里解释下，如果各条件变量独立，没有蕴含一类的关系的话，那么<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>条件变量需要设计至少<span><span class="MathJax_Preview">2^{n}</span><script type="math/tex">2^{n}</script></span>组样例才能达到条件组合覆盖，这个量是很大的。</li>
+</ul>
+<h4 id="_9">路径覆盖<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>基本思想：设计所有的测试用例，来覆盖程序中的所有可能的执行路径 。</li>
+<li>这种测试方法可以对程序进行彻底的测试，比前面五种的覆盖面都广。</li>
+<li>需要设计大量、复杂的测试用例，使得工作量呈指数级增长，不见得把所有的条件组合都覆盖。</li>
+</ul>
+<h4 id="mcdc">MC/DC 覆盖<a class="headerlink" href="#mcdc" title="Permanent link">&para;</a></h4>
+<p><strong>修改条件/判断覆盖</strong>（Modified condition/decision coverage）简称<strong>MC/DC</strong>，是用在飞航安全软件文件 DO-178B 的白箱测试方式，可以判断 A 等级的软件是否有经过适当的软件测试。</p>
+<p>依照修改条件/判断覆盖的准则，测试过程中以下条件至少需成立一次</p>
+<ul>
+<li>每一个判断的所有可能结果都出现过</li>
+<li>每一个判断中所有条件的所有可能结果都出现过</li>
+<li>每一个进入点及结束点都执行过</li>
+<li>判断中每一个条件都可以独立的影响判断的结果</li>
+</ul>
+<p>DO-178B 中指定会影响飞机起飞及降落安全性的软件（A 等级软件），需满足修改条件/判断覆盖的代码覆盖测试。</p>
+<p>上述内容摘自 Wikipedia。</p>
+<p>优点：在枚举全部条件变量组合复杂度与判定-条件覆盖能力不足做了折中，尽可能用<strong>较小测试用例集</strong>达成<strong>高效而全面的测试结果</strong>。</p>
+<h3 id="_10">程序插桩<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<!-- TODO -->
+
+<p>待补充</p>
+<h2 id="_11">常见的白盒测试工具<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<!-- TODO -->
+
+<p>待补充</p>
+<p>XUnit，各语言的单元测试框架，多数都贴近白盒测试，比如：JUnit，Google Test，go test 等等。下面给出连接，大家可以自行了解学习。</p>
+<ul>
+<li><a href="https://github.com/google/googletest">GoogleTest</a>:</li>
+</ul>
+<p>Google Test，谷歌的 C++测试框架，已经在 Github 上开源。包含了 Google Mock，一个应用了 C++ mock classes 的 Google Test 拓展。</p>
+<ul>
+<li><a href="https://github.com/Edwardzcn/goconvey">Go Convey</a></li>
+</ul>
+<p>一个 Golang 的开源测试框架，提供了一些常用的断言形式，配合<code>go test</code>使用。比较好的一点是，提供了一个用户友好 Web UI 界面，能比较直观的了解断言通过数、错误点等测试情况。</p>
+<h2 id="_12">课程小实验<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="_13">实验内容<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>编写判断是否为闰年的程序</li>
+<li>画出程序的流程图</li>
+<li>将流程图转换为控制流图</li>
+<li>基于控制流图，设计该程序的不同标准测试用例集合</li>
+<li>语句覆盖</li>
+<li>判定覆盖</li>
+<li>条件覆盖</li>
+<li>路径覆盖</li>
+<li>MC/DC 覆盖</li>
+</ul>
+<h3 id="_14">实验过程<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<!-- TODO 指向代码仓库 -->
+
+<p><a href="https://github.com/disc0ver-csu/software-testing">详细参见代码仓库</a>。</p>
+<p>这里只给出核心判断逻辑，以及对应部分覆盖原则的测例构造表格，如 MC/DC 的设计，可以查阅博客进一步学习。</p>
+<details class="白盒测试核心逻辑代码"><summary>白盒测试核心逻辑代码</summary><div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm">** 函数名：checkLeapYear</span>
+<span class="cm">** 函数功能：根据输入年份判断其是否为闰年</span>
+<span class="cm">** 参数名称与类型：</span>
+<span class="cm">**  int year</span>
+<span class="cm">** 返回值类型：</span>
+<span class="cm">**  bool</span>
+<span class="cm">*/</span>
+<span class="kt">bool</span> <span class="nf">checkLeapYear</span><span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 判断闰年的核心逻辑</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p>在核心逻辑代码中，判断语句仅有一个。为方便后续描述，下列定义：</p>
+<ul>
+<li>符号<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>表示布尔表达式 <code>year % 400 == 0</code></li>
+<li>符号<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>表示布尔表达式 <code>year % 4 == 0</code></li>
+<li>符号<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>表示布尔表达式 <code>year % 100 != 0</code></li>
+</ul>
+<p>则判断语句形式化为<span><span class="MathJax_Preview">A \vee B \wedge C</span><script type="math/tex">A \vee B \wedge C</script></span>。实际上<span><span class="MathJax_Preview">A,B,C</span><script type="math/tex">A,B,C</script></span>并不是独立的，至少存在下面的蕴含关系：</p>
+<div>
+<div class="MathJax_Preview">A \Rightarrow B</div>
+<script type="math/tex; mode=display">A \Rightarrow B</script>
+</div>
+<div>
+<div class="MathJax_Preview">A \Rightarrow \overline{C}</div>
+<script type="math/tex; mode=display">A \Rightarrow \overline{C}</script>
+</div>
+<div>
+<div class="MathJax_Preview">\overline{C} \Rightarrow  B</div>
+<script type="math/tex; mode=display">\overline{C} \Rightarrow  B</script>
+</div>
+<div>
+<div class="MathJax_Preview">\overline{C} \wedge B \Rightarrow A</div>
+<script type="math/tex; mode=display">\overline{C} \wedge B \Rightarrow A</script>
+</div>
+<p>这在构造时要注意。不是完整的笛卡尔乘积，一个子集（关系）的真值表是成立的。</p>
+<blockquote>
+<p>注意！由于本题较为特殊，条件间存在蕴含关系，我个人的写法是这样的。更一般的条件独立的情况，以及 MC/DC 测例构造说明，请参见其他文章。<a href="https://blog.csdn.net/u013935164/article/details/78202260">MC/DC 覆盖准则测例构造说明</a></p>
+</blockquote>
+<ul>
+<li>
+<p>语句覆盖</p>
+</li>
+<li>
+<p>概念：<strong>每个可执行语句</strong>至少执行一次</p>
+</li>
+<li>
+<p>构造：由于只有单一语句，一组测例输入满足语句覆盖。</p>
+<table>
+<thead>
+<tr>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">结果</th>
+<th align="left">对应测例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1600</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>判定覆盖</p>
+</li>
+<li>
+<p>概念：<strong>每个判断</strong>的真假值都至少执行一次</p>
+</li>
+<li>
+<p>构造：由于只有单一语句，那么构造两组测例使结果相反即可。</p>
+<table>
+<thead>
+<tr>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">结果</th>
+<th align="left">对应测例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1600</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">200</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+                
+                  
+                
+              
+              
+                <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:58:10
+ * @LastEditors: 妄想
+--> 
+
+
+ 
+ 
+  <hr><blockquote class="page-copyright">
+    <span><i class="md-icon">build</i>本页面最近更新：</span><span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+    <span><i class="md-icon">edit</i>发现错误？想一起完善？ <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/SoftwareTesting/white-box.md" title="编辑此页" class="page_edit_url">在 GitHub 上编辑此页！</a></span><br>
+    <span><i class="md-icon">people</i>本页面贡献者：</span><span class="page_contributors">CSU CS Wiki</span><br>
+    <span><i class="md-icon">copyright</i>本页面的全部内容在 <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+  </blockquote>
+
+
+  <!--outline-->
+  <h2 id="__comments" data-no-instant>评论</h2>
+  <form id="gitalk-form" onsubmit="return false;" data-no-instant>
+    <div id="gitalk-container" data-no-instant></div>
+  </form>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+  <script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: '06889186a27dcdd511d2',
+      clientSecret: 'dcc8e6c92bab3afc32244e3d7acd086efa66a61e',
+      repo: 'gitcomment',  // 使用单独的仓评论
+      owner: 'disc0ver-csu',  // 仓库所有者
+      admin: ['妄想', 'Edwardzcn'],  // 仓库管理员列表
+      //id: '白盒测试开发',  // 页面唯一标识
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // 全屏遮罩效果
+      pagerDirection: 'last'  // 排序方式：first按评论创建时间正序，last倒序
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        <!--
+ * @Description: 
+ * @Author: 妄想
+ * @Date: 2020-06-17 21:32:18
+ * @LastEditTime: 2020-06-17 21:37:13
+ * @LastEditors: 妄想
+--> 
+
+<script>function scrollFunction(){20<document.body.scrollTop||20<document.documentElement.scrollTop?document.getElementById("myBtn").style.display="block":document.getElementById("myBtn").style.display="none"}function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}window.onscroll=function(){scrollFunction()}</script>
+<button onclick="topFunction()" id="myBtn" class="data-tip-left" data-tip="回到顶部">
+  <svg class="Zi Zi--BackToTop data-tip-left" data-tip="回到顶部" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path>
+  </svg>
+</button>
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../DigitalImageProcess/ilpf/" title="理想滤波器与振铃特性" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                理想滤波器与振铃特性
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../black-box/" title="黑盒测试开发" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                黑盒测试开发
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <!-- <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div> -->
+      
+        
+      
+    </div>
+    <div class="sponsor" style="text-align: center;color: white;vertical-align: middle;">
+      <span />
+     <a href="/intro/csu/">
+       <img src="https://upload.wikimedia.org/wikipedia/zh/4/4d/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%BE%BD.png" style="
+         vertical-align: -12px;
+         width: 60px;
+         margin-left:5px;
+       ">
+     </a>
+   </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.5e60981f.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.1.2",url:{base:"../.."}})</script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../_static/js/extra.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
