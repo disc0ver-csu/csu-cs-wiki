@@ -133,3 +133,7 @@ For every real number $\epsilon > 0$ there exists a real number $\delta > 0$ suc
 ??? success "答案"
 
     $$\forall \epsilon > 0 \exists \delta > 0 \forall x (0<|x−a|<δ \rightarrow |f(x)−L|< \epsilon)$$
+
+??? note "一个面试提到的问题"
+
+    $\forall x \exists y P(x,y) \rightarrow \exists y \forall x P(x,y)$，证明或者证否（举出$P(x,y)$实例）。
