@@ -6,7 +6,7 @@
 
 **集合**：集合是对象的一个无序的聚集。更严谨的英文定义如下:
 
-!!! note "Defination of set"
+!!! note "Definition of set"
 
     A _set_ is an unordered collection of objects, called _elements_ or _members_ of the set. A set is said to _contain_ its elements.We write $a \in A$ to denote that $a$ is an element of the set $A$. The notation $a \notin A$ denotes that a is not an element of the set $A$.
 

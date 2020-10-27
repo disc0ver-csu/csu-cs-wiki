@@ -13,7 +13,9 @@
 
 ??? note "英文定义"
 
-    Anargumentin propositional logic is a sequence of propositions. All but the final propositionin the argument are calledpremisesand the final proposition is called theconclusion.Anargument isvalidif the truth of all its premises implies that the conclusion is true.Anargument formin propositional logic is a sequence of compound propositions involv-ing propositional variables. An argument form isvalidno matter which particular proposi-tions are substituted for the propositional variables in its premises, the conclusion is true ifthe premises are all true.
+    An _argumentin_ propositional logic is a sequence of propositions. All but the final proposition in the argument are called _premises_ and the final proposition is called the _conclusion_ . An argument is _valid_ if the truth of all its premises implies that the conclusion is true.
+
+    An _argument form_ in propositional logic is a sequence of compound propositions involving propositional variables. An argument form is _valid_ no matter which particular propositions are substituted for the propositional variables in its premises, the conclusion is true if the premises are all true.
 
 ### 命题逻辑的推理规则
 
@@ -72,9 +74,9 @@
 
     > Suppose we want to prove that a statement $p$ is true. Furthermore, suppose that we can find a contradiction $q$ such that $\lnot p \rightarrow q$ is true. Because $q$ is false, but $\lnot p \rightarrow q$ is true, we can conclude that $\lnot p$ is false, which means that $p$ is true. How can we find a contradiction $q$ that might help us prove that $p$ is true in this way?
     >
-    > Because the statement $r \rightarrow \lnot r$ is a contradiction whenever $r$ is a proposition, we can prove that $p$ is true if we can show that $\lnot p \rightarrow(r \land \not r)$ is true for some propositionr. Proofs of this type are called **proofs by contradiction**. Because a proof by contradiction does not prove a result directly, it is another type of indirect proof. We provide three examples of proof by contradiction.
+    > Because the statement $r \rightarrow \lnot r$ is a contradiction whenever $r$ is a proposition, we can prove that $p$ is true if we can show that $\lnot p \rightarrow(r \land \lnot r)$ is true for some propositionr. Proofs of this type are called **proofs by contradiction**. Because a proof by contradiction does not prove a result directly, it is another type of indirect proof. We provide three examples of proof by contradiction.
 
-    英文定义比中文严谨很多，形象一点地讲，反证法实际上是寻找一个$\lnot p$蕴含的“隐性”条件$r$（比如原命题的部分文字构成的命题），而根据逻辑推理却得到$\lnot p \rightarrow \lnot r$，就找到了$(r \land \lnot r)$这一矛盾。而据此有$\lnot p \rightarrow (r \land \lnot r)$为永真式，可得到$\lnot p$为假，$p$为真。还是举例来说明吧。
+    英文定义比中文严谨很多，形象一点地讲，反证法实际上是寻找一个$\lnot p$蕴含的“隐性”条件$r$（比如原命题的部分文字构成的命题），而根据逻辑推理却得到$\lnot p \rightarrow \lnot r$，就找到了$(r \land \lnot r)$这一矛盾。而据此有$\lnot p \rightarrow (r \land \lnot r)$真，可得到$\lnot p$为假，$p$为真。还是举例来说明吧。
 
     ??? note "Example: Show that at least four of any 22 days must fall on the same day of the week."
 
