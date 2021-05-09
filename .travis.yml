@@ -1,0 +1,29 @@
+language: python
+
+python:
+  - 3.6
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - chmod +x ./scripts/build.sh && ./scripts/build.sh 
+
+branches:
+  only:
+    - master
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
+
+after_deploy:
+  # - git config user.name "leo6033"
+  # - git config user.email "csulmw@163.com"
+  - git remote add gh-token "https://${GH_TOKEN}@github.com/disc0ver-csu/csu-cs-wiki.git";
+  - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
+  - mkdocs gh-deploy -v --clean --remote-name gh-token;
