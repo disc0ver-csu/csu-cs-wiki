@@ -60,10 +60,14 @@ nav:
 # Theme
 theme:
   name: material
-  custom_dir: "mkdocs-material/material"
+  # custom_dir: "mkdocs-material/material"
+  custom_dir: "overrides/"
+  # icon:
+  #   repo: 
   static_templates:
     - 404.html
   language: "zh"
+  # 标题栏颜色
   palette:
     primary: "white"
     accent: "red"
@@ -71,10 +75,11 @@ theme:
   search_index_only: true
   favicon: "Disc0ver-blue.png"
 
-  logo:
-    icon: "school"
-  feature:
-    tabs: true
+  # 定制化
+  # logo:
+  #   icon: "school"
+  # feature:
+  #   tabs: true
   font:
     text: "Fira Sans"
     code: "Fira Mono"
@@ -84,7 +89,11 @@ extra:
   search:
     language: "jp"
   disqus: "CSU CS Wiki"
-  copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
+  cusdis: 
+    host: "https://cusdis.com"
+    app_id: "e44c94a5-de23-4a23-b724-d327887c8544"
+    lang: "zh-cn"
+  copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a>  <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: "on"
   githash: "2ac34dc"
 #   palette:
@@ -102,9 +111,12 @@ extra_javascript:
 
 extra_css:
   - "_static/css/extra.css"
+  - "_static/css/application-palette.22915126.css"
+
 # Extensions
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite:
       guess_lang: false
       linenums: true
@@ -118,7 +130,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink
