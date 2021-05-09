@@ -88,7 +88,7 @@
 
 一个**确定有限自动机**（Definite Finite Automaton）是一个五元组
 
-$$M=(S,∑,f,S_0,Z)$$
+$$M=(S,∑,\delta,S_0,Z)$$
 
 其中：
 
