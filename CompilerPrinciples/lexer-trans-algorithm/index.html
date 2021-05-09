@@ -1,0 +1,1374 @@
+
+  <!doctype html>
+  <html lang="zh" class="no-js">
+    <head>
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+          <meta name="description" content="CSU CS Wiki">
+        
+        
+        
+          <meta name="author" content="Disc0ver">
+        
+        
+          <link rel="canonical" href="https://disc0ver-csu.github.io/csu-cs-wiki/CompilerPrinciples/lexer-trans-algorithm/">
+        
+        <link rel="icon" href="../../Disc0ver-blue.png">
+        <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+      
+      
+        
+          <title>词法分析——转换算法 - CSU CS Wiki</title>
+        
+      
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
+        
+          
+          <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+          
+            
+            
+            <meta name="theme-color" content="#ffffff">
+          
+        
+      
+      
+      
+        
+          
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700%7CFira+Mono&display=fallback">
+          <style>:root{--md-text-font-family:"Fira Sans";--md-code-font-family:"Fira Mono"}</style>
+        
+      
+      
+      
+        <link rel="stylesheet" href="../../_static/css/extra.css">
+      
+        <link rel="stylesheet" href="../../_static/css/application-palette.22915126.css">
+      
+      
+        
+      
+      
+    </head>
+    
+    
+      
+      
+      
+      
+      
+      <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="red">
+    
+      
+      <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+      
+      <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+      <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+      <label class="md-overlay" for="__drawer"></label>
+      <div data-md-component="skip">
+        
+          
+          <a href="#_1" class="md-skip">
+            跳转至
+          </a>
+        
+      </div>
+      <div data-md-component="announce">
+        
+      </div>
+      
+        <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CSU CS Wiki" class="md-header__button md-logo" aria-label="CSU CS Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSU CS Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              词法分析——转换算法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+
+<!-- Repository information -->
+<a
+  href="https://github.com/disc0ver-csu/csu-cs-wiki/"
+  title="前往 GitHub 仓库"
+  class="md-source"
+  data-md-component="source"
+>
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disc0ver-csu/csu-cs-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+      
+      <div class="md-container" data-md-component="container">
+        
+        
+          
+        
+        <main class="md-main" data-md-component="main">
+          <div class="md-main__inner md-grid">
+            
+              
+                
+                <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CSU CS Wiki" class="md-nav__button md-logo" aria-label="CSU CS Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    CSU CS Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!-- Repository information -->
+<a
+  href="https://github.com/disc0ver-csu/csu-cs-wiki/"
+  title="前往 GitHub 仓库"
+  class="md-source"
+  data-md-component="source"
+>
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disc0ver-csu/csu-cs-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        简介
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="简介" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          简介
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        关于我们
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/quick-start/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/docs-guide/" class="md-nav__link">
+        贡献Wiki词条标准
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/codes-guide/" class="md-nav__link">
+        贡献代码标准
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/commit-guide/" class="md-nav__link">
+        Commit 标准
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        操作系统
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="操作系统" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OperatingSystems/process-mgmt/" class="md-nav__link">
+        进程管理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        分布式系统与云计算
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="分布式系统与云计算" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          分布式系统与云计算
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/sync-clock/" class="md-nav__link">
+        时间同步算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/logic-clock/" class="md-nav__link">
+        Lamport逻辑时钟
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/sumup/" class="md-nav__link">
+        期末汇总（临时）
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        离散数学
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="离散数学" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          离散数学
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/intro/" class="md-nav__link">
+        离散数学概论
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/logic-proof-intro/" class="md-nav__link">
+        逻辑与证明——概论
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/logic-proof-prop/" class="md-nav__link">
+        逻辑与证明——命题与逻辑等价
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/logic-proof-pred/" class="md-nav__link">
+        逻辑与证明——谓词与量词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/logic-proof-proof/" class="md-nav__link">
+        逻辑与证明——推理证明方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/set-theory-sets/" class="md-nav__link">
+        集合论——集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/set-theory-relations-properties/" class="md-nav__link">
+        集合论——关系及其性质
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/set-theory-order-equivalence/" class="md-nav__link">
+        集合论——序关系与等价关系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/set-theory-functions/" class="md-nav__link">
+        集合论——函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiscreteMathematics/graphs/" class="md-nav__link">
+        图论
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        编译原理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="编译原理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language-grammar/" class="md-nav__link">
+        语言与语法描述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lexer-dfa/" class="md-nav__link">
+        词法分析——有限自动机
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          词法分析——转换算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        词法分析——转换算法
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fa" class="md-nav__link">
+    正规文法与 FA 的等价性
+  </a>
+  
+    <nav class="md-nav" aria-label="正规文法与 FA 的等价性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fa" class="md-nav__link">
+    证明 1：正规文法构造 FA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2fa" class="md-nav__link">
+    证明 2：FA 构造正规文法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fanfa" class="md-nav__link">
+    正规式与 FA（NFA） 的等价性
+  </a>
+  
+    <nav class="md-nav" aria-label="正规式与 FA（NFA） 的等价性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1fa" class="md-nav__link">
+    证明 1：FA 构造正规式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fa" class="md-nav__link">
+    证明 2：正规式构造 FA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfa-dfa" class="md-nav__link">
+    NFA 与 DFA 的等价性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dfa" class="md-nav__link">
+    DFA 化简
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parser-opg/" class="md-nav__link">
+        语法分析——算符优先
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parser-lr/" class="md-nav__link">
+        语法分析——LR分析法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        数字图像处理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数字图像处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          数字图像处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DigitalImageProcess/ilpf/" class="md-nav__link">
+        理想滤波器与振铃特性
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        软件测试
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="软件测试" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          软件测试
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/white-box/" class="md-nav__link">
+        白盒测试开发
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/black-box/" class="md-nav__link">
+        黑盒测试开发
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/tdd/" class="md-nav__link">
+        TDD测试驱动开发
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        竞赛
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="竞赛" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          竞赛
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Competition/" class="md-nav__link">
+        关于竞赛
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        项目招新
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目招新" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          项目招新
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/disc0ver/" class="md-nav__link">
+        本项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/opensource-project/" class="md-nav__link">
+        开源项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/personal-project/" class="md-nav__link">
+        个人项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/campus-project/" class="md-nav__link">
+        校内项目
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                    </div>
+                  </div>
+                </div>
+              
+              
+                
+                <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fa" class="md-nav__link">
+    正规文法与 FA 的等价性
+  </a>
+  
+    <nav class="md-nav" aria-label="正规文法与 FA 的等价性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fa" class="md-nav__link">
+    证明 1：正规文法构造 FA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2fa" class="md-nav__link">
+    证明 2：FA 构造正规文法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fanfa" class="md-nav__link">
+    正规式与 FA（NFA） 的等价性
+  </a>
+  
+    <nav class="md-nav" aria-label="正规式与 FA（NFA） 的等价性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1fa" class="md-nav__link">
+    证明 1：FA 构造正规式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fa" class="md-nav__link">
+    证明 2：正规式构造 FA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfa-dfa" class="md-nav__link">
+    NFA 与 DFA 的等价性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dfa" class="md-nav__link">
+    DFA 化简
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                    </div>
+                  </div>
+                </div>
+              
+            
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+                    <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/CompilerPrinciples/lexer-trans-algorithm.md" title="编辑此页" class="md-content__button md-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                    </a>
+                  
+                  
+                  <h1 id="_1">词法分析——转换算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>（本章较多图与文字来源于 XDZ 老师的 PPT，笔者负责整理）</p>
+<p>本章介绍词法分析中几种表示的转换算法，通过构造来证明不同模型间的等价性（构造性证明）。不同的等价性命题与转换算法的对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">等价性命题</th>
+<th align="center">转换算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">正规文法与 FA（NFA） 的等价性</td>
+<td align="center">可先证正规文法与正规式的等价性，或参考《编译原理》</td>
+</tr>
+<tr>
+<td align="center">正规式与 FA（NFA） 的等价性</td>
+<td align="center">Thompson 算法</td>
+</tr>
+<tr>
+<td align="center">NFA 与 DFA 的等价性</td>
+<td align="center">子集构造法</td>
+</tr>
+<tr>
+<td align="center">DFA 化简（DFA 与简化 DFA 的等价性）</td>
+<td align="center">Hopcroft 算法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fa">正规文法与 FA 的等价性<a class="headerlink" href="#fa" title="Permanent link">&para;</a></h2>
+<p>我们将讨论正规文法与有限自动机（FA）的等价性，你可能会疑惑为何不区分 DFA 和 NFA，这是因为我们随后会给出 NFA 和 DFA 的等价性证明，所以实际上最终归结为正规文法和 FA 等价。</p>
+<p>命题表示：对于正规文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 和有限自动机<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>，如果<span><span class="MathJax_Preview">L(G) = L(M)</span><script type="math/tex">L(G) = L(M)</script></span>，则称<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>和<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>是等价的。关于正规文法和有限自动机的等价性，有以下结论：</p>
+<ol>
+<li>对每一个右线性正规文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 或左线性正规文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，都存在一个有限自动机（FA）<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>，使得<span><span class="MathJax_Preview">L(M) = L(G)</span><script type="math/tex">L(M) = L(G)</script></span>。</li>
+<li>对每一个有限自动机 <span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>，都存在一个右线性正规文法<span><span class="MathJax_Preview">G_R</span><script type="math/tex">G_R</script></span>和左线性文法<span><span class="MathJax_Preview">G_L</span><script type="math/tex">G_L</script></span>，使得<span><span class="MathJax_Preview">L(M) = L(G_n) = L(G_L)</span><script type="math/tex">L(M) = L(G_n) = L(G_L)</script></span>。</li>
+</ol>
+<h3 id="1-fa">证明 1：正规文法构造 FA<a class="headerlink" href="#1-fa" title="Permanent link">&para;</a></h3>
+<p>针对左/右线性文法分类讨论进行构造性证明</p>
+<ol>
+<li>
+<p>右线性正规文法</p>
+<p>设右线性正规文法<span><span class="MathJax_Preview">G=(V_N,V_T,S,P)</span><script type="math/tex">G=(V_N,V_T,S,P)</script></span>。将<span><span class="MathJax_Preview">V_N</span><script type="math/tex">V_N</script></span>中的每一非终结符号视为状态符号，并增加一个新的<strong>终结状态符号</strong><span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span>，<span><span class="MathJax_Preview">f \notin V_N</span><script type="math/tex">f \notin V_N</script></span>。</p>
+<p>构造 FA，令<span><span class="MathJax_Preview">M = (V_N \cup \{f\}, V_T, \delta,S,\{f\})</span><script type="math/tex">M = (V_N \cup \{f\}, V_T, \delta,S,\{f\})</script></span>，其中状态转换函数<span><span class="MathJax_Preview">\delta</span><script type="math/tex">\delta</script></span>由以下规则定义：</p>
+<ol>
+<li>（到终结状态的弧）若对某个<span><span class="MathJax_Preview">A \in V_N</span><script type="math/tex">A \in V_N</script></span> 及 <span><span class="MathJax_Preview">a \in V_T \cup\{ \epsilon \}</span><script type="math/tex">a \in V_T \cup\{ \epsilon \}</script></span>，<span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> 中有产生式 <span><span class="MathJax_Preview">A \rightarrow a</span><script type="math/tex">A \rightarrow a</script></span>，则令<span><span class="MathJax_Preview">\delta(A,a) = f</span><script type="math/tex">\delta(A,a) = f</script></span></li>
+<li>
+<p>（到其他状态的弧）对任意的<span><span class="MathJax_Preview">A \in V_N</span><script type="math/tex">A \in V_N</script></span> 及 <span><span class="MathJax_Preview">a \in V_T \cup\{ \epsilon \}</span><script type="math/tex">a \in V_T \cup\{ \epsilon \}</script></span>，设<span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span>中左端为<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>，右端第一符号位<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的所有产生式为</p>
+<div>
+<div class="MathJax_Preview">A \rightarrow aA_1 | \cdots | aA_k</div>
+<script type="math/tex; mode=display">A \rightarrow aA_1 | \cdots | aA_k</script>
+</div>
+<p>则令<span><span class="MathJax_Preview">\delta(A,a) = \{A_1,\cdots,A_k\}</span><script type="math/tex">\delta(A,a) = \{A_1,\cdots,A_k\}</script></span></p>
+</li>
+</ol>
+<p>显然，上述<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>是一个 NFA。</p>
+<p>对于右线性文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，在初始状态到字<span><span class="MathJax_Preview">S \overset{+}{\Rightarrow} w</span><script type="math/tex">S \overset{+}{\Rightarrow} w</script></span>的最左推导过程中，利用<span><span class="MathJax_Preview">A \rightarrow aB</span><script type="math/tex">A \rightarrow aB</script></span>一次，<strong>就相当于在<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>中从状态<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>经过标记为<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的箭弧到达状态<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span></strong>。推导的最后（即文法箭头右边不含非终结符的情况）利用<span><span class="MathJax_Preview">A \rightarrow a</span><script type="math/tex">A \rightarrow a</script></span>一次，<strong>则相当于在<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>中从状态<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>经过标记为<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的箭弧到达中介状态<span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span></strong>（包括<span><span class="MathJax_Preview">a = \epsilon</span><script type="math/tex">a = \epsilon</script></span>的情形）。</p>
+<p>综上，根据我们的构造和解释，右线性正规文法<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>中，<span><span class="MathJax_Preview">S \overset{+}{\Rightarrow} w</span><script type="math/tex">S \overset{+}{\Rightarrow} w</script></span>的充要条件是：在<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>中，从状态<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>到状态<span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span>有一条通路，其上所有箭弧的标记符号依次连接起来恰好等于<span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span>。这就是说<span><span class="MathJax_Preview">w \in L(G) \leftrightarrow w \in L(M)</span><script type="math/tex">w \in L(G) \leftrightarrow w \in L(M)</script></span>，故<span><span class="MathJax_Preview">L(G) = L(M)</span><script type="math/tex">L(G) = L(M)</script></span>。</p>
+</li>
+<li>
+<p>左线性正规文法</p>
+<p>设左线性正规文法<span><span class="MathJax_Preview">G=(V_N,V_T,S,P)</span><script type="math/tex">G=(V_N,V_T,S,P)</script></span>。将<span><span class="MathJax_Preview">V_N</span><script type="math/tex">V_N</script></span>中的每一非终结符号视为状态符号，并增加一个新的<strong>初始状态符号</strong><span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span>，<span><span class="MathJax_Preview">q \notin V_N</span><script type="math/tex">q \notin V_N</script></span>。</p>
+<p>与上述右线性正规文法构造性证明类似，我们同样构造一个 FA，不过这里注意自动机初态和终态集略有不同。令<span><span class="MathJax_Preview">M = (V_N \cup \{q\}, V_T, \delta,q,\{S\})</span><script type="math/tex">M = (V_N \cup \{q\}, V_T, \delta,q,\{S\})</script></span>，其中状态转换函数<span><span class="MathJax_Preview">\delta</span><script type="math/tex">\delta</script></span>由以下规则定义：</p>
+<ol>
+<li>（起始状态出发的弧）若对某个<span><span class="MathJax_Preview">A \in V_N</span><script type="math/tex">A \in V_N</script></span> 及 <span><span class="MathJax_Preview">a \in V_T \cup\{ \epsilon \}</span><script type="math/tex">a \in V_T \cup\{ \epsilon \}</script></span>，<span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> 中有产生式 <span><span class="MathJax_Preview">A \rightarrow a</span><script type="math/tex">A \rightarrow a</script></span>，则令<span><span class="MathJax_Preview">\delta(q,a) = A</span><script type="math/tex">\delta(q,a) = A</script></span></li>
+<li>
+<p>（其他状态出发的弧）对任意的<span><span class="MathJax_Preview">A \in V_N</span><script type="math/tex">A \in V_N</script></span> 及 <span><span class="MathJax_Preview">a \in V_T \cup\{ \epsilon \}</span><script type="math/tex">a \in V_T \cup\{ \epsilon \}</script></span>，设<span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span>中所有右端第一符号位为<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>，第二符号位为<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的所有产生式为：</p>
+<div>
+<div class="MathJax_Preview">A_1 \rightarrow A a , \cdots , A_k \rightarrow A a</div>
+<script type="math/tex; mode=display">A_1 \rightarrow A a , \cdots , A_k \rightarrow A a</script>
+</div>
+</li>
+</ol>
+<p>则令<span><span class="MathJax_Preview">\delta(A,a) = \{ A_1 , \cdots, A_k \}</span><script type="math/tex">\delta(A,a) = \{ A_1 , \cdots, A_k \}</script></span>。</p>
+<p>利用<span><span class="MathJax_Preview">A \rightarrow a</span><script type="math/tex">A \rightarrow a</script></span>一次，<strong>相当于在<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>中从状态<span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span>经过标记为<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的箭弧到达状态<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span></strong>，利用<span><span class="MathJax_Preview">A_1 \rightarrow A a</span><script type="math/tex">A_1 \rightarrow A a</script></span>一次，<strong>则相当于在<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>中从状态<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>经过标记为<span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span>的弧到达状态<span><span class="MathJax_Preview">A_1</span><script type="math/tex">A_1</script></span></strong>。与右线性的证明过程类似，不过随着文法推导，字是从末尾符号向初始符号构造，自动机上的弧也是从终结符号按着箭头到箭尾倒序构造。仍有<span><span class="MathJax_Preview">w \in L(G) \leftrightarrow w \in L(M)</span><script type="math/tex">w \in L(G) \leftrightarrow w \in L(M)</script></span>，故 L(G) = L(M)$</p>
+</li>
+</ol>
+<p>我们构造的自动机<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>明显都是 NFA，转换为 DFA，这部分要用到后面章节<a href="#nfa-与-dfa-的等价性">NFA 与 DFA 等价性证明</a>的内容。</p>
+<!-- TODO 添加示例 -->
+
+<h3 id="2fa">证明 2：FA 构造正规文法<a class="headerlink" href="#2fa" title="Permanent link">&para;</a></h3>
+<h2 id="fanfa">正规式与 FA（NFA） 的等价性<a class="headerlink" href="#fanfa" title="Permanent link">&para;</a></h2>
+<h3 id="1fa">证明 1：FA 构造正规式<a class="headerlink" href="#1fa" title="Permanent link">&para;</a></h3>
+<p>构造的核心思路是将状态转换图逐渐消解，最后转换为单一的正规式表达。</p>
+<p>首先把转换图的概念拓广，令每条弧可用一个正规式作标记。为了解决非单一终态等问题，我们在状态机<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>的基础上构造<span><span class="MathJax_Preview">M'</span><script type="math/tex">M'</script></span>，<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>转换图上加进两个结，一个为<span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span>结，另一个为<span><span class="MathJax_Preview">Y</span><script type="math/tex">Y</script></span>结；</p>
+<ul>
+<li>从<span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span>结用<span><span class="MathJax_Preview">ε</span><script type="math/tex">ε</script></span>弧连接到<span><span class="MathJax_Preview">M</span><script type="math/tex">M</script></span>的所有初态结；</li>
+<li>从 M 的所有终结用<span><span class="MathJax_Preview">ε</span><script type="math/tex">ε</script></span>弧连接到 Y 结</li>
+</ul>
+<p>显然，<span><span class="MathJax_Preview">L(M)=L(M')</span><script type="math/tex">L(M)=L(M')</script></span>，即，这两个 NFA 是等价的，且<span><span class="MathJax_Preview">M'</span><script type="math/tex">M'</script></span>只有一个初态一个终态。</p>
+<p>反复使用下图所示的替换规则，消去所有的结最后达到 X--正规式&rarr;Y。</p>
+<p><img alt="thompson-1" src="../images/thompson-1.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">问题</p>
+<p>下图经消结后，对应的正规式是什么，识别的是什么语言</p>
+<p><img alt="thompson-2" src="../images/thompson-2.png" /></p>
+</div>
+<details class="success"><summary>答案</summary><p>正规式为<span><span class="MathJax_Preview">((aa|bb)(ab|ba)(aa|bb)*(ab|ba))*</span><script type="math/tex">((aa|bb)(ab|ba)(aa|bb)*(ab|ba))*</script></span>，识别的是<strong>含偶数个a和偶数个b的字</strong>，消去过程如下：</p>
+<p><img alt="thompson-3" src="../images/thompson-3.png" /></p>
+<p><img alt="thompson-5" src="../images/thompson-4.png" /></p>
+<p><img alt="thompson-5" src="../images/thompson-5.png" /></p>
+</details>
+<h2 id="2-fa">证明 2：正规式构造 FA<a class="headerlink" href="#2-fa" title="Permanent link">&para;</a></h2>
+<p>证明分为两步：</p>
+<ol>
+<li>构造<span><span class="MathJax_Preview">\sum</span><script type="math/tex">\sum</script></span>上的 NFA <span><span class="MathJax_Preview">M'</span><script type="math/tex">M'</script></span>，使得<span><span class="MathJax_Preview">L(M')=L(V)</span><script type="math/tex">L(M')=L(V)</script></span></li>
+<li><span><span class="MathJax_Preview">M'</span><script type="math/tex">M'</script></span>确定化</li>
+</ol>
+<p>需说明的是，仅步骤 1 我们就已经构造性证明出正规式与 NFA 等价，若要证明和 DFA 等价，则需步骤 2 进行 NFA 确定化，这部分还是后面章节<a href="#nfa-与-dfa-的等价性">NFA 与 DFA 等价性证明</a>的内容。</p>
+<p>第一部分的构造其实很简单，就是<a href="#证明-1fa-构造正规式">FA 构造正规式</a> 的逆过程。</p>
+<p>首先把正规式 <span><span class="MathJax_Preview">V</span><script type="math/tex">V</script></span> 表示为拓广转换图（X--正规式&rarr;Y），然后通过对 <span><span class="MathJax_Preview">V</span><script type="math/tex">V</script></span> 进行分裂和加进新结的办法，逐步把这个图转变成：每条弧标记为 <span><span class="MathJax_Preview">Σ</span><script type="math/tex">Σ</script></span> 的一个字符或 <span><span class="MathJax_Preview">ε</span><script type="math/tex">ε</script></span>。</p>
+<p>使用下面的替换规则：</p>
+<p><img alt="thompson-6" src="../images/thompson-6.png" /></p>
+<p>在整个分裂过程中，所有新结均用不同的名字，保留<span><span class="MathJax_Preview">X</span><script type="math/tex">X</script></span>和<span><span class="MathJax_Preview">Y</span><script type="math/tex">Y</script></span>为全图唯一的初态结和终态结，至此，得到了一个 NFA <span><span class="MathJax_Preview">M'</span><script type="math/tex">M'</script></span>
+显然，<span><span class="MathJax_Preview">L(M')=L(V)</span><script type="math/tex">L(M')=L(V)</script></span>。如果需要进行</p>
+<h2 id="nfa-dfa">NFA 与 DFA 的等价性<a class="headerlink" href="#nfa-dfa" title="Permanent link">&para;</a></h2>
+<!-- TODO -->
+
+<p>待完成</p>
+<h2 id="dfa">DFA 化简<a class="headerlink" href="#dfa" title="Permanent link">&para;</a></h2>
+<!-- TODO -->
+
+<p>待完成</p>
+                  
+                
+                
+                  
+
+ 
+ 
+<hr>
+<blockquote class="page-copyright">
+    <span>本页面最近更新：</span>
+    <span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+    <span>发现错误？想一起完善？ <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/CompilerPrinciples/lexer-trans-algorithm.md" title="编辑此页" class="page_edit_url">在
+            GitHub上编辑此页！</a></span><br>
+    <span>本页面贡献者：</span><span class="page_contributors">CSU CS Wiki</span><br>
+    <span>本页面的全部内容在
+        <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a>  <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+</blockquote>
+
+<!-- <span> test page.is_homepage= False <br> page.url|url= /csu-cs-wiki/CompilerPrinciples/lexer-trans-algorithm/ <br> page.meta =
+    {} <br> page.title = 词法分析——转换算法 <br> </span> -->
+<div class="cusdis" style="width:100%">
+    <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="e44c94a5-de23-4a23-b724-d327887c8544"
+        data-page-id="/csu-cs-wiki/CompilerPrinciples/lexer-trans-algorithm/""
+          data-page-url=" /csu-cs-wiki/CompilerPrinciples/lexer-trans-algorithm/" data-page-title="词法分析——转换算法">
+    </div>
+</div>
+<script type="text/javascript">
+    const src = 'https://cusdis.com/js/widget/lang/zh-cn.js';
+    var createScript = function (url, onload) {
+        var s = document.createElement('script');
+        s.setAttribute('src', url);
+        s.setAttribute('type', 'text/javascript');
+        s.setAttribute('charset', 'UTF-8');
+        s.async = false;
+        if (typeof onload === 'function') {
+            if (window.attachEvent) {
+                s.onreadystatechange = function () {
+                    var e = s.readyState;
+                    if (e === 'loaded' || e === 'complete') {
+                        s.onreadystatechange = null;
+                        onload();
+                    }
+                };
+            } else {
+                s.onload = onload;
+            }
+        }
+        var e = document.getElementsByTagName('script')[0] ||
+            document.getElementsByTagName('head')[0] ||
+            document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e);
+    }
+    createScript(src);
+    var schema = document.documentElement.getAttribute('data-user-color-scheme');
+    if (schema) {
+        document.querySelector('#cusdis_thread').dataset.theme = schema
+    }
+</script>
+<script type="text/javascript">
+    var loadComments = function (selectors, loadFunc) {
+        loadFunc();
+    }
+    loadComments('#cusdis_thread', function () {
+        createScript("https://cusdis.com/js/cusdis.es.js");
+    });
+</script>
+<noscript>Please enable JavaScript to view the comments</noscript>
+
+
+                
+              </article>
+            </div>
+          </div>
+          
+        </main>
+        
+          
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../lexer-dfa/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              词法分析——有限自动机
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../parser-opg/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              语法分析——算符优先
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+        
+      </div>
+      <div class="md-dialog" data-md-component="dialog">
+        <div class="md-dialog__inner md-typeset"></div>
+      </div>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+      
+      
+        <script src="../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+        
+          <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
+          <script src="../../_static/js/extra.js"></script>
+        
+      
+    </body>
+  </html>
+  
