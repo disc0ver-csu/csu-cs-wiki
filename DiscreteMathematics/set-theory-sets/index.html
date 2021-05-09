@@ -1,0 +1,1340 @@
+
+  <!doctype html>
+  <html lang="zh" class="no-js">
+    <head>
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+          <meta name="description" content="CSU CS Wiki">
+        
+        
+        
+          <meta name="author" content="Disc0ver">
+        
+        
+          <link rel="canonical" href="https://disc0ver-csu.github.io/csu-cs-wiki/DiscreteMathematics/set-theory-sets/">
+        
+        <link rel="icon" href="../../Disc0ver-blue.png">
+        <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+      
+      
+        
+          <title>集合论——集合 - CSU CS Wiki</title>
+        
+      
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
+        
+          
+          <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+          
+            
+            
+            <meta name="theme-color" content="#ffffff">
+          
+        
+      
+      
+      
+        
+          
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700%7CFira+Mono&display=fallback">
+          <style>:root{--md-text-font-family:"Fira Sans";--md-code-font-family:"Fira Mono"}</style>
+        
+      
+      
+      
+        <link rel="stylesheet" href="../../_static/css/extra.css">
+      
+        <link rel="stylesheet" href="../../_static/css/application-palette.22915126.css">
+      
+      
+        
+      
+      
+    </head>
+    
+    
+      
+      
+      
+      
+      
+      <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="red">
+    
+      
+      <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+      
+      <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+      <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+      <label class="md-overlay" for="__drawer"></label>
+      <div data-md-component="skip">
+        
+          
+          <a href="#_1" class="md-skip">
+            跳转至
+          </a>
+        
+      </div>
+      <div data-md-component="announce">
+        
+      </div>
+      
+        <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CSU CS Wiki" class="md-header__button md-logo" aria-label="CSU CS Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSU CS Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              集合论——集合
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+
+<!-- Repository information -->
+<a
+  href="https://github.com/disc0ver-csu/csu-cs-wiki/"
+  title="前往 GitHub 仓库"
+  class="md-source"
+  data-md-component="source"
+>
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disc0ver-csu/csu-cs-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+      
+      <div class="md-container" data-md-component="container">
+        
+        
+          
+        
+        <main class="md-main" data-md-component="main">
+          <div class="md-main__inner md-grid">
+            
+              
+                
+                <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CSU CS Wiki" class="md-nav__button md-logo" aria-label="CSU CS Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    CSU CS Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!-- Repository information -->
+<a
+  href="https://github.com/disc0ver-csu/csu-cs-wiki/"
+  title="前往 GitHub 仓库"
+  class="md-source"
+  data-md-component="source"
+>
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    disc0ver-csu/csu-cs-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        简介
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="简介" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          简介
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        关于我们
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/quick-start/" class="md-nav__link">
+        Quick Start
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/docs-guide/" class="md-nav__link">
+        贡献Wiki词条标准
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/codes-guide/" class="md-nav__link">
+        贡献代码标准
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intro/commit-guide/" class="md-nav__link">
+        Commit 标准
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        操作系统
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="操作系统" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OperatingSystems/process-mgmt/" class="md-nav__link">
+        进程管理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        分布式系统与云计算
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="分布式系统与云计算" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          分布式系统与云计算
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/sync-clock/" class="md-nav__link">
+        时间同步算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/logic-clock/" class="md-nav__link">
+        Lamport逻辑时钟
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DistributedSystems/sumup/" class="md-nav__link">
+        期末汇总（临时）
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        离散数学
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="离散数学" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          离散数学
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        离散数学概论
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic-proof-intro/" class="md-nav__link">
+        逻辑与证明——概论
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic-proof-prop/" class="md-nav__link">
+        逻辑与证明——命题与逻辑等价
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic-proof-pred/" class="md-nav__link">
+        逻辑与证明——谓词与量词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic-proof-proof/" class="md-nav__link">
+        逻辑与证明——推理证明方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          集合论——集合
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        集合论——集合
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    集合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    子集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    集合的大小
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    幂集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    笛卡尔积
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    集合运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    集合恒等式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    交和并的扩展
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set-theory-relations-properties/" class="md-nav__link">
+        集合论——关系及其性质
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set-theory-order-equivalence/" class="md-nav__link">
+        集合论——序关系与等价关系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set-theory-functions/" class="md-nav__link">
+        集合论——函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphs/" class="md-nav__link">
+        图论
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        编译原理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="编译原理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompilerPrinciples/language-grammar/" class="md-nav__link">
+        语言与语法描述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompilerPrinciples/lexer-dfa/" class="md-nav__link">
+        词法分析——有限自动机
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompilerPrinciples/lexer-trans-algorithm/" class="md-nav__link">
+        词法分析——转换算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompilerPrinciples/parser-opg/" class="md-nav__link">
+        语法分析——算符优先
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompilerPrinciples/parser-lr/" class="md-nav__link">
+        语法分析——LR分析法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        数字图像处理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数字图像处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          数字图像处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DigitalImageProcess/ilpf/" class="md-nav__link">
+        理想滤波器与振铃特性
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        软件测试
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="软件测试" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          软件测试
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/white-box/" class="md-nav__link">
+        白盒测试开发
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/black-box/" class="md-nav__link">
+        黑盒测试开发
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SoftwareTesting/tdd/" class="md-nav__link">
+        TDD测试驱动开发
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        竞赛
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="竞赛" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          竞赛
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Competition/" class="md-nav__link">
+        关于竞赛
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        项目招新
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="项目招新" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          项目招新
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/disc0ver/" class="md-nav__link">
+        本项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/opensource-project/" class="md-nav__link">
+        开源项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/personal-project/" class="md-nav__link">
+        个人项目
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../JoinUs/campus-project/" class="md-nav__link">
+        校内项目
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                    </div>
+                  </div>
+                </div>
+              
+              
+                
+                <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    集合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    子集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    集合的大小
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    幂集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    笛卡尔积
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    集合运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    集合恒等式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    交和并的扩展
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                    </div>
+                  </div>
+                </div>
+              
+            
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+                    <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/DiscreteMathematics/set-theory-sets.md" title="编辑此页" class="md-content__button md-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                    </a>
+                  
+                  
+                  <h1 id="_1">集合论——集合<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>不要被<strong>集合论</strong>的大标题吓到，我们仅仅涉及集合论一点点知识，本章所介绍的知识主要用来研究离散结构、表示离散对象。至于名字，你可以叫“集合论”，也可以叫“关系代数”，或者你也可以把他们拆散成单独的小章节去理解。许多重要的离散结构都建立在<strong>集合</strong>——汇集对象的结构的基础上，而<strong>集合论</strong>也是笔者称呼这些章节的习惯。在此之上，你还会认识到<strong>组合</strong>——广泛用于无序元素计数、<strong>关系</strong>——序偶的集合用来表示对象的关系、<strong>有限状态机</strong>——为计算机建模。</p>
+<h2 id="_2">集合<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>集合</strong>：集合是对象的一个无序的聚集。更严谨的英文定义如下:</p>
+<div class="admonition note">
+<p class="admonition-title">Definition of set</p>
+<p>A <em>set</em> is an unordered collection of objects, called <em>elements</em> or <em>members</em> of the set. A set is said to <em>contain</em> its elements.We write <span><span class="MathJax_Preview">a \in A</span><script type="math/tex">a \in A</script></span> to denote that <span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> is an element of the set <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>. The notation <span><span class="MathJax_Preview">a \notin A</span><script type="math/tex">a \notin A</script></span> denotes that a is not an element of the set <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>.</p>
+</div>
+<p><strong>构造与表示</strong>：采用列举（listing）方式，又叫做花名册方式（roster method），如英文字母表中所有元音字母的集合<span><span class="MathJax_Preview">V</span><script type="math/tex">V</script></span>可以表示为<span><span class="MathJax_Preview">V = \{a,e,i,o,u\}</span><script type="math/tex">V = \{a,e,i,o,u\}</script></span>。或者我们可以采用描述生成方式（Discription），即使用集合构造器（set builder）符号。如小于 10 的所有奇数集合<span><span class="MathJax_Preview">O</span><script type="math/tex">O</script></span>表示为<span><span class="MathJax_Preview">O = \{ x | x &lt;10 \land x = 2n-1 ,n \in \mathrm{Z}^+  \}</span><script type="math/tex">O = \{ x | x <10 \land x = 2n-1 ,n \in \mathrm{Z}^+  \}</script></span></p>
+<details class="note"><summary>与计算机中的数据类型的联系</summary><p>计算机科学中的数据类型（datatype）或类型（type）的概念是建立在集合这一概念上。特别地，数据类型或类型是一个集合地名称，连同可以作用在集合对象上地一组操作的集合。例如，布尔（boolean）是集合<span><span class="MathJax_Preview">\{0,1\}</span><script type="math/tex">\{0,1\}</script></span>的一个名称，连同对其上一个或多个元素实施运算，如AND、OR和NOT。</p>
+</details>
+<p><strong>集合相等</strong>：两个集合相等当且仅当它们拥有同样的元素，即<span><span class="MathJax_Preview">A = B \Leftrightarrow \forall x(x \in A \leftrightarrow x \in B)</span><script type="math/tex">A = B \Leftrightarrow \forall x(x \in A \leftrightarrow x \in B)</script></span>。证明集合相等除了定义法，有一个更常用的方法会在子集部分介绍。</p>
+<p><strong>空集</strong>：一个特殊的不含任何元素的集合，用<span><span class="MathJax_Preview">\emptyset</span><script type="math/tex">\emptyset</script></span>表示。</p>
+<p><strong>全集</strong>：我们断言的包含全部元素的集合。</p>
+<p><strong>朴素集合论</strong>：我们需要注意集合定义中所用到的术语“对象”（object），并没有指定对象是什么。朴素集理论根据直觉定义的集合，并使用无论什么性质都存在一个恰好有该性质对象组成的集合，因而导致了悖论（paradox）或逻辑不一致性。这些逻辑不一致性可以通过公理出发构造集合论来避免。但在我们的学习过程中，仍以朴素集合论为蓝本，有兴趣继续学习公理集合论的同学可以自行查阅资料。</p>
+<p><strong>罗素悖论</strong>：参考 PPT，理解理发师悖论和罗素悖论的等价性。这里我们给出形式化描述：</p>
+<details class="note"><summary>Formal presentation of Russell's paradox</summary><p>Define Naive Set Theory (NST) as the theory of predicate logic with a binary predicate <span><span class="MathJax_Preview">\in</span><script type="math/tex">\in</script></span>  and the following axiom schema of unrestricted comprehension:</p>
+<div>
+<div class="MathJax_Preview">\exists y \forall x (x \in y \Leftrightarrow \phi(x))</div>
+<script type="math/tex; mode=display">\exists y \forall x (x \in y \Leftrightarrow \phi(x))</script>
+</div>
+<p>for any formula <span><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span>  with only the variable x free. Substitute <span><span class="MathJax_Preview">x \notin x</span><script type="math/tex">x \notin x</script></span> for <span><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span>. Then by existential instantiation (reusing the symbol <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span>) and universal instantiation we have</p>
+<div>
+<div class="MathJax_Preview">y \in y \Leftrightarrow y \notin y</div>
+<script type="math/tex; mode=display">y \in y \Leftrightarrow y \notin y</script>
+</div>
+<p>a contradiction. There fore, NST is inconsistent.</p>
+<p>简言之，NST假定上述谓词命题为真（总存在一个集合来描述任何性质），但我们取特殊的<span><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span>时，会发现矛盾。</p>
+</details>
+<h2 id="_3">子集<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><strong>子集</strong>（subset）：集合<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>是集合<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>的子集当且仅当<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>的每个元素也是<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>的元素。<span><span class="MathJax_Preview">A \subseteq B</span><script type="math/tex">A \subseteq B</script></span>仅当下面量化式为真：</p>
+<div>
+<div class="MathJax_Preview">\forall x ( x \in A \rightarrow x \in B)</div>
+<script type="math/tex; mode=display">\forall x ( x \in A \rightarrow x \in B)</script>
+</div>
+<p><strong>证明集合相等</strong>：想要证明两个集合<span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>和<span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>相等，就证明<span><span class="MathJax_Preview">A \subseteq B</span><script type="math/tex">A \subseteq B</script></span>和<span><span class="MathJax_Preview">B \subseteq A</span><script type="math/tex">B \subseteq A</script></span>。</p>
+<p>常用：</p>
+<div>
+<div class="MathJax_Preview">\emptyset \subseteq A \\ A \subseteq A</div>
+<script type="math/tex; mode=display">\emptyset \subseteq A \\ A \subseteq A</script>
+</div>
+<h2 id="_4">集合的大小<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>集合广泛应用于计数问题，讨论集合的大小是必要的。</p>
+<p><strong>基数</strong>（cardinality）：令<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>为集。如果<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>中恰有<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>个不同的元素，这里<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>是非负整数，我们就说<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>是有限集（finite set），而<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>是<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>的基数。<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>的基数记为<span><span class="MathJax_Preview">|S|</span><script type="math/tex">|S|</script></span>。而不是有限的集合成为无限集（infinite set）</p>
+<h2 id="_5">幂集<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><strong>幂集</strong>：给定集合<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>，其幂集（power set）是集合<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>的所有子集的集合，记为<span><span class="MathJax_Preview">\mathcal{P}(X)</span><script type="math/tex">\mathcal{P}(X)</script></span> 。</p>
+<p>需要辨别跟空集相关的一些集合的幂集，如下：</p>
+<div>
+<div class="MathJax_Preview">\mathcal{P}(\emptyset) = \{ \emptyset \} \\ \mathcal{P}(\{ \emptyset \}) = \{ \emptyset, \{ \emptyset \} \}</div>
+<script type="math/tex; mode=display">\mathcal{P}(\emptyset) = \{ \emptyset \} \\ \mathcal{P}(\{ \emptyset \}) = \{ \emptyset, \{ \emptyset \} \}</script>
+</div>
+<p>幂集的基数：<span><span class="MathJax_Preview">|\mathcal{P}(A)| = 2^{|A|}</span><script type="math/tex">|\mathcal{P}(A)| = 2^{|A|}</script></span></p>
+<h2 id="_6">笛卡尔积<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>有序<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>元组（ordered <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>-tuples）来表示次序。两个有序<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>元组相等仅当每一对对应元素都相等。特别注意有序二元组称为<strong>序偶</strong>（ordered pair）。</p>
+<p><strong>笛卡尔积</strong>（Cartesian product）：<span><span class="MathJax_Preview">A \times B</span><script type="math/tex">A \times B</script></span>表示，是所有序偶<span><span class="MathJax_Preview">(a,b)</span><script type="math/tex">(a,b)</script></span>的集合，其中，<span><span class="MathJax_Preview">a \in A</span><script type="math/tex">a \in A</script></span>且<span><span class="MathJax_Preview">b \in B</span><script type="math/tex">b \in B</script></span>：</p>
+<div>
+<div class="MathJax_Preview">A \times B = \{ (a,b) | a \in A \land b \in B \}</div>
+<script type="math/tex; mode=display">A \times B = \{ (a,b) | a \in A \land b \in B \}</script>
+</div>
+<p>与后面所讲的“关系联系起来”，<strong>关系是笛卡尔积的子集</strong>（这句话笔者印象深刻）。</p>
+<details class="note"><summary>序偶的表示</summary><p>序偶所定义的性质是两个序偶相等当且仅当第一个元素和第二个元素相等。令人惊奇的是，我们可以用集合论的基本概念来构造序偶，从而取代用序偶作为最基本的概念。证明如果将序偶<span><span class="MathJax_Preview">(a,b)</span><script type="math/tex">(a,b)</script></span>定义为<span><span class="MathJax_Preview">\{\{a\},\{a,b\}\}</span><script type="math/tex">\{\{a\},\{a,b\}\}</script></span>，那么<span><span class="MathJax_Preview">(a,b) = (c,d)</span><script type="math/tex">(a,b) = (c,d)</script></span>当且仅当<span><span class="MathJax_Preview">a=c</span><script type="math/tex">a=c</script></span>且<span><span class="MathJax_Preview">b=d</span><script type="math/tex">b=d</script></span>（证明交给你们自己了）。</p>
+<!-- TODO -->
+</details>
+<h2 id="_7">集合运算<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>并</strong>（union）: <span><span class="MathJax_Preview">A \cup B = \{x | x \in A \lor x \in B\}</span><script type="math/tex">A \cup B = \{x | x \in A \lor x \in B\}</script></span></li>
+<li><strong>交</strong>（intersection）：<span><span class="MathJax_Preview">A \cap B = \{x | x \in A \land x \in B\}</span><script type="math/tex">A \cap B = \{x | x \in A \land x \in B\}</script></span></li>
+<li><strong>差</strong>（difference）： <span><span class="MathJax_Preview">A - B = \{ x | x \in A \land x \notin B \}</span><script type="math/tex">A - B = \{ x | x \in A \land x \notin B \}</script></span></li>
+<li><strong>补</strong>（complement）： <span><span class="MathJax_Preview">\overline{A} = \{ x \in U | x \notin A \}</span><script type="math/tex">\overline{A} = \{ x \in U | x \notin A \}</script></span></li>
+<li><strong>对称差</strong>（symmetric difference）：<span><span class="MathJax_Preview">A \oplus B = \{x | (x \in A \lor x \in B) \land (x \notin A \lor x \notin B)  \} = (A-B) \cup (B-A) = (A \cup B)-(A \cap B)</span><script type="math/tex">A \oplus B = \{x | (x \in A \lor x \in B) \land (x \notin A \lor x \notin B)  \} = (A-B) \cup (B-A) = (A \cup B)-(A \cap B)</script></span></li>
+</ul>
+<h2 id="_8">集合恒等式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th align="center">恒等式</th>
+<th align="center">名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cap U =A \\ A \cup \emptyset = A</span><script type="math/tex">A \cap U =A \\ A \cup \emptyset = A</script></span></td>
+<td align="center">恒等律（Identity laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup U = U \\ A \cap \emptyset = \emptyset</span><script type="math/tex">A \cup U = U \\ A \cap \emptyset = \emptyset</script></span></td>
+<td align="center">支配律（Domination laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup A = A \\ A \cap A = A</span><script type="math/tex">A \cup A = A \\ A \cap A = A</script></span></td>
+<td align="center">幂等律（Idempotent laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">\overline{(\overline{A})}</span><script type="math/tex">\overline{(\overline{A})}</script></span></td>
+<td align="center">补律（Complementation law）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup B = B \cup A \\ A\cap B = B \cap A</span><script type="math/tex">A \cup B = B \cup A \\ A\cap B = B \cap A</script></span></td>
+<td align="center">交换律（Commutative laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup (B \cup C) = (A\cup B) \cup C \\ A \cap (B \cap C) = (A \cap B) \cap C</span><script type="math/tex">A \cup (B \cup C) = (A\cup B) \cup C \\ A \cap (B \cap C) = (A \cap B) \cap C</script></span></td>
+<td align="center">结合律（Associative laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup(B \cap C) = (A \cup B) \cap (A \cup C) \\ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)</span><script type="math/tex">A \cup(B \cap C) = (A \cup B) \cap (A \cup C) \\ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)</script></span></td>
+<td align="center">分配律（Distributive laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">\overline{A \cap B} = \overline{A} \cup \overline{B} \\ \overline{A \cup B} = \overline{A} \cap \overline{C}</span><script type="math/tex">\overline{A \cap B} = \overline{A} \cup \overline{B} \\ \overline{A \cup B} = \overline{A} \cap \overline{C}</script></span></td>
+<td align="center">德·摩根律（De Morgan's laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup (A \cap B) = A \\ A \cap (A \cup B) = A</span><script type="math/tex">A \cup (A \cap B) = A \\ A \cap (A \cup B) = A</script></span></td>
+<td align="center">吸收律（Absorption laws）</td>
+</tr>
+<tr>
+<td align="center"><span><span class="MathJax_Preview">A \cup \overline{A} = U \\ A \cap \overline{A} = \emptyset</span><script type="math/tex">A \cup \overline{A} = U \\ A \cap \overline{A} = \emptyset</script></span></td>
+<td align="center">互补律（Complement laws）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">交和并的扩展<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>从两集合拓展到多个集合，按照《离散数学》（方）的解释，试讲交、并运算定义在集合的搜集上（搜集是集合的另一种称呼）。</p>
+<p><strong>定义</strong>：设<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>是某论述域子集的搜集。</p>
+<ol>
+<li>
+<p><span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>的成员的并，记为<span><span class="MathJax_Preview">\bigcup_{S \in C} S</span><script type="math/tex">\bigcup_{S \in C} S</script></span>，是由下式指定的集合：</p>
+<div>
+<div class="MathJax_Preview">\bigcup_{S \in C} S = \{ x | \exists s(S \in C \land x \in S) \}</div>
+<script type="math/tex; mode=display">\bigcup_{S \in C} S = \{ x | \exists s(S \in C \land x \in S) \}</script>
+</div>
+</li>
+<li>
+<p>如果<span><span class="MathJax_Preview">C \ne \emptyset</span><script type="math/tex">C \ne \emptyset</script></span>，<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>的成员的交，记为<span><span class="MathJax_Preview">\bigcap_{S \in C} S</span><script type="math/tex">\bigcap_{S \in C} S</script></span>，是下式指定的集合：</p>
+<div>
+<div class="MathJax_Preview">\bigcap_{S \in C} S = \{ x | \forall S (S \in C \rightarrow x \in S) \}</div>
+<script type="math/tex; mode=display">\bigcap_{S \in C} S = \{ x | \forall S (S \in C \rightarrow x \in S) \}</script>
+</div>
+</li>
+</ol>
+<p>如果搜集是有限的，那么可以用如下记号表示：</p>
+<div>
+<div class="MathJax_Preview">A_1 \cup A_2 \cup \cdots \cup A_n = \bigcup_{i=1}^{n} A_i</div>
+<script type="math/tex; mode=display">A_1 \cup A_2 \cup \cdots \cup A_n = \bigcup_{i=1}^{n} A_i</script>
+</div>
+<div>
+<div class="MathJax_Preview">A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{i=1}^{n} A_i</div>
+<script type="math/tex; mode=display">A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{i=1}^{n} A_i</script>
+</div>
+                  
+                
+                
+                  
+
+ 
+ 
+<hr>
+<blockquote class="page-copyright">
+    <span>本页面最近更新：</span>
+    <span class="facts_modified"></span>，<a class="edit_history">更新历史</a><br>
+    <span>发现错误？想一起完善？ <a href="https://disc0ver-csu.github.io/csu-cs-wiki/edit-landing/?ref=/DiscreteMathematics/set-theory-sets.md" title="编辑此页" class="page_edit_url">在
+            GitHub上编辑此页！</a></span><br>
+    <span>本页面贡献者：</span><span class="page_contributors">CSU CS Wiki</span><br>
+    <span>本页面的全部内容在
+        <strong><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a>  <a href="https://github.com/zTrix/sata-license">SATA</a></strong> 协议之条款下提供，附加条款亦可能应用</span>
+</blockquote>
+
+<!-- <span> test page.is_homepage= False  page.url= "./">集合论——集合 page.meta = {}</span> -->
+
+
+
+<div id="cusdis_thread"
+  data-host="https://cusdis.com"
+  data-app-id="e44c94a5-de23-4a23-b724-d327887c8544"
+  data-page-url="DiscreteMathematics/set-theory-sets/"
+  data-page-title="集合论——集合"
+></div>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+
+                
+              </article>
+            </div>
+          </div>
+          
+        </main>
+        
+          
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../logic-proof-proof/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              逻辑与证明——推理证明方法
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../set-theory-relations-properties/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              集合论——关系及其性质
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+        
+      </div>
+      <div class="md-dialog" data-md-component="dialog">
+        <div class="md-dialog__inner md-typeset"></div>
+      </div>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+      
+      
+        <script src="../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+        
+          <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
+          <script src="../../_static/js/extra.js"></script>
+        
+      
+    </body>
+  </html>
+  
