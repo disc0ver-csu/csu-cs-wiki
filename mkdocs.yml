@@ -1,7 +1,7 @@
 site_name: CSU CS Wiki
 site_description: CSU CS Wiki
 site_author: Disc0ver
-site_url: https://disc0ver-csu.github.io/csu-cs-wiki
+site_url: "https://disc0ver-csu.github.io/csu-cs-wiki"
 strict: true
 
 # Repository
@@ -62,24 +62,30 @@ theme:
   name: material
   # custom_dir: "mkdocs-material/material"
   custom_dir: "overrides/"
-  # icon:
-  #   repo: 
   static_templates:
     - 404.html
   language: "zh"
   # 标题栏颜色
   palette:
-    primary: "white"
-    accent: "red"
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
   include_search_page: false
   search_index_only: true
   favicon: "Disc0ver-blue.png"
 
   # 定制化
-  # logo:
-  #   icon: "school"
-  # feature:
-  #   tabs: true
+  icon:
+    logo: material/web
+  features:
+    - navigation.tabs
+    - navigation.top
   font:
     text: "Fira Sans"
     code: "Fira Mono"
@@ -89,7 +95,7 @@ extra:
   search:
     language: "jp"
   disqus: "CSU CS Wiki"
-  cusdis: 
+  cusdis:
     host: "https://cusdis.com"
     app_id: "e44c94a5-de23-4a23-b724-d327887c8544"
     lang: "zh-cn"

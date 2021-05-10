@@ -17,16 +17,54 @@
         <strong>{{ copyright }}</strong> 协议之条款下提供，附加条款亦可能应用</span>
 </blockquote>
 {% if not page.is_homepage %}
-<!-- <span> test page.is_homepage= {{ page.is_homepage }}  page.url= "{{ page.url|url }}">{{ page.title }} page.meta = {{ page.meta }}</span> -->
-{% set app_id = config.extra.cusdis.app_id %}
-{% set host = config.extra.cusdis.host %}
-{% set lang = config.extra.cusdis.lang %}
-<div id="cusdis_thread"
-  data-host="https://cusdis.com"
-  data-app-id="e44c94a5-de23-4a23-b724-d327887c8544"
-  data-page-url="{{ page.url }}"
-  data-page-title="{{ page.title }}"
-></div>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<!-- <span> test page.is_homepage= {{ page.is_homepage }} <br> page.url|url= {{ page.abs_url }} <br> page.meta =
+    {{ page.meta }} <br> page.title = {{ page.title }} <br> </span> -->
+<div class="cusdis" style="width:100%">
+    <div id="cusdis_thread" data-host="{{ config.extra.cusdis.host }}" data-app-id="{{ config.extra.cusdis.app_id }}"
+        data-page-id="{{ page.abs_url|url }}""
+          data-page-url=" {{ page.abs_url|url }}" data-page-title="{{ page.title }}">
+    </div>
+</div>
+<script type="text/javascript">
+    const src = '{{ config.extra.cusdis.host }}/js/widget/lang/{{ config.extra.cusdis.lang }}.js';
+    var createScript = function (url, onload) {
+        var s = document.createElement('script');
+        s.setAttribute('src', url);
+        s.setAttribute('type', 'text/javascript');
+        s.setAttribute('charset', 'UTF-8');
+        s.async = false;
+        if (typeof onload === 'function') {
+            if (window.attachEvent) {
+                s.onreadystatechange = function () {
+                    var e = s.readyState;
+                    if (e === 'loaded' || e === 'complete') {
+                        s.onreadystatechange = null;
+                        onload();
+                    }
+                };
+            } else {
+                s.onload = onload;
+            }
+        }
+        var e = document.getElementsByTagName('script')[0] ||
+            document.getElementsByTagName('head')[0] ||
+            document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e);
+    }
+    createScript(src);
+    var schema = document.documentElement.getAttribute('data-user-color-scheme');
+    if (schema) {
+        document.querySelector('#cusdis_thread').dataset.theme = schema
+    }
+</script>
+<script type="text/javascript">
+    var loadComments = function (selectors, loadFunc) {
+        loadFunc();
+    }
+    loadComments('#cusdis_thread', function () {
+        createScript("https://cusdis.com/js/cusdis.es.js");
+    });
+</script>
+<noscript>Please enable JavaScript to view the comments</noscript>
 
 {% endif %}
